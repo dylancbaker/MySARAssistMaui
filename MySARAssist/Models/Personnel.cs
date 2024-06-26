@@ -155,8 +155,8 @@ namespace MySARAssist.Models
         public double PacesPer100 { get => _PacesPer100; set => _PacesPer100 = value; }
         public bool CurrentlySelected { get => _CurrentlySelected; set => _CurrentlySelected = value; }
         [Ignore]
-        public Organization MemberOrganization { get => _MemberOrganization; set => _MemberOrganization = value; }
-        private Organization _MemberOrganization;
+        public Organization? MemberOrganization { get => _MemberOrganization; set => _MemberOrganization = value; }
+        private Organization? _MemberOrganization;
 
 
         /* this is so qualifications get saved in sqllite */

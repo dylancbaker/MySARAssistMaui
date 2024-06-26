@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
-using MySARAssist.ViewModels;
+using MySARAssist.Services;
+using MySARAssist.ViewModels.CheckInOut;
+using CommunityToolkit.Maui;
 
 namespace MySARAssist
 {
@@ -8,23 +10,18 @@ namespace MySARAssist
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
-
+            builder.UseMauiApp<App>().ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            }).UseMauiCommunityToolkit();
             // Add this code
             string dbPath = System.IO.Path.Combine(FileSystem.AppDataDirectory, "mysarassist.db3");
-            builder.Services.AddSingleton<PersonnelListViewModel>(s => ActivatorUtilities.CreateInstance<PersonnelListViewModel>(s, dbPath));
-
-
+            
+            builder.Services.AddSingleton<PersonnelService>(s => ActivatorUtilities.CreateInstance<PersonnelService>(s, dbPath));
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-
             return builder.Build();
         }
     }

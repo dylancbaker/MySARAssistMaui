@@ -18,18 +18,22 @@
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
 
-            <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+            
+            <Button
+                Text="Check In or Out" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                HorizontalOptions="Fill" />
 
             <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
+                Text="Calculators" 
                 SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill" x:Name="CalculatorsButton" Clicked="CalculatorsButton_Clicked" />
+
+            <Button
+                Text="RADeMS Risk Assessment" 
+                SemanticProperties.Hint="Counts the number of times you click"
                 HorizontalOptions="Fill" />
+
         </VerticalStackLayout>
     </ScrollView>
 

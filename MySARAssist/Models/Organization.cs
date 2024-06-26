@@ -96,21 +96,31 @@ namespace MySARAssist.Models
             Guid SARVAC = new Guid("2c7b4d1b-151e-4315-b4c9-f7c810568b2f");
             Guid Euro = new Guid("62d294f8-73cc-4957-b43a-a03d886d3bbe");
             Guid Portugal = new Guid("0948300a-bca0-4338-a5fc-f08402120498");
-
+            Guid NCSAR = new Guid("806b2639-403b-473f-bba8-3b247ad3175a");
+            Guid NBSAR = new Guid("fa0eea08-7d7f-4f71-af1b-1ae8b38e2566");
             Guid OtherOrgs = new Guid("D2BB4ADB-13FE-4941-AB4A-1A5020C3DC8C");
+            Guid LE = new Guid("2a164b90-4364-4de3-b9ef-457555df5855");
+            Guid GA = new Guid("30307d12-ff30-48bc-bb0e-1d06899f228a");
 
             organizations.Add(new Organization(ABSAR, Guid.Empty, "AB Search and Rescue", "saralberta-logo.png"));
             organizations.Add(new Organization(BCSARA, Guid.Empty, "BC Search and Rescue", "BCSARA -Logo-960.png"));
             organizations.Add(new Organization(SARVAC, Guid.Empty, "SAR Volunteer Assoc. of Canada", "crest@2x.png"));
             organizations.Add(new Organization(Euro, Guid.Empty, "European Association Civil Protection Volunteer Teams", "European Civil Protection.png"));
             organizations.Add(new Organization(Portugal, Guid.Empty, "Portuguese Teams", "protecao_civil_portugal_1_1024_2500.png"));
+            organizations.Add(new Organization(NCSAR, Guid.Empty, "North Carolina Search and Rescue", "ncsar.png"));
+            organizations.Add(new Organization(NBSAR, Guid.Empty, "New Brunswick Search and Rescue", "NBGSARA.png"));
+            organizations.Add(new Organization(GA, Guid.Empty, "State of Georgia", "SAR Assistant_lq.png"));
+            organizations.Add(new Organization(LE, Guid.Empty, "Law Enforcement", "SAR Assistant_lq.png"));
+
+            organizations = organizations.OrderBy(o => o.OrganizationName).ToList();
+
 
             organizations.Add(new Organization(OtherOrgs, Guid.Empty, "Other Organizations", "BCSARA -Logo-960.png"));
 
             return organizations;
         }
 
-        public static List<Organization> GetOrganizations(Guid ParentID, bool addBlankRecord = false)
+        public static List<Organization> GetOrganizations(Guid ParentID, bool addBlankRecord = false, bool includeOtherOrgs = true)
         {
             //to be used when the org list is needed and internet is not avilable;
             List<Organization> organizations = new List<Organization>();
@@ -120,7 +130,10 @@ namespace MySARAssist.Models
             Guid SARVAC = new Guid("2c7b4d1b-151e-4315-b4c9-f7c810568b2f");
             Guid Euro = new Guid("62d294f8-73cc-4957-b43a-a03d886d3bbe");
             Guid Portugal = new Guid("0948300a-bca0-4338-a5fc-f08402120498");
-
+            Guid NCSAR = new Guid("806b2639-403b-473f-bba8-3b247ad3175a");
+            Guid NBSAR = new Guid("fa0eea08-7d7f-4f71-af1b-1ae8b38e2566");
+            Guid LE = new Guid("2a164b90-4364-4de3-b9ef-457555df5855");
+            Guid GA = new Guid("30307d12-ff30-48bc-bb0e-1d06899f228a");
 
 
             //BCSARA Teams
@@ -303,16 +316,11 @@ namespace MySARAssist.Models
 
 
 
-            organizations = organizations.OrderBy(o => o.OrganizationName).ToList();
 
-
-            organizations.Add(new Organization(new Guid("489f9815-808d-4f55-a17f-214d352e7661"), BCSARA, "BC Search Dog Association", "BCSDA-2016-logo_512.png"));
-            organizations.Add(new Organization(new Guid("008bdd33-28a1-46b6-818d-59225f2e97df"), BCSARA, "BC Tracking Association", "BCTALogoSeal@1x.png"));
-            organizations.Add(new Organization(new Guid("88A344BD-BEED-4727-A353-3E75B028507D"), BCSARA, "Critical Incident Stress Management", "BCSARA-Logo-960.png"));
-
-
+            //SARVAC
 
             organizations.Add(new Organization(new Guid("1C8C2043-4A7A-43D9-B035-21C5444816F8"), SARVAC, "SARVAC", "crest@2x.png"));
+            organizations.Add(new Organization(new Guid("5F48C5BD-6645-4920-A065-EDC67D7ABDE2"), SARVAC, "Humanitarian Workforce", "crest@2x.png"));
             organizations.Add(new Organization(new Guid("cad7191c-df37-4ca6-bc6c-0ec19b9c957b"), SARVAC, "SAR Manitoba", "crest@2x.png"));
             organizations.Add(new Organization(new Guid("af4df48e-9f82-45bb-b302-6b14b539e336"), SARVAC, "SAR New Brunswick", "crest@2x.png"));
             organizations.Add(new Organization(new Guid("189e80f9-d552-4763-84f4-8bc3ac6c0af8"), SARVAC, "SAR Newfoundland and Labrador", "crest@2x.png"));
@@ -326,21 +334,63 @@ namespace MySARAssist.Models
             organizations.Add(new Organization(new Guid("a72a71ce-4f34-4e46-80a2-b2e524f8af64"), SARVAC, "SAR Yukon", "crest@2x.png"));
 
 
+            //North Carolina
+            organizations.Add(new Organization(new Guid("65ec02d8-67a9-4ef9-83a4-8605e12fc88c"), NCSAR, "Cowee Search and Rescue", "ncsar.png"));
+            organizations.Add(new Organization(new Guid("adf93714-a7f9-4cf1-b91e-ffb7030b5eda"), NCSAR, "NC Volunteer SAR", "ncsar.png"));
+
+            //Georgia
+            organizations.Add(new Organization(new Guid("0ed3afc3-212d-4220-bb46-28a073359635"), GA, "White County SAR"));
+            organizations.Add(new Organization(new Guid("05d07f03-1660-4e69-94d5-51a91bb2af87"), GA, "Friends of SAR, inc."));
+            organizations.Add(new Organization(new Guid("93729cf8-f53c-4efc-a2c1-654bd11e9288"), GA, "Stephens County SAR"));
+            organizations.Add(new Organization(new Guid("80c5650d-f91c-49e9-8f0c-382c159f7906"), GA, "Rabun County SAR"));
+            organizations.Add(new Organization(new Guid("77c041c9-fa15-498c-837c-820a35188b01"), GA, "Union County SAR"));
+            organizations.Add(new Organization(new Guid("d803f83b-da53-492e-a27a-e5a7a1233839"), GA, "Habersham County"));
+            organizations.Add(new Organization(new Guid("2183b6ea-0267-40ec-8572-7ab844cb58e9"), GA, "Lumpkin County"));
+            organizations.Add(new Organization(new Guid("54cdeae4-940c-489a-920c-b70bd46015f4"), GA, "Franklin County"));
+
+
+
+            //New Brunswick
+            organizations.Add(new Organization(new Guid("5bf6f806-f11f-48df-b1e5-0fbdd99a5476"), NBSAR, "North West GSAR", "nw gsar.jpg"));
+            organizations.Add(new Organization(new Guid("9dcf452c-22af-44c3-aa32-30e61d8f743e"), NBSAR, "Acadie-Chaleur GSAR", "ac gsar.jpg"));
+            organizations.Add(new Organization(new Guid("14a38990-6e53-4982-b64c-846fe10b4420"), NBSAR, "Miramichi GSAR", "miramichi gsar.jpg"));
+            organizations.Add(new Organization(new Guid("8ed9f2e6-cd21-49fd-898e-3b10abb5a0d0"), NBSAR, "Tri-County GSAR", "Tri County.png"));
+            organizations.Add(new Organization(new Guid("3871123d-3678-4b7c-ace0-b6bf19275b0d"), NBSAR, "Greater Fundy GSAR", "GF GSAR.jpg"));
+            organizations.Add(new Organization(new Guid("863fc64b-db75-4198-a79f-c80031bc5fd4"), NBSAR, "River Valley GSAR", "rvgsar.jpg"));
+            organizations.Add(new Organization(new Guid("597778cb-627d-4175-be26-65adb30dee8c"), NBSAR, "Charlotte County GSAR", "charlote.png"));
+            organizations.Add(new Organization(new Guid("a8ccf5f1-4b2d-48b5-bc04-d48d2f9744c8"), NBSAR, "York Sunbury SAR", "YSSR Logo.png"));
+            organizations.Add(new Organization(new Guid("bcbe0646-6e04-4e58-97fb-e9ec3708e228"), NBSAR, "Carleton GSAR", "carleton.jpg"));
+
+            //Law enforcement entities
+            organizations.Add(new Organization(new Guid("6b7e460d-2490-4a8c-b828-5c1d7d707c83"), LE, "Ontario Prov. Police", "OPPERT.png"));
+            organizations.Add(new Organization(new Guid("75467ef9-fee0-4911-b54f-62e1ba926095"), LE, "Police", "SAR Assistant_lq.png"));
+            organizations.Add(new Organization(new Guid("85755fe3-d757-4bdc-87c2-156ccafbdc57"), LE, "Royal Canadian Mounted Police", "RCMPLogo.png"));
+            organizations.Add(new Organization(new Guid("c0376477-71c3-42ba-bcba-4d674dd18572"), LE, "Sheriff", "SAR Assistant_lq.png"));
+
+
+            organizations = organizations.OrderBy(o => o.OrganizationName).ToList();
+
+            //manually put these at the end
+            organizations.Add(new Organization(new Guid("489f9815-808d-4f55-a17f-214d352e7661"), BCSARA, "BC Search Dog Association", "BCSDA-2016-logo_512.png"));
+            organizations.Add(new Organization(new Guid("008bdd33-28a1-46b6-818d-59225f2e97df"), BCSARA, "BC Tracking Association", "BCTALogoSeal@1x.png"));
+            organizations.Add(new Organization(new Guid("88A344BD-BEED-4727-A353-3E75B028507D"), BCSARA, "Critical Incident Stress Management", "BCSARA-Logo-960.png"));
+
+
 
             if (ParentID != Guid.Empty)
             {
                 organizations = organizations.Where(o => o.ParentOrganizationID == ParentID).ToList();
             }
 
-            organizations.Add(new Organization(new Guid("d7d6350e-7666-4ef1-9205-f38edd1efc1f"), OtherOrgs, "Convergent Volunteer", "SAR Assistant_lq.png"));
-            organizations.Add(new Organization(new Guid("6b7e460d-2490-4a8c-b828-5c1d7d707c83"), OtherOrgs, "Ontario Prov. Police", "OPPERT.png"));
-            organizations.Add(new Organization(new Guid("75467ef9-fee0-4911-b54f-62e1ba926095"), OtherOrgs, "Police", "SAR Assistant_lq.png"));
-            organizations.Add(new Organization(new Guid("85755fe3-d757-4bdc-87c2-156ccafbdc57"), OtherOrgs, "Royal Canadian Mounted Police", "RCMPLogo.png"));
-            organizations.Add(new Organization(new Guid("02035C34-CD9C-4B3D-9C22-5AF29068A0D9"), OtherOrgs, "Non-SAR", "SAR Assistant_lq.png"));
-            organizations.Add(new Organization(new Guid("8CBE0C6D-78B1-4600-96C0-21E3C16A444D"), OtherOrgs, "Great Hat Web Design", "GreatHatCircle.png"));
-            organizations.Add(new Organization(new Guid("96BA69A4-436C-4DA1-85B1-992E84C36019"), OtherOrgs, "Unassigned", "SAR Assistant_lq.png"));
-
-
+            if (ParentID == OtherOrgs || includeOtherOrgs)
+            {
+                organizations.Add(new Organization(new Guid("d7d6350e-7666-4ef1-9205-f38edd1efc1f"), OtherOrgs, "Convergent Volunteer", "SAR Assistant_lq.png"));
+                organizations.Add(new Organization(new Guid("b98654a4-2e95-4d20-b8c3-80a0cf565075"), OtherOrgs, "Community Volunteer", "SAR Assistant_lq.png"));
+                organizations.Add(new Organization(new Guid("2c4ff368-fe8b-41d9-a34d-7c2691b73138"), OtherOrgs, "First Nations Member", "SAR Assistant_lq.png"));
+                organizations.Add(new Organization(new Guid("8CBE0C6D-78B1-4600-96C0-21E3C16A444D"), OtherOrgs, "Great Hat Web Design", "GreatHatCircle.png"));
+                organizations.Add(new Organization(new Guid("02035C34-CD9C-4B3D-9C22-5AF29068A0D9"), OtherOrgs, "Non-SAR", "SAR Assistant_lq.png"));
+                organizations.Add(new Organization(new Guid("96BA69A4-436C-4DA1-85B1-992E84C36019"), OtherOrgs, "Unassigned", "SAR Assistant_lq.png"));
+            }
             if (addBlankRecord)
             {
                 Organization blankOrg = new Organization();

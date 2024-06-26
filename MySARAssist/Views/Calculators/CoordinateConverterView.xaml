@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MySARAssist.Views.Calculators.CoordinateConverterView"
+              xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
+             x:DataType="vm:CoordinateConverterViewModel"
+             Title="CoordinateConverterView">
+    <ContentPage.BindingContext>
+        <vm:CoordinateConverterViewModel></vm:CoordinateConverterViewModel>
+    </ContentPage.BindingContext>
+    <StackLayout  x:Name="slPageContent">
+        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="20">
+
+            <Label >Coordinate Conversion</Label>
+
+            <VerticalStackLayout x:Name="slPacesPer100" >
+                <Label  HorizontalOptions="Fill" Text="Enter the coordinates"></Label>
+
+
+                <Entry Keyboard="Default" x:Name="txtCoordinates"  Placeholder="UTM, MGRS, or Lat/Long" Text="{Binding CoordinateInputText, Mode=TwoWay}"></Entry>
+                <HorizontalStackLayout >
+                    <Label x:Name="lblCoordinateOK" VerticalOptions="Center" FontAttributes="Italic" HorizontalOptions="Fill" Text="{Binding CoordinateParseResult}"></Label>
+                    <Button x:Name="btnGetCurrent"   Clicked="btnGetCurrent_Clicked" Text="Get Current"></Button>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </StackLayout>
+
+        <ScrollView HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout x:Name="slResults" >
+                <HorizontalStackLayout  HorizontalOptions="FillAndExpand">
+                    <Label   Text="UTM:" FontAttributes="Bold"></Label>
+                    <Label   Text="{Binding UTM}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CopyUTMCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout  HorizontalOptions="FillAndExpand">
+                    <Label   Text="Short UTM:" FontAttributes="Bold"></Label>
+                    <Label    Text="{Binding ShortUTM}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CopyShortUTMCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout  HorizontalOptions="FillAndExpand">
+                    <Label   Text="DD:" FontAttributes="Bold"></Label>
+                    <Label    Text="{Binding DecimalDegrees}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CopyDDCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout  HorizontalOptions="FillAndExpand">
+                    <Label   Text="DMS:" FontAttributes="Bold"></Label>
+                    <Label   Text="{Binding DMS}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CopyDMSCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout  HorizontalOptions="FillAndExpand">
+                    <Label    Text="MGRS:" FontAttributes="Bold"></Label>
+                    <Label   Text="{Binding MGRS}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CopyMGRSCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+                <Label   FontSize="Small" FontAttributes="Italic">*Tap on a coordinate to copy it</Label>
+
+                <Button  Text="Map it" Command="{Binding OpenMapCommand}"></Button>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

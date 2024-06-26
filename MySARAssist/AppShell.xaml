@@ -4,12 +4,26 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MySARAssist"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:views="clr-namespace:MySARAssist.Views"
+    
     Title="MySARAssist">
+    <FlyoutItem Title="Home">
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+    </FlyoutItem>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <FlyoutItem Title="Calculators">
+        <ShellContent ContentTemplate="{DataTemplate views:CalculatorsView}" Route="CalculatorsView"></ShellContent>
+    </FlyoutItem>
 
+    <FlyoutItem Title="Check In / Out">
+        <ShellContent ContentTemplate="{DataTemplate views:CheckInOutView}" Route="CheckInOutView"></ShellContent>
+    </FlyoutItem>
+    
+    <FlyoutItem Title="RADeMS Risk Assessment">
+        <ShellContent ContentTemplate="{DataTemplate views:RADeMSView}" Route="RADeMSView"></ShellContent>
+    </FlyoutItem>
+
+    <FlyoutItem Title="About My SAR Assist">
+        <ShellContent ContentTemplate="{DataTemplate views:AboutView}" Route="AboutView"></ShellContent>
+    </FlyoutItem>
 </Shell>
