@@ -3,9 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+/* Unmerged change from project 'MySARAssist (net8.0-ios)'
+Before:
+using SQLite;
+After:
+using MySARAssist;
+using MySARAssist.Models;
+using MySARAssist.Models.Personnel;
+using MySARAssist.Models.Personnel.Personnel;
+using MySARAssist.Models.Personnel.Personnel.Personnel;
+using SQLite;
+*/
+
+/* Unmerged change from project 'MySARAssist (net8.0-android)'
+Before:
+using SQLite;
+After:
+using MySARAssist;
+using MySARAssist.Models;
+using MySARAssist.Models.Personnel;
+using MySARAssist.Models.Personnel.Personnel;
+using SQLite;
+*/
+
+/* Unmerged change from project 'MySARAssist (net8.0-windows10.0.19041.0)'
+Before:
+using SQLite;
+After:
+using MySARAssist;
+using MySARAssist.Models;
+using MySARAssist.Models.Personnel;
+using SQLite;
+*/
+using MySARAssist.Models;
+using MySARAssist.Models.Personnel.Personnel;
+using MySARAssist.Models.Personnel.Personnel.Personnel;
+using MySARAssist.Models.Personnel.Personnel.Personnel.Personnel;
 using SQLite;
 
-namespace MySARAssist.Models
+namespace MySARAssist.Models.Personnel
 {
     public class Personnel : IncidentResource, IEquatable<Personnel>, ICloneable
     {
@@ -97,7 +134,7 @@ namespace MySARAssist.Models
         public bool Tracker { get { if (QualificationList != null && (QualificationList[18] || QualificationList[19] || QualificationList[20])) { return true; } return false; } }
         public bool FirstAid { get { if (QualificationList != null && (QualificationList[4] || QualificationList[5] || QualificationList[6] || QualificationList[7] || QualificationList[8] || QualificationList[9])) { return true; } return false; } }
         public bool FirstAid40Plus { get { if (QualificationList != null && (QualificationList[5] || QualificationList[6] || QualificationList[7] || QualificationList[8] || QualificationList[9])) { return true; } return false; } }
-        public bool GSAR { get => (QualificationList != null && QualificationList[0]); }
+        public bool GSAR { get => QualificationList != null && QualificationList[0]; }
         public string? SpecialSkills { get => _SpecialSkills; set => _SpecialSkills = value; }
         public bool isAssignmentTeamLeader { get => _isAssignmentTeamLeader; set => _isAssignmentTeamLeader = value; }
         public string? Reference { get { return _Reference; } set { _Reference = value; } }
@@ -194,7 +231,7 @@ namespace MySARAssist.Models
         public bool Equals(Personnel other)
         {
             // Would still want to check for null etc. first.
-            return this.PersonID == other.PersonID;
+            return PersonID == other.PersonID;
         }
 
 
@@ -204,9 +241,10 @@ namespace MySARAssist.Models
         {
             if (this != null)
             {
-                Personnel cloneTo = this.MemberwiseClone() as Personnel;
+                Personnel cloneTo = MemberwiseClone() as Personnel;
                 return cloneTo;
-            } return null;
+            }
+            return null;
         }
         object ICloneable.Clone()
         {
@@ -220,7 +258,7 @@ namespace MySARAssist.Models
     {
         public static List<Qualification> GetPersonnelQualifications(this Personnel person)
         {
-            List<Qualification> qualifications = PersonnelTools.GetQualifications();
+            List<Qualification> qualifications = GetQualifications();
             foreach (Qualification q in qualifications)
             {
                 q.PersonHas = person.QualificationList[q.QualificationListIndex];
@@ -230,11 +268,11 @@ namespace MySARAssist.Models
         }
 
 
-       
+
 
         public static void removeTildeFromRecord(this Personnel p)
         {
-            if ((p.Name??string.Empty).Contains("~")) { p.Name = (p.Name ?? string.Empty).Replace("~", ""); }
+            if ((p.Name ?? string.Empty).Contains("~")) { p.Name = (p.Name ?? string.Empty).Replace("~", ""); }
             if (!string.IsNullOrEmpty(p.Address) && p.Address.Contains("~")) { p.Address = p.Address.Replace("~", ""); }
             if (!string.IsNullOrEmpty(p.Pronouns) && p.Pronouns.Contains("~")) { p.Pronouns = p.Pronouns.Replace("~", ""); }
             if (!string.IsNullOrEmpty(p.Phone) && p.Phone.Contains("~")) { p.Phone = p.Phone.Replace("~", ""); }
@@ -265,7 +303,7 @@ namespace MySARAssist.Models
             qr.Append(p.Reference); qr.Append(";"); //remove
                                                     //qualifications
                                                     //pretend these are characters in a binary string and convert to int?
-            List<Qualification> qualifications = PersonnelTools.GetQualifications();
+            List<Qualification> qualifications = GetQualifications();
             qualifications = qualifications.OrderBy(o => o.QRIndex).ToList();
             for (int x = 0; x < qualifications.Count && x < p.QualificationList.Length; x++)
             {
@@ -336,7 +374,7 @@ namespace MySARAssist.Models
 
         }
 
-      
+
         public static bool IsIdentical(this Personnel orig, Personnel compareTo)
         {
             if (orig.PersonID != compareTo.PersonID) { return false; }

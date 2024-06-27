@@ -4,7 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySARAssist.Models
+/* Unmerged change from project 'MySARAssist (net8.0-ios)'
+Before:
+namespace MySARAssist.Models.Personnel
+{
+After:
+using MySARAssist.Models.Personnel;
+using MySARAssist.Models.Personnel.Personnel;
+using MySARAssist.Models.Personnel.Personnel.Personnel;
+
+namespace MySARAssist.Models.Personnel.Personnel.Personnel.Personnel
+{
+*/
+
+/* Unmerged change from project 'MySARAssist (net8.0-android)'
+Before:
+namespace MySARAssist.Models.Personnel
+{
+After:
+using MySARAssist.Models.Personnel;
+using MySARAssist.Models.Personnel.Personnel;
+
+namespace MySARAssist.Models.Personnel.Personnel.Personnel
+{
+*/
+
+/* Unmerged change from project 'MySARAssist (net8.0-windows10.0.19041.0)'
+Before:
+namespace MySARAssist.Models.Personnel
+{
+After:
+using MySARAssist.Models.Personnel;
+
+namespace MySARAssist.Models.Personnel.Personnel
+{
+*/
+using MySARAssist.Models.Personnel.Personnel;
+using MySARAssist.Models.Personnel.Personnel.Personnel;
+using MySARAssist.Models.Personnel.Personnel.Personnel.Personnel;
+
+namespace MySARAssist.Models.Personnel.Personnel.Personnel.Personnel.Personnel
 {
     public class Organization : IEquatable<Organization>
     {
@@ -40,7 +79,7 @@ namespace MySARAssist.Models
             else { LogoFileName = "BCSARA -Logo-960.png"; }
         }
 
-        
+
 
 
 

@@ -10,7 +10,7 @@ namespace MySARAssist.Models
 {
     public static class StringExt
     {
-        public static string? removeBadChrsForQR(this string str)
+        public static string? removeBadChrsForQR(this string? str)
         {
             string bad = "~^;";
             if (!string.IsNullOrEmpty(str))

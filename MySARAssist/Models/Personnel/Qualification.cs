@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySARAssist.Models
+namespace MySARAssist.Models.Personnel
 {
     public class Qualification
     {
-        private string _Code;
-        private string _FullName;
+        private string _Code = string.Empty;
+        private string _FullName = string.Empty;
         private int _QualificationListIndex = 0;
         private int? _QRIndex;
         private int? _D4HDefaultColumn;

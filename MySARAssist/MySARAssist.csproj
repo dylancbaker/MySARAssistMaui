@@ -116,8 +116,4 @@
 	  </MauiXaml>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="ViewModels\RADeMS\" />
-	</ItemGroup>
-
 </Project>

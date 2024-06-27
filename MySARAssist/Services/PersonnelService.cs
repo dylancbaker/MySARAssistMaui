@@ -1,5 +1,35 @@
 ﻿using MySARAssist.Interfaces;
-using MySARAssist.Models;
+
+/* Unmerged change from project 'MySARAssist (net8.0-ios)'
+Before:
+using SQLite;
+After:
+using MySARAssist.Models.Personnel;
+using MySARAssist.Models.Personnel.Personnel;
+using MySARAssist.Models.Personnel.Personnel.Personnel;
+using SQLite;
+*/
+
+/* Unmerged change from project 'MySARAssist (net8.0-android)'
+Before:
+using SQLite;
+After:
+using MySARAssist.Models.Personnel;
+using MySARAssist.Models.Personnel.Personnel;
+using SQLite;
+*/
+
+/* Unmerged change from project 'MySARAssist (net8.0-windows10.0.19041.0)'
+Before:
+using SQLite;
+After:
+using MySARAssist.Models.Personnel;
+using SQLite;
+*/
+using MySARAssist.Models.Personnel;
+using MySARAssist.Models.Personnel.Personnel;
+using MySARAssist.Models.Personnel.Personnel.Personnel;
+using MySARAssist.Models.Personnel.Personnel.Personnel.Personnel;
 using SQLite;
 using System;
 using System.Collections.Generic;
