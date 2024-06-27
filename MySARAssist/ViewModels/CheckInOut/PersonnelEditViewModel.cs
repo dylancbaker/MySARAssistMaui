@@ -1,47 +1,22 @@
 ﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Extensions.Logging.Abstractions;
 using MySARAssist.Models;
 
-/* Unmerged change from project 'MySARAssist (net8.0-ios)'
-Before:
-using System;
-After:
-using MySARAssist.Models.Personnel;
-using MySARAssist.Models.Personnel.Personnel;
-using MySARAssist.Models.Personnel.Personnel.Personnel;
-using System;
-*/
-
-/* Unmerged change from project 'MySARAssist (net8.0-android)'
-Before:
-using System;
-After:
-using MySARAssist.Models.Personnel;
-using MySARAssist.Models.Personnel.Personnel;
-using System;
-*/
-
-/* Unmerged change from project 'MySARAssist (net8.0-windows10.0.19041.0)'
-Before:
-using System;
-After:
-using MySARAssist.Models.Personnel;
-using System;
-*/
-using MySARAssist.Models.Personnel;
-using MySARAssist.Models.Personnel.Personnel;
-using MySARAssist.Models.Personnel.Personnel.Personnel;
-using MySARAssist.Models.Personnel.Personnel.Personnel.Personnel;
+using MySARAssist.Models.People;
+using MySARAssist.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MySARAssist.ViewModels.CheckInOut
 {
-    public class PersonnelEditViewModel : ObservableObject
+    public class PersonnelEditViewModel :  ObservableValidator
     {
         public PersonnelEditViewModel()
         {
@@ -52,21 +27,19 @@ namespace MySARAssist.ViewModels.CheckInOut
             DeleteCommand = new Command(OnDeleteCommand);
             BackCommand = new Command(OnBackCommand);
             CurrentMember = new Personnel();
-            Organization mostPopularOrg = App.PersonnelManager.GetMostCommonOrganization();
-            if (mostPopularOrg != null) { CurrentMember.MemberOrganization = mostPopularOrg; }
-            DisplayMember();
-
         }
 
         public List<Organization> Organizations { get; private set; }
         public List<Organization> ParentOrganizations { get => OrganizationTools.GetParentOrganizations(); }
 
-        public Personnel CurrentMember { get; private set; }
+        public Personnel CurrentMember { get; private set; } = new Personnel();
         public Command CancelCommand { get; }
         public Command SaveCommand { get; }
         public Command DeleteCommand { get; }
         public Command NextCommand { get; }
         public Command BackCommand { get; }
+        public bool ShowPersonnel { get; set; } = true;
+        public bool ShowQualifications { get; set; } = false;
 
         public Guid TeamMemberID
         {
@@ -87,14 +60,23 @@ namespace MySARAssist.ViewModels.CheckInOut
                 OnPropertyChanged(nameof(CurrentMember));
             }
         }
+        public List<Qualification> PersonQualifications { get; set; } = new List<Qualification>();
 
         private async void SetTeamMember(Guid ID)
         {
-            CurrentMember = await App.PersonnelManager.GetItemAsync(ID);
+            CurrentMember = await new PersonnelService().GetItemAsync(ID);
+            await DisplayMember();
         }
 
-        private void DisplayMember()
+        private async Task DisplayMember()
         {
+            if(CurrentMember.MemberOrganization == null || CurrentMember.OrganizationID == Guid.Empty)
+            {
+                Organization? mostPopularOrg = await new PersonnelService().GetMostFrequentOrganizationAsync();
+                if (mostPopularOrg != null) { CurrentMember.MemberOrganization = mostPopularOrg; }
+            }
+
+
             if (CurrentMember.MemberOrganization == null && CurrentMember.OrganizationID != Guid.Empty)
             {
                 CurrentMember.MemberOrganization = OrganizationTools.GetOrganization(CurrentMember.OrganizationID);
@@ -166,12 +148,19 @@ namespace MySARAssist.ViewModels.CheckInOut
             if (Organizations.Count > OrgIndex) { CurrentMember.MemberOrganization = Organizations[OrgIndex]; }
             else { CurrentMember.MemberOrganization = Organizations.First(); }
 
-            ValidationResult validateResult = validateCurrent();
-            if (!validateResult.success)
+            List<string> issues = CurrentMember.GetValidationIssues();
+            if (issues.Any())
             {
-                DependencyService.Get<Toast>().Show("ERROR: " + validateResult.message);
-
+                string text = "There were issues saving the information:";
+                foreach (string issue in issues)
+                {
+                    text += "\n" + issue;
+                }
+                SendShortToast(text);
             }
+
+
+
             else
             {
 
@@ -184,34 +173,38 @@ namespace MySARAssist.ViewModels.CheckInOut
                     CurrentMember.QualificationList[q.QualificationListIndex] = q.PersonHas;
                 }
 
-                if (await App.PersonnelManager.UpsertItemAsync(CurrentMember))
+                if (await new PersonnelService().UpsertItemAsync(CurrentMember))
                 {
-                    if (App.PersonnelManager.GetCurrentTeamMember() == null)
+                    if (new PersonnelService().GetCurrentPersonAsync() == null)
                     {
-                        App.PersonnelManager.setCurrentTeamMember(CurrentMember.PersonID);
-                        App.CurrentTeamMember = App.PersonnelManager.GetCurrentTeamMember();
-                        OnPropertyChanged(nameof(App.CurrentTeamMember));
+                        new PersonnelService().setCurrentPerson(CurrentMember.PersonID);
+                        App.CurrentPerson =await new PersonnelService().GetCurrentPersonAsync();
+                        OnPropertyChanged(nameof(App.CurrentPerson));
                     }
-
-                    DependencyService.Get<Toast>().Show("Team Member Saved");
+                    var toast = Toast.Make("Saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
+                    await toast.Show(new CancellationToken());
                     await Shell.Current.GoToAsync("..");
                 }
                 else
                 {
-                    DependencyService.Get<Toast>().Show("ERROR: Member not saved");
+                    var toast = Toast.Make("ERROR, personnel was not saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
+                    await toast.Show(new CancellationToken());
                 }
             }
         }
 
-        public bool ShowPersonnel { get; set; } = true;
-        public bool ShowQualifications { get; set; }
 
         private void OnNextCommand()
         {
-            ValidationResult validateResult = validateCurrent();
-            if (!validateResult.success)
+            List<string> issues = CurrentMember.GetValidationIssues();
+            if (issues.Any())
             {
-                DependencyService.Get<Toast>().Show("ERROR: " + validateResult.message);
+                string text = "There were issues saving the information:";
+                foreach (string issue in issues)
+                {
+                    text += "\n" + issue;
+                }
+                SendShortToast(text);
 
             }
             else
@@ -251,37 +244,36 @@ namespace MySARAssist.ViewModels.CheckInOut
             return member;
         }
 
-        public List<Qualification> PersonQualifications { get; set; }
 
-        private ValidationResult validateCurrent()
-        {
-            ValidationResult result = new ValidationResult();
-            StringBuilder msg = new StringBuilder();
-            result.success = true;
-            if (string.IsNullOrEmpty(CurrentMember.Name)) { result.success = false; msg.Append("You must include your full name."); }
-            else if (!CurrentMember.Name.Contains(" ")) { result.success = false; msg.Append("You must include your full name."); }
-
-            if (string.IsNullOrEmpty(CurrentMember.Email) || !CurrentMember.Email.isValidEmail()) { result.success = false; msg.Append("You must enter a valid email address."); }
-
-            result.message = msg.ToString();
-            return result;
-        }
+      
 
         private async void OnDeleteCommand()
         {
-            if (await App.PersonnelManager.DeleteItemAsync(CurrentMember.PersonID))
+            if (await new PersonnelService().DeleteItemAsync(CurrentMember.PersonID))
             {
-                if (App.CurrentTeamMember.PersonID == CurrentMember.PersonID)
+                if  (App.CurrentPerson != null && App.CurrentPerson.PersonID == CurrentMember.PersonID)
                 {
-                    App.CurrentTeamMember = null;
+                    App.CurrentPerson = null;
                 }
-                DependencyService.Get<Toast>().Show("Team Member Deleted");
+                SendShortToast("Person has been deleted");
+                
                 await Shell.Current.GoToAsync("..");
             }
             else
             {
-                DependencyService.Get<Toast>().Show("ERROR: Member not deleted");
+                SendShortToast("ERROR! Personnel was not deleted");
             }
+        }
+
+        private async void SendShortToast(string text)
+        {
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            ToastDuration duration = ToastDuration.Short;
+            double fontSize = 14;
+
+            var toast = Toast.Make(text, duration, fontSize);
+
+            await toast.Show(cancellationTokenSource.Token);
         }
     }
 }

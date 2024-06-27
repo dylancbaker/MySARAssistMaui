@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySARAssist.Models.Personnel
+namespace MySARAssist.Models.People
 {
     public class Qualification
     {

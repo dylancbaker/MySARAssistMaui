@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MySARAssist.Models.People;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace MySARAssist.ViewModels.CheckInOut
                 try
                 {
 
-                    string qrString = "^" + App.CurrentPerson.StringForQR();
+                    string qrString = "^" + App.CurrentPerson.StringForQRV6();
                     qrString += convertTimespanToDate(SignOutTime).ToString("HH:mm:ss") + ";";
                     qrString += KMs + ";";
                     qrString += "^";

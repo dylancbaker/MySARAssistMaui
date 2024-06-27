@@ -54,32 +54,32 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnSignInCommand()
         {
-            await Shell.Current.GoToAsync(nameof(Views.SignInQRPage));
+            await Shell.Current.GoToAsync(nameof(Views.CheckInOut.CheckInView));
         }
 
         private async void OnSignOutCommand()
         {
-            await Shell.Current.GoToAsync(nameof(Views.SignOutQRPage));
+            await Shell.Current.GoToAsync(nameof(Views.CheckInOut.CheckOutView));
         }
 
         private async void OnEditTeamMembersCommand()
         {
-            await Shell.Current.GoToAsync(nameof(Views.ListOfSavedTeamMembersPage));
+            await Shell.Current.GoToAsync(nameof(Views.CheckInOut.PersonnelListView));
         }
 
         private async void OnChangeSelectedMemberCommand()
         {
-            await Shell.Current.GoToAsync(nameof(Views.ListOfSavedTeamMembersPage));
+            await Shell.Current.GoToAsync(nameof(Views.CheckInOut.PersonnelListView));
         }
 
         public async void OnAddMember()
         {
-            await Shell.Current.GoToAsync($"{nameof(Views.SignInManagementPage) + "/" + nameof(Views.EditSavedTeamMemberPage)}");
+            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOutView) + "/" + nameof(Views.CheckInOut.PersonnelEditView)}");
         }
 
         public async void OnEditMember()
         {
-            await Shell.Current.GoToAsync($"{nameof(Views.SignInManagementPage) + "/" + nameof(Views.EditSavedTeamMemberPage)}?strTeamMemberID={App.CurrentPerson.PersonID}");
+            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOutView) + "/" + nameof(Views.CheckInOut.PersonnelEditView)}?strTeamMemberID={App.CurrentPerson.PersonID}");
 
         }
     }

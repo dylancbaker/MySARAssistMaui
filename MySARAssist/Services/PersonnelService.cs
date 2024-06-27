@@ -26,10 +26,8 @@ After:
 using MySARAssist.Models.Personnel;
 using SQLite;
 */
-using MySARAssist.Models.Personnel;
-using MySARAssist.Models.Personnel.Personnel;
-using MySARAssist.Models.Personnel.Personnel.Personnel;
-using MySARAssist.Models.Personnel.Personnel.Personnel.Personnel;
+using MySARAssist.Models.People;
+using MySARAssist.Views.CheckInOut;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -101,6 +99,56 @@ namespace MySARAssist.Services
             {
                 return await AddItemAsync(item);
             }
+        }
+
+        public async Task<Organization?> GetMostFrequentOrganizationAsync()
+        {
+            Organization mostPopularOrg = null;
+
+            List<Organization> allOrgs = OrganizationTools.GetOrganizations(Guid.Empty);
+            var _AllTeamMembers = await GetItems();
+
+            foreach (Organization org in allOrgs)
+            {
+                org.UserCount = _AllTeamMembers.Count(o => o.OrganizationID == org.OrganizationID);
+            }
+            if (allOrgs.Any(o => o.UserCount > 0))
+            {
+                mostPopularOrg = allOrgs.OrderByDescending(o => o.UserCount).First();
+            }
+
+            if(mostPopularOrg == null)
+            {
+                //when in doubt, use the Unassigned organization
+                Guid UnassignedOrg = new Guid("96BA69A4-436C-4DA1-85B1-992E84C36019");
+                if (allOrgs.Any(o => o.OrganizationID == UnassignedOrg))
+                {
+                    mostPopularOrg = allOrgs.First(o => o.OrganizationID == UnassignedOrg);
+                }
+            }
+
+            return mostPopularOrg;
+        }
+
+        public async Task<Personnel?> GetCurrentPersonAsync()
+        {
+            string selectedID = Preferences.Get("SelectedPersonID", string.Empty);
+            if (!string.IsNullOrEmpty(selectedID))
+            {
+                Guid SelectedPersonID = new Guid(selectedID);
+
+                if (SelectedPersonID != Guid.Empty)
+                {
+                    return await GetItemAsync(SelectedPersonID);
+                }
+            }
+            return null;
+        }
+
+        public void setCurrentPerson(Guid selected_memberID)
+        {
+            Preferences.Set("SelectedPersonID", selected_memberID.ToString());
+
         }
     }
 }

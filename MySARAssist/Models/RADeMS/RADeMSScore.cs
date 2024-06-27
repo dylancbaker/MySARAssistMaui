@@ -105,7 +105,7 @@ namespace MySARAssist.Models.RADeMS
         {
             get
             {
-                Color color = Color.White;
+                Color color = Colors.White;
 
 
 

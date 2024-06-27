@@ -15,10 +15,8 @@ using MySARAssist.Models.Personnel.Personnel;
 Added:
 using MySARAssist.Models.Personnel;
 */
-using MySARAssist.Models.Personnel;
-using MySARAssist.Models.Personnel.Personnel;
-using MySARAssist.Models.Personnel.Personnel.Personnel;
-using MySARAssist.Models.Personnel.Personnel.Personnel.Personnel;
+using MySARAssist.Models.People;
+using MySARAssist.Services;
 
 namespace MySARAssist
 {
@@ -32,6 +30,12 @@ namespace MySARAssist
             InitializeComponent();
 
             MainPage = new AppShell();
+            LoadCurrentPerson();
+        }
+
+        private async void LoadCurrentPerson()
+        {
+            CurrentPerson = await new PersonnelService().GetCurrentPersonAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MySARAssist.Models.People;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,8 +91,5 @@ namespace MySARAssist.ViewModels.CheckInOut
             dt = dt + ts;
             return dt;
         }
-    }
-}
-
     }
 }
