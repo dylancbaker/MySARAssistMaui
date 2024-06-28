@@ -122,7 +122,7 @@ namespace MySARAssist.ViewModels.Calculators
         }
 
         double _searcherSpeed = 1.6;
-        public double SearcherSpeed { get => _searcherSpeed; set { _searcherSpeed = value; CalculateTimeEstimate(); OnPropertyChanged(nameof(SearcherSpeedStr)); } }
+        public double SearcherSpeed { get => _searcherSpeed; set { _searcherSpeed = Math.Round(value,2); CalculateTimeEstimate(); OnPropertyChanged(nameof(SearcherSpeedStr)); } }
         public string SearcherSpeedStr
         {
             get { if (_searcherSpeed > 0) { return _searcherSpeed.ToString(); } return null; }
@@ -137,7 +137,7 @@ namespace MySARAssist.ViewModels.Calculators
         }
 
         double _area = 0.01;
-        public double Area { get => _area; set { _area = value; CalculateTimeEstimate(); OnPropertyChanged(nameof(Area)); } }
+        public double Area { get => _area; set { _area = Math.Round( value,2); CalculateTimeEstimate(); OnPropertyChanged(nameof(Area)); } }
         public string AreaStr
         {
             get { if (Area > 0) { return Area.ToString(); } return null; }
@@ -145,7 +145,7 @@ namespace MySARAssist.ViewModels.Calculators
         }
 
         double _spacing = 1;
-        public double Spacing { get => _spacing; set { _spacing = value; CalculateTimeEstimate(); OnPropertyChanged(nameof(SpacingStr)); } }
+        public double Spacing { get => _spacing; set { _spacing = Math.Round(value,2); CalculateTimeEstimate(); OnPropertyChanged(nameof(SpacingStr)); } }
         public string SpacingStr
         {
             get { if (_spacing > 0) { return _spacing.ToString(); } return null; }

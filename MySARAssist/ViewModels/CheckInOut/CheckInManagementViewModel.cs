@@ -49,7 +49,10 @@ namespace MySARAssist.ViewModels.CheckInOut
                 return App.CurrentPerson != null;
             }
         }
-
+        public bool ShowCreateNewUser
+        {
+            get { return !AllowSignInAndOut; }
+        }
 
 
         private async void OnSignInCommand()
@@ -74,12 +77,13 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         public async void OnAddMember()
         {
-            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOutView) + "/" + nameof(Views.CheckInOut.PersonnelEditView)}");
+            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.PersonnelEditView)}");
         }
 
         public async void OnEditMember()
         {
-            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOutView) + "/" + nameof(Views.CheckInOut.PersonnelEditView)}?strTeamMemberID={App.CurrentPerson.PersonID}");
+            if(App.CurrentPerson == null) { return; }
+            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.PersonnelEditView)}?strTeamMemberID={App.CurrentPerson.PersonID}");
 
         }
     }

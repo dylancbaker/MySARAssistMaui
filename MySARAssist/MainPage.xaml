@@ -14,14 +14,14 @@
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
             <Label
-                Text="Hello, World!"
+                Text="What do you need a hand with?"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
 
             
             <Button
                 Text="Check In or Out" 
-                SemanticProperties.Hint="Counts the number of times you click"
+                x:Name="CheckInOutButton" Clicked="CheckInOutButton_Clicked"
                 HorizontalOptions="Fill" />
 
             <Button
@@ -31,7 +31,7 @@
 
             <Button
                 Text="RADeMS Risk Assessment" 
-                SemanticProperties.Hint="Counts the number of times you click"
+                x:Name="RADeMSButton" Clicked="RADeMSButton_Clicked"
                 HorizontalOptions="Fill" />
 
         </VerticalStackLayout>

@@ -16,7 +16,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Check In / Out">
-        <ShellContent ContentTemplate="{DataTemplate views:CheckInOutView}" Route="CheckInOutView"></ShellContent>
+        <ShellContent ContentTemplate="{DataTemplate views:CheckInOut.CheckInOutView}" Route="CheckInOutView"></ShellContent>
     </FlyoutItem>
     
     <FlyoutItem Title="RADeMS Risk Assessment">

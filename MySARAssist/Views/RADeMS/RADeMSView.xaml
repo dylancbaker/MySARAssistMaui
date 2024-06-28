@@ -2,11 +2,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.RADeMSView"
-             Title="RADeMSView">
+             xmlns:models="clr-namespace:MySARAssist.Models.RADeMS"
+                          xmlns:vm="clr-namespace:MySARAssist.ViewModels.RADeMS"
+x:DataType="vm:RADeMSTypesViewModel"
+             Title="RADeMS">
+
+    <ContentPage.BindingContext>
+        <vm:RADeMSTypesViewModel></vm:RADeMSTypesViewModel>
+    </ContentPage.BindingContext>
+    
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Response Assessment and Decision Making Support (RADeMS)"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Label 
+    Text="Select a response type"
+    VerticalOptions="Center" 
+    HorizontalOptions="Center" />
+        <ListView ItemsSource="{Binding RADeMSCategories}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:RADeMSCategory">
+                    <ViewCell>
+                        <VerticalStackLayout>
+                            <Button Grid.Column="0" Grid.Row="0" Text="{Binding Name}"></Button>
+                            
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </VerticalStackLayout>
 </ContentPage>

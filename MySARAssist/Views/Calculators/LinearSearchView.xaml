@@ -2,11 +2,87 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.LinearSearchView"
+              xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
+ x:DataType="vm:LinearWorkEstimationViewModel"
              Title="LinearSearchView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.BindingContext>
+        <vm:LinearWorkEstimationViewModel></vm:LinearWorkEstimationViewModel>
+    </ContentPage.BindingContext>
+    <Grid>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ScrollView Grid.Column="0" Grid.Row="0">
+
+            <VerticalStackLayout VerticalOptions="Fill">
+                <Label >Linear Assignment Estimation</Label>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <!-- RD -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
+                        <!-- POD -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Text="Searcher Speed (in KM/h)" ></Label>
+                    <Entry Grid.Row="0" Grid.Column="1" Keyboard="Numeric" Text="{Binding SearcherSpeedStr, Mode=TwoWay}" Placeholder="KM/h"   ></Entry>
+                    <VerticalStackLayout Grid.Row="0" Grid.Column="2" >
+                        <Button  Text="+"  Command="{Binding SpeedUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding SpeedDownCommand}" ></Button>
+                    </VerticalStackLayout>
+
+                    <Label Grid.Row="2" Grid.Column="0"  VerticalOptions="Center" FontSize="Large" FontAttributes="Bold" Text="Length (in KM)" ></Label>
+                    <Entry Grid.Row="2" Grid.Column="1"  Keyboard="Numeric" Text="{Binding LengthStr, Mode=TwoWay}" Placeholder="KM"  ></Entry>
+                    <VerticalStackLayout Grid.Row="2" Grid.Column="2" >
+                        <Button  Text="+"  Command="{Binding LengthUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding LengthDownCommand}" ></Button>
+                    </VerticalStackLayout>
+
+
+
+
+
+
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout x:Name="slResults" Grid.Column="0" Grid.Row="1" >
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                <StackLayout Orientation="Vertical" HorizontalOptions="Fill">
+                    <Label x:Name="lblResultTypeTitle"  Text="One-Way"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label x:Name="lblResultsValue" Text="{Binding EstimatedDuration}"></Label>
+                        <Label x:Name="lblUnitOfMeasure"  Text="hrs"></Label>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" HorizontalOptions="Fill">
+
+                    <Label x:Name="lblRoundTripResultTitle" Text="Round Trip"></Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label x:Name="lblRoundTripValue"  Text="{Binding EstimatedDurationWithRoundTrip}"></Label>
+                        <Label x:Name="lblRoundTripUOM"  Text="hrs"></Label>
+                    </StackLayout>
+                </StackLayout>
+
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

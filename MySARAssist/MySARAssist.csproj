@@ -69,12 +69,24 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\Calculators\SweepWidthCalculatorView.xaml.cs">
+	    <DependentUpon>SweepWidthCalculatorView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Calculators\VisualSearchResourceEstimationView.xaml.cs">
 	    <DependentUpon>VisualSearchResourceEstimationView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\Calculators\HowToRangeOfDetectionPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Calculators\SweepWidthCalculatorView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CheckInOut\CheckInOutView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\General\AboutView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -94,9 +106,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Calculators\VisualSearchResourceEstimationView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOutView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CheckInOut\CheckInView.xaml">

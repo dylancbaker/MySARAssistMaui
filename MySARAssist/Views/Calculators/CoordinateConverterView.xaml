@@ -9,7 +9,7 @@
         <vm:CoordinateConverterViewModel></vm:CoordinateConverterViewModel>
     </ContentPage.BindingContext>
     <StackLayout  x:Name="slPageContent">
-        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" Padding="20">
+        <StackLayout Orientation="Vertical" VerticalOptions="Fill" Padding="20">
 
             <Label >Coordinate Conversion</Label>
 
@@ -25,9 +25,9 @@
             </VerticalStackLayout>
         </StackLayout>
 
-        <ScrollView HorizontalOptions="FillAndExpand">
+        <ScrollView HorizontalOptions="Fill">
             <VerticalStackLayout x:Name="slResults" >
-                <HorizontalStackLayout  HorizontalOptions="FillAndExpand">
+                <HorizontalStackLayout  HorizontalOptions="Fill">
                     <Label   Text="UTM:" FontAttributes="Bold"></Label>
                     <Label   Text="{Binding UTM}" >
                         <Label.GestureRecognizers>
@@ -35,7 +35,7 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </HorizontalStackLayout>
-                <HorizontalStackLayout  HorizontalOptions="FillAndExpand">
+                <HorizontalStackLayout  HorizontalOptions="Fill">
                     <Label   Text="Short UTM:" FontAttributes="Bold"></Label>
                     <Label    Text="{Binding ShortUTM}">
                         <Label.GestureRecognizers>
@@ -43,7 +43,7 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </HorizontalStackLayout>
-                <HorizontalStackLayout  HorizontalOptions="FillAndExpand">
+                <HorizontalStackLayout  HorizontalOptions="Fill">
                     <Label   Text="DD:" FontAttributes="Bold"></Label>
                     <Label    Text="{Binding DecimalDegrees}">
                         <Label.GestureRecognizers>
@@ -51,7 +51,7 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </HorizontalStackLayout>
-                <HorizontalStackLayout  HorizontalOptions="FillAndExpand">
+                <HorizontalStackLayout  HorizontalOptions="Fill">
                     <Label   Text="DMS:" FontAttributes="Bold"></Label>
                     <Label   Text="{Binding DMS}">
                         <Label.GestureRecognizers>
@@ -59,7 +59,7 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </HorizontalStackLayout>
-                <HorizontalStackLayout  HorizontalOptions="FillAndExpand">
+                <HorizontalStackLayout  HorizontalOptions="Fill">
                     <Label    Text="MGRS:" FontAttributes="Bold"></Label>
                     <Label   Text="{Binding MGRS}">
                         <Label.GestureRecognizers>

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MySARAssist.Models.RADeMS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,14 @@ namespace MySARAssist.ViewModels.RADeMS
         public RADeMSTypesViewModel()
         {
             
+        }
+
+        public List<RADeMSCategory> RADeMSCategories
+        {
+            get
+            {
+                return RADeMSTools.GetCategories();
+            }
         }
     }
 }

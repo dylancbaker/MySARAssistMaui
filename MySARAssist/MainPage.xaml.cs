@@ -2,7 +2,6 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
@@ -12,6 +11,18 @@
         private async void CalculatorsButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Views.CalculatorsView());
+
+        }
+
+     
+        private async void CheckInOutButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Views.CheckInOut.CheckInOutView());
+        }
+
+        private async void RADeMSButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Views.RADeMSView());
 
         }
     }

@@ -7,17 +7,17 @@
         <StackLayout x:Name="slPageContent" Orientation="Vertical"  Padding="20">
             <VerticalStackLayout>
                 <Label Text="Work Estimations" FontSize="Title" ></Label>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Button Text="Grid Search" ContentLayout="Top,0"  ImageSource="GridIcon.png"  HorizontalOptions="FillAndExpand" ></Button>
-                    <Button Text="Linear Search" ContentLayout="Top,0"  ImageSource="LineIcon.png"  HorizontalOptions="FillAndExpand" ></Button>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                    <Button Text="Grid Search" ContentLayout="Top,0"  ImageSource="GridIcon.png" x:Name="GridSearch_Button" Clicked="GridSearch_Button_Clicked"  HorizontalOptions="Fill" ></Button>
+                    <Button Text="Linear Search" ContentLayout="Top,0"  ImageSource="LineIcon.png" x:Name="LinearSearch_Button" Clicked="LinearSearch_Button_Clicked"  HorizontalOptions="Fill" ></Button>
                 </StackLayout>
-                <Button Text="Visual Search Resource Est." ImageSource="GridIcon.png"  HorizontalOptions="FillAndExpand"  ></Button>
+                <Button Text="Visual Search Resource Est." x:Name="VisualSearchResources_Button" Clicked="VisualSearchResources_Button_Clicked" ImageSource="GridIcon.png"  HorizontalOptions="Fill"  ></Button>
             </VerticalStackLayout>
 
             <VerticalStackLayout>
                 <Label Text="Other Calculators" FontSize="Title" ></Label>
-                <Button Text="Pacing and Distance" ImageSource="FootstepIcon.png" ></Button>
-                <Button Text="Visual Search Spacing" ImageSource="SpacingIcon.png" ></Button>
+                <Button Text="Pacing and Distance" x:Name="Pacing_Button" Clicked="Pacing_Button_Clicked" ImageSource="FootstepIcon.png" ></Button>
+                <Button Text="Sweep Width" x:Name="VisualSearch_Button"  Clicked="VisualSearch_Button_Clicked" ImageSource="SpacingIcon.png" ></Button>
                 <Button Text="Coordinate Converter" x:Name="CoordinateConverterButton" ImageSource="MapMarkIcon.png" Clicked="CoordinateConverterButton_Clicked" ></Button>
             </VerticalStackLayout>
         </StackLayout>

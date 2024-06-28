@@ -2,11 +2,96 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.GridSearchView"
-             Title="GridSearchView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+              xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
+              x:DataType="vm:GridWorkEstimationViewModel"
+             Title="Grid Search Work Est.">
+    <ContentPage.BindingContext>
+        <vm:GridWorkEstimationViewModel></vm:GridWorkEstimationViewModel>
+    </ContentPage.BindingContext>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ScrollView Grid.Column="0" Grid.Row="0">
+            <VerticalStackLayout VerticalOptions="Fill">
+                <Label >Grid Search Time Estimation</Label>
+
+                <Grid >
+                    <Grid.RowDefinitions>
+
+
+                        <!-- RD -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
+                        <!-- Visibility -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
+                        <!-- Target POD -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
+
+                        <!-- buttons -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <Label Grid.Row="0" Grid.Column="0"  VerticalOptions="Center"   Text="Searcher Speed (in KM/h)" ></Label>
+                    <Entry Grid.Row="0" Grid.Column="1"   Keyboard="Numeric" Text="{Binding SearcherSpeedStr, Mode=TwoWay}"  Placeholder="KM/h" ></Entry>
+                    <VerticalStackLayout Grid.Row="0" Grid.Column="2">
+                        <Button  Text="+"  Command="{Binding SpeedUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding SpeedDownCommand}" ></Button>
+                    </VerticalStackLayout>
+
+
+                    <Label Grid.Row="2" Grid.Column="0"  VerticalOptions="Center"  Text="Number of Team Members" ></Label>
+                    <Entry Grid.Row="2" Grid.Column="1"   Keyboard="Numeric" Text="{Binding TeamMembers, Mode=TwoWay}"  Placeholder="KM/h"   ></Entry>
+                    <VerticalStackLayout Grid.Row="2" Grid.Column="2">
+                        <Button  Text="+"  Command="{Binding MembersUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding MembersDownCommand}"></Button>
+                    </VerticalStackLayout>
+
+                    <Label Grid.Row="4" Grid.Column="0"  VerticalOptions="Center"  Text="Area Size (in KM2)" ></Label>
+                    <Entry Grid.Row="4" Grid.Column="1"   Keyboard="Numeric" Text="{Binding AreaStr, Mode=TwoWay}"  Placeholder="KM/h"   ></Entry>
+                    <VerticalStackLayout Grid.Row="4" Grid.Column="2">
+                        <Button  Text="+"  Command="{Binding AreaUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding AreaDownCommand}"></Button>
+                    </VerticalStackLayout>
+
+                    <Label Grid.Row="6" Grid.Column="0"  VerticalOptions="Center"  Text="Spacing Between Members (in m)" ></Label>
+                    <Entry Grid.Row="6" Grid.Column="1"   Keyboard="Numeric" Text="{Binding SpacingStr, Mode=TwoWay}"  Placeholder="KM/h"   ></Entry>
+                    <VerticalStackLayout Grid.Row="6" Grid.Column="2">
+                        <Button  Text="+"  Command="{Binding SpacingUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding SpacingDownCommand}" ></Button>
+                    </VerticalStackLayout>
+
+
+
+
+
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+            <Label x:Name="lblResultTypeTitle"  Text="Est. Time to Complete"></Label>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label x:Name="lblResultsValue"  Text="{Binding EstimatedDuration}"></Label>
+                <Label x:Name="lblUnitOfMeasure" Text="hrs"></Label>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>

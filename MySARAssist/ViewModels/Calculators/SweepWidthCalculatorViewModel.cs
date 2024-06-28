@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace MySARAssist.ViewModels.Calculators
 {
-    public class VisualSweepWidthCalculatorViewModel : ObservableObject
+    public class SweepWidthCalculatorViewModel : ObservableObject
     {
-        public VisualSweepWidthCalculatorViewModel()
+        public SweepWidthCalculatorViewModel()
         {
             CalculateCommand = new Command(() =>
             {
@@ -95,7 +95,7 @@ namespace MySARAssist.ViewModels.Calculators
 
         private async void OnHowToRD()
         {
-            await Shell.Current.GoToAsync($"{nameof(Views.HowToRangeOfDetectionPage)}");
+            await Shell.Current.GoToAsync($"{nameof(Views.Calculators.HowToRangeOfDetectionPage)}");
         }
 
 
