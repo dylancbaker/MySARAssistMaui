@@ -2,11 +2,127 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.VisualSearchResourceEstimationView"
-             Title="VisualSearchResourceEstimation">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+              xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
+x:DataType="vm:VisualSearchResourceEstimationViewModel"
+
+             Title="Visual Search Resource Estimation">
+    <ContentPage.BindingContext>
+        <vm:VisualSearchResourceEstimationViewModel></vm:VisualSearchResourceEstimationViewModel>
+    </ContentPage.BindingContext>
+    <StackLayout  x:Name="slMainLayout" >
+        <ScrollView>
+            
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <!-- Speed -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <!-- Area -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <!-- Spacing -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <!-- Duration -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <!-- Travel Time -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <!-- Command Staff -->
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+
+
+
+
+
+
+
+
+                    <!--Speed -->
+                    <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand">
+                        <Label  Text="Searcher Speed (KM/h)"  VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" ></Label>
+                    </StackLayout>
+                    <Entry Keyboard="Numeric" Grid.Row="0" Grid.Column="1"  Text="{Binding Speed, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="km/h" ></Entry>
+                    <StackLayout Grid.Row="0" Grid.Column="2" Orientation="Vertical">
+                        <Button  Text="+"  Command="{Binding SpeedUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding SpeedDownCommand}" ></Button>
+                    </StackLayout>
+
+
+                    <!-- Area -->
+                    <StackLayout Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                        <Label  Text="Search Area Size (KM2)"  VerticalOptions="CenterAndExpand" ></Label>
+                    </StackLayout>
+                    <Entry Keyboard="Numeric" Grid.Row="2" Grid.Column="1" Text="{Binding Area, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="km2" ></Entry>
+                    <StackLayout Grid.Row="2" Grid.Column="2" Orientation="Vertical">
+                        <Button  Text="+"  Command="{Binding AreaUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding AreaDownCommand}"></Button>
+                    </StackLayout>
+
+                    <!-- Spacing-->
+                    <StackLayout Orientation="Horizontal" Grid.Row="4" Grid.Column="0">
+                        <Label  Text="Spacing Between Members (meters)"  VerticalOptions="CenterAndExpand" ></Label>
+                    </StackLayout>
+                    <Entry Keyboard="Numeric" Grid.Row="4" Grid.Column="1" Text="{Binding Spacing, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="m" ></Entry>
+                    <StackLayout Grid.Row="4" Grid.Column="2" Orientation="Vertical">
+                        <Button  Text="+"  Command="{Binding SpacingUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding SpacingDownCommand}" ></Button>
+                    </StackLayout>
+
+
+                    <!-- Duration -->
+                    <StackLayout Orientation="Horizontal" Grid.Row="6" Grid.Column="0">
+                        <Label  Text="Time to complete (hrs)"  VerticalOptions="CenterAndExpand" ></Label>
+                    </StackLayout>
+                    <Entry Keyboard="Numeric" Grid.Row="6" Grid.Column="1"  Text="{Binding Duration, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="hrs" ></Entry>
+                    <StackLayout Grid.Row="6" Grid.Column="2" Orientation="Vertical">
+                        <Button  Text="+"  Command="{Binding DurationUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding DurationDownCommand}" ></Button>
+                    </StackLayout>
+
+                    <!-- Travel Time-->
+                    <StackLayout Orientation="Horizontal" Grid.Row="8" Grid.Column="0">
+                        <Label  Text="Avg travel time from ICP to Assignments (hrs)"  VerticalOptions="CenterAndExpand" ></Label>
+                    </StackLayout>
+                    <Entry Keyboard="Numeric" Grid.Row="8" Grid.Column="1" Text="{Binding ExtraTravelTime, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="hrs" ></Entry>
+                    <StackLayout Grid.Row="8" Grid.Column="2" Orientation="Vertical">
+                        <Button  Text="+"  Command="{Binding ExtraTravelTimeUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding ExtraTravelTimeDownCommand}" ></Button>
+                    </StackLayout>
+
+                    <!-- Command Staff -->
+                    <StackLayout Orientation="Horizontal" Grid.Row="10" Grid.Column="0">
+                        <Label  Text="Command and Support Staff"  VerticalOptions="CenterAndExpand" ></Label>
+                    </StackLayout>
+                    <Entry Keyboard="Numeric" Grid.Row="10" Grid.Column="1"  Text="{Binding CommandStaff, Mode=TwoWay, Converter={StaticResource intConverter}}" Placeholder="#" ></Entry>
+                    <StackLayout Grid.Row="10" Grid.Column="2" Orientation="Vertical">
+                        <Button  Text="+"  Command="{Binding CommandStaffUpCommand}" ></Button>
+                        <Button  Text="-" Command="{Binding CommandStaffDownCommand}" ></Button>
+                    </StackLayout>
+
+                </Grid>
+              
+    
+        </ScrollView>
+        <StackLayout x:Name="slResults" >
+            <Label x:Name="lblResultTypeTitle"  Text="Estimated People Needed"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label x:Name="lblResultsValue"  Text="{Binding ResourcesNeeded}"></Label>
+                <Label x:Name="lblUnitOfMeasure"  Text="people"></Label>
+            </StackLayout>
+
+        </StackLayout>
+    </StackLayout>
+    
 </ContentPage>

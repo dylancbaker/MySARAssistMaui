@@ -16,21 +16,21 @@
                 <HorizontalStackLayout HorizontalOptions="Fill">
                     <Label x:Name="lblCurrentMember"  HorizontalTextAlignment="Center" HorizontalOptions="Fill"></Label>
                     <VerticalStackLayout HorizontalOptions="Fill">
-                        <Button x:Name="btnEditMember" Command="{Binding EditMemberCommand}" Text="Edit"  HorizontalOptions="Fill"></Button>
-                        <Button Text="Swap" x:Name="btnChangeSelectedMember"  Command="{Binding ChangeSelectedMemberCommand}" HorizontalOptions="Fill"></Button>
+                        <Button x:Name="btnEditMember" Text="Edit" Clicked="btnEditMember_Clicked" HorizontalOptions="Fill"></Button>
+                        <Button Text="Swap" x:Name="btnChangeSelectedMember" Clicked="btnChangeSelectedMember_Clicked"   HorizontalOptions="Fill"></Button>
                     </VerticalStackLayout>
                 </HorizontalStackLayout>
 
                 <Label Text="Check in by QR Code"></Label>
                 <HorizontalStackLayout HorizontalOptions="Fill">
-                    <Button x:Name="btnSignIn" Text="Check In"  HorizontalOptions="Fill" IsEnabled="{Binding AllowSignInAndOut}" Command="{Binding SignInCommand}"></Button>
-                    <Button x:Name="btnSignOut" Text="Check Out"  HorizontalOptions="Fill" IsEnabled="{Binding AllowSignInAndOut}"   Command="{Binding SignOutCommand}"></Button>
+                    <Button x:Name="btnSignIn" Text="Check In"  Clicked="btnSignIn_Clicked" HorizontalOptions="Fill" IsEnabled="{Binding AllowSignInAndOut}" ></Button>
+                    <Button x:Name="btnSignOut" Text="Check Out" Clicked="btnSignOut_Clicked"  HorizontalOptions="Fill" IsEnabled="{Binding AllowSignInAndOut}"  ></Button>
                 </HorizontalStackLayout>
 
             </VerticalStackLayout>
             <VerticalStackLayout x:Name="slNoCurrentMemberExists" IsVisible="{Binding ShowCreateNewUser}">
                 <Label  HorizontalTextAlignment="Center" FontSize="Large" HorizontalOptions="Fill" Text="In order to sign in or out of a SAR task, you'll need to add some information."></Label>
-                <Button x:Name="btnAddUser"  Text="Add New Person" Command="{Binding AddMemberCommand}"></Button>
+                <Button x:Name="btnAddUser" Clicked="btnAddUser_Clicked"  Text="Add New Person" ></Button>
             </VerticalStackLayout>
 
         </VerticalStackLayout>

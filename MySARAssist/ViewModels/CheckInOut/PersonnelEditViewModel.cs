@@ -65,23 +65,27 @@ namespace MySARAssist.ViewModels.CheckInOut
         private async void SetTeamMember(Guid ID)
         {
             CurrentMember = await new PersonnelService().GetItemAsync(ID);
+            if(CurrentMember == null) { CurrentMember = new Personnel(); }
             await DisplayMember();
         }
 
         private async Task DisplayMember()
         {
-            if(CurrentMember.MemberOrganization == null || CurrentMember.OrganizationID == Guid.Empty)
+            if(CurrentMember != null && ( CurrentMember.MemberOrganization == null || CurrentMember.OrganizationID == Guid.Empty))
             {
                 Organization? mostPopularOrg = await new PersonnelService().GetMostFrequentOrganizationAsync();
                 if (mostPopularOrg != null) { CurrentMember.MemberOrganization = mostPopularOrg; }
             }
 
 
-            if (CurrentMember.MemberOrganization == null && CurrentMember.OrganizationID != Guid.Empty)
+            if (CurrentMember != null && CurrentMember.MemberOrganization == null && CurrentMember.OrganizationID != Guid.Empty)
             {
                 CurrentMember.MemberOrganization = OrganizationTools.GetOrganization(CurrentMember.OrganizationID);
             }
-            PersonQualifications = CurrentMember.GetPersonnelQualifications();
+            if (CurrentMember != null)
+            {
+                PersonQualifications = CurrentMember.GetPersonnelQualifications();
+            }
             if (CurrentMember != null && CurrentMember.MemberOrganization != null && ParentOrganizations.Any(o => o.OrganizationID == CurrentMember.MemberOrganization.ParentOrganizationID))
             {
                 SelectedParentOrg = ParentOrganizations.First(o => o.OrganizationID == CurrentMember.MemberOrganization.ParentOrganizationID);

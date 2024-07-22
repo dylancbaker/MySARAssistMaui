@@ -4,7 +4,7 @@
              x:Class="MySARAssist.Views.Calculators.GridSearchView"
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
               x:DataType="vm:GridWorkEstimationViewModel"
-             Title="Grid Search Work Est.">
+             Title="Grid Search Time Est.">
     <ContentPage.BindingContext>
         <vm:GridWorkEstimationViewModel></vm:GridWorkEstimationViewModel>
     </ContentPage.BindingContext>

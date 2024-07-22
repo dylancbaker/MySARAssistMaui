@@ -4,7 +4,7 @@
              x:Class="MySARAssist.Views.Calculators.CoordinateConverterView"
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
              x:DataType="vm:CoordinateConverterViewModel"
-             Title="CoordinateConverterView">
+             Title="Coordinate Converter">
     <ContentPage.BindingContext>
         <vm:CoordinateConverterViewModel></vm:CoordinateConverterViewModel>
     </ContentPage.BindingContext>

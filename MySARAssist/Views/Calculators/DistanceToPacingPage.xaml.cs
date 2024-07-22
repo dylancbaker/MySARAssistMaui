@@ -1,8 +1,8 @@
 namespace MySARAssist.Views.Calculators;
 
-public partial class VisualSearchResourceEstimationView : ContentPage
+public partial class DistanceToPacingPage : ContentPage
 {
-	public VisualSearchResourceEstimationView()
+	public DistanceToPacingPage()
 	{
 		InitializeComponent();
 	}
@@ -13,11 +13,11 @@ public partial class VisualSearchResourceEstimationView : ContentPage
 
         if (width > height)
         {
-            slMainLayout.Orientation = StackOrientation.Horizontal;
+            slPageContent.Orientation = StackOrientation.Horizontal;
         }
         else
         {
-            slMainLayout.Orientation = StackOrientation.Vertical;
+            slPageContent.Orientation = StackOrientation.Vertical;
         }
 
     }

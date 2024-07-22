@@ -57,11 +57,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="CoordinateSharp" Version="2.23.1.1" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.60" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.60" />
+		<PackageReference Include="CoordinateSharp" Version="2.24.2.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.70" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.70" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8" />
@@ -69,6 +69,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\Calculators\PacingToDistancePage.xaml.cs">
+	    <DependentUpon>PacingToDistancePage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Calculators\SweepWidthCalculatorView.xaml.cs">
 	    <DependentUpon>SweepWidthCalculatorView.xaml</DependentUpon>
 	  </Compile>
@@ -78,6 +81,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\Calculators\DistanceToPacingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Calculators\HowToRangeOfDetectionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -102,7 +108,7 @@
 	  <MauiXaml Update="Views\Calculators\LinearSearchView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Calculators\PacingAndDistanceView.xaml">
+	  <MauiXaml Update="Views\Calculators\PacingToDistancePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Calculators\VisualSearchResourceEstimationView.xaml">

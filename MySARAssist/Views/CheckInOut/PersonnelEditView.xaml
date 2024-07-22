@@ -2,11 +2,120 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.CheckInOut.PersonnelEditView"
-             Title="PersonnelEditView">
+              xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
+              x:DataType="vm:PersonnelEditViewModel"
+               xmlns:local="clr-namespace:MySARAssist.Models.ValidationTools"
+             xmlns:models="clr-namespace:MySARAssist.Models.People"
+             Title="Edit Person">
+   
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        
+            <ScrollView IsVisible="{Binding ShowPersonnel}">
+                <VerticalStackLayout>
+
+
+                    <Label  >Member Information</Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            <Label >Name</Label>
+                            <Entry  Placeholder="Full Name" x:Name="txtFullName" Text="{Binding CurrentMember.Name, Mode=TwoWay}">
+                                <Entry.Behaviors>
+                                </Entry.Behaviors>
+                            </Entry>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            <Label >Pronouns</Label>
+                            <Entry  Placeholder="Pronouns"  x:Name="txtPronouns" Text="{Binding CurrentMember.Pronouns, Mode=TwoWay}"></Entry>
+
+                        </StackLayout>
+                    </StackLayout>
+
+
+                    <Label >SAR Group  / Organization</Label>
+                    <Picker x:Name="pickParentOrganization" ItemsSource="{Binding ParentOrganizations}" SelectedIndex="{Binding ParentOrgIndex}" SelectedIndexChanged="pickParentOrganization_SelectedIndexChanged" 
+                
+               
+                ItemDisplayBinding="{Binding OrganizationName}"
+                >
+                    </Picker>
+
+                    <Picker x:Name="pickOrganization" 
+                Title="Select a SAR Team / Organization" 
+                
+                SelectedIndex="{Binding OrgIndex}"
+                ItemDisplayBinding="{Binding OrganizationName}"
+                >
+                    </Picker>
+
+                    <Label >Email*</Label>
+                    <Entry  Placeholder="Email address (required)" Keyboard="Email" x:Name="txtEmail" Text="{Binding CurrentMember.Email, Mode=TwoWay}">
+                        <Entry.Behaviors>
+                        </Entry.Behaviors>
+                    </Entry>
+
+
+                    <Label >Home Address</Label>
+                    <Entry  Placeholder="Address"  x:Name="txtAddress" Text="{Binding CurrentMember.Address, Mode=TwoWay}"></Entry>
+
+                    <Label >Phone #</Label>
+                    <Entry  Placeholder="Phone" Keyboard="Telephone" x:Name="txtPhone" Text="{Binding CurrentMember.Phone, Mode=TwoWay}"></Entry>
+
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            <Label >Agency/EMCR ID#</Label>
+                            <Entry  Placeholder="Agency/EMCR ID#" Keyboard="Numeric" x:Name="txtRef" Text="{Binding CurrentMember.Reference, Mode=TwoWay}"></Entry>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            <Label >Call sign</Label>
+                            <Entry  Placeholder="Call sign" x:Name="txtCallsign" Text="{Binding CurrentMember.Callsign, Mode=TwoWay}"></Entry>
+                        </StackLayout>
+                    </StackLayout>
+                    <Label >Emergency Contact</Label>
+                    <Entry  Placeholder="Emergency Contact Name" x:Name="txtNOKName" Text="{Binding CurrentMember.NOKName, Mode=TwoWay}"></Entry>
+                    <Entry  Placeholder="Relationship" x:Name="txtNOKRelationship" Text="{Binding CurrentMember.NOKRelation, Mode=TwoWay}"></Entry>
+                    <Entry  Placeholder="Phone Number" Keyboard="Telephone" x:Name="txtNOKPhone" Text="{Binding CurrentMember.NOKPhone, Mode=TwoWay}"></Entry>
+                    <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
+                        <Button x:Name="btnCancel" Text="Cancel" HorizontalOptions="FillAndExpand" Command="{Binding CancelCommand}"></Button>
+
+                        <Button x:Name="btnNext"  Text="Next" HorizontalOptions="FillAndExpand" Command="{Binding NextCommand}" Clicked="btnNext_Clicked"></Button>
+                    </StackLayout>
+                    <StackLayout>
+                        <Button x:Name="btnDelete"  Text="Delete" HorizontalOptions="Center" Clicked="btnDelete_Clicked"></Button>
+                    </StackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+        
+        
+            <ScrollView IsVisible="{Binding ShowQualifications}">
+                <VerticalStackLayout>
+
+                    <Label  >Qualifications</Label>
+                    <ListView ItemsSource="{Binding PersonQualifications}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Qualification">
+                                <ViewCell>
+                                    <HorizontalStackLayout>
+                                        <Switch x:Name="chk" IsToggled="{Binding PersonHas}"></Switch>
+                                        <Label Text="{Binding FullName}" VerticalOptions="Center"></Label>
+                                    </HorizontalStackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+
+                    <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
+                        <Button x:Name="btnBack"  Text="Back" HorizontalOptions="FillAndExpand" Command="{Binding BackCommand}"></Button>
+
+                        <Button x:Name="btnSave"  Text="Save" HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}"></Button>
+                    </StackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+
+        
+
+
+
     </VerticalStackLayout>
 </ContentPage>

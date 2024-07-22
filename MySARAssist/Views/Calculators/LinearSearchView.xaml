@@ -4,7 +4,7 @@
              x:Class="MySARAssist.Views.Calculators.LinearSearchView"
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
  x:DataType="vm:LinearWorkEstimationViewModel"
-             Title="LinearSearchView">
+             Title="Linear Search Time Estimate">
     <ContentPage.BindingContext>
         <vm:LinearWorkEstimationViewModel></vm:LinearWorkEstimationViewModel>
     </ContentPage.BindingContext>

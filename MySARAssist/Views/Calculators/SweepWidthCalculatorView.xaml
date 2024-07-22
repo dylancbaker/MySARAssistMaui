@@ -2,11 +2,80 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.SweepWidthCalculatorView"
-             Title="SweepWidthCalculator">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
+             Title="Sweep Width Calculator">
+    <ContentPage.BindingContext>
+        <vm:SweepWidthCalculatorViewModel></vm:SweepWidthCalculatorViewModel>
+    </ContentPage.BindingContext>
+    
+    <StackLayout x:Name="slPageContent">
+        <ScrollView   Style="{DynamicResource backgroundStyle}" Padding="20">
+            <Grid >
+                <Grid.RowDefinitions>
+
+
+                    <!-- RD -->
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <!-- Visibility -->
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <!-- Target POD -->
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+
+
+
+
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"   Text="Range of Detection (meters)"  ></Label>
+
+                <ImageButton Grid.Row="0" Grid.Column="3" x:Name="HowToRDImageButton" Clicked="HowToRDImageButton_Clicked" Padding="10" Aspect="AspectFit"  Source="InfoIcon.png"></ImageButton>
+
+
+                <Editor Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Keyboard="Numeric" Text="{Binding RangeOfDetection}"  Placeholder="Range of Detection / AMDR"  ></Editor>
+                <Button Grid.Row="1" Grid.Column="2"  Grid.ColumnSpan="1" Text="+"  Command="{Binding RDUpCommand}" ></Button>
+                <Button Grid.Row="1" Grid.Column="3"  Grid.ColumnSpan="1" Text="-" Command="{Binding RDDownCommand}" ></Button>
+
+
+
+                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"   Text="Target Visibility"  ></Label>
+                <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" x:Name="Visibility" Title="Select Target Visibility" SelectedIndex="{Binding SelectedVisibilityIndex}" >
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Low Visibility</x:String>
+                            <x:String>Medium Visibility</x:String>
+                            <x:String>High Visibility</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4"   Text="Target POD" ></Label>
+                <Editor Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Keyboard="Numeric" Text="{Binding TargetPODAsPercentText}"  Placeholder="Target POD"  ></Editor>
+                
+                
+                <Button Grid.Row="6" Grid.Column="0"  Grid.ColumnSpan="2" Text="63%"  Command="{Binding TargetPODTo63}" ></Button>
+                <Button Grid.Row="6" Grid.Column="2"  Grid.ColumnSpan="2" Text="83%" Command="{Binding TargetPODTo83}" ></Button>
+            </Grid>
+        </ScrollView>
+
+        <VerticalStackLayout  >
+            <Label x:Name="lblResultTypeTitle"  Text="Sweep Width"></Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label x:Name="lblResultsValue"  Text="{Binding TeamSpacing}"></Label>
+                <Label x:Name="lblUnitOfMeasure"  Text="meters between searchers"></Label>
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>

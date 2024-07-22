@@ -82,18 +82,18 @@ namespace MySARAssist.ViewModels.Calculators
             });
         }
 
-        private double _Area;
-        private double _Spacing = 1;
+        private double _Area = 3.0;
+        private double _Spacing = 10;
         private double _Speed = 1.6;
         private double _Duration = 6;
-        private double _ExtraTravelTime;
-        private int _CommandStaff = 1;
+        private double _ExtraTravelTime = 0.25;
+        private int _CommandStaff = 3;
 
-        public double Area { get => _Area; set { _Area = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
-        public double Spacing { get => _Spacing; set { _Spacing = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
-        public double Speed { get => _Speed; set { _Speed = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
-        public double Duration { get => _Duration; set { _Duration = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
-        public double ExtraTravelTime { get => _ExtraTravelTime; set { _ExtraTravelTime = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
+        public double Area { get => Math.Round( _Area,2); set { _Area = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
+        public double Spacing { get => Math.Round(_Spacing, 1); set { _Spacing = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
+        public double Speed { get => Math.Round(_Speed, 1); set { _Speed = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
+        public double Duration { get => Math.Round(_Duration, 1); set { _Duration = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
+        public double ExtraTravelTime { get => Math.Round(_ExtraTravelTime, 2); set { _ExtraTravelTime = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
         public int CommandStaff { get => _CommandStaff; set { _CommandStaff = value; OnPropertyChanged(nameof(ResourcesNeeded)); } }
 
         public int ResourcesNeeded
@@ -104,19 +104,19 @@ namespace MySARAssist.ViewModels.Calculators
         private int CalculateResourcesNeeded()
         {
 
-            double teamsize = 0;
+            double teamSize = 0;
             if (Duration > 0 && Speed > 0 && Spacing > 0)
             {
-                double tempDuration = Duration - ExtraTravelTime * 2; //this will take the travel to and from assignments and account for it within the duration
+                double tempDuration = Duration + ExtraTravelTime * 2; //this will take the travel to and from assignments and account for it within the duration
                 double tempArea = Area * 1000; //convert KMs to Meters to match the spacing measurment
 
-                teamsize = tempArea / Spacing / Speed / tempDuration;
+                teamSize = tempArea / Spacing / Speed / tempDuration;
 
                 //add in the command staff
-                teamsize += CommandStaff;
-                teamsize = Math.Ceiling(teamsize);
+                teamSize += CommandStaff;
+                teamSize = Math.Ceiling(teamSize);
             }
-            return (int)teamsize;
+            return (int)teamSize;
 
 
 

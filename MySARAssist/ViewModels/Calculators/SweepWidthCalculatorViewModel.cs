@@ -38,19 +38,19 @@ namespace MySARAssist.ViewModels.Calculators
 
             });
 
-            IdealPODUpCommand = new Command(() =>
+            TargetPODTo63 = new Command(() =>
             {
-
-                setTargetPOD(targetPOD + 0.01);
+                TargetPODAsPercent = 63;
+                //setTargetPOD(0.63);
 
             });
-            IdealPODDownCommand = new Command(() =>
+            TargetPODTo83 = new Command(() =>
             {
-                setTargetPOD(targetPOD - 0.01);
+                TargetPODAsPercent = 83;
+                //setTargetPOD(0.83);
 
             });
 
-            HowToRDCommand = new Command(OnHowToRD);
         }
 
         private void setTargetPOD(double newPOD)
@@ -93,19 +93,14 @@ namespace MySARAssist.ViewModels.Calculators
             OnPropertyChanged(nameof(POD));
         }
 
-        private async void OnHowToRD()
-        {
-            await Shell.Current.GoToAsync($"{nameof(Views.Calculators.HowToRangeOfDetectionPage)}");
-        }
-
+     
 
         public Command CalculateCommand { get; }
         public Command EraseCommand { get; }
         public Command RDUpCommand { get; }
         public Command RDDownCommand { get; }
-        public Command IdealPODUpCommand { get; }
-        public Command IdealPODDownCommand { get; }
-        public Command HowToRDCommand { get; }
+        public Command TargetPODTo63 { get; }
+        public Command TargetPODTo83 { get; }
 
 
         double rangeOfDetection;
@@ -176,7 +171,7 @@ namespace MySARAssist.ViewModels.Calculators
             {
                 selectedVisibilityIndex = value;
                 OnPropertyChanged(nameof(SelectedVisibilityIndex));
-
+                CalculateSpacing();
             }
         }
         double visibilityModifier
@@ -185,15 +180,17 @@ namespace MySARAssist.ViewModels.Calculators
             {
                 switch (selectedVisibilityIndex)
                 {
-                    case 0:
+                    case 2:
                         return 1.8;
                     case 1:
                         return 1.6;
-                    case 2:
+                    case 0:
                         return 1.1;
                     default:
                         return 1.8;
                 }
+
+                
             }
         }
 
@@ -236,8 +233,8 @@ namespace MySARAssist.ViewModels.Calculators
             {
                 if (value <= 100)
                 {
-                    targetPOD = value / 100;
 
+                    setTargetPOD(value / 100);
                 }
                 OnPropertyChanged(nameof(TargetPODAsPercent));
 

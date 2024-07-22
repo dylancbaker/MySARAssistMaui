@@ -47,7 +47,7 @@ namespace MySARAssist.Models.People
         private double _PacesPer100;
         private bool _CurrentlySelected;
 
-        [PrimaryKey] public Guid PersonID { get => ID; set => ID = value; }
+        public Guid PersonID { get => ID; set => ID = value; }
         public int D4HID { get => _D4HID; set => _D4HID = value; }
 
         public string Name { get => _Name; set => _Name = value; }

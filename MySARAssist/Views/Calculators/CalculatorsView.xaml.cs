@@ -47,13 +47,20 @@ public partial class CalculatorsView : ContentPage
 
     private async void Pacing_Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Views.Calculators.PacingAndDistanceView());
+        await Navigation.PushAsync(new Views.Calculators.PacingToDistancePage());
 
     }
 
     private async void VisualSearch_Button_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Views.Calculators.SweepWidthCalculatorView());
+
+    }
+
+
+    private async void DistToPacing_Button_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Views.Calculators.DistanceToPacingPage());
 
     }
 }

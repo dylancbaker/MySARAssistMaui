@@ -70,6 +70,8 @@ namespace MySARAssist.Services
 
         public async Task<Personnel> GetItemAsync(Guid id)
         {
+            await conn.CreateTableAsync<Personnel>();
+
             return await conn.Table<Personnel>().FirstOrDefaultAsync(o => o.PersonID == id);
         }
 

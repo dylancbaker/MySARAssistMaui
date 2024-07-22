@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.CalculatorsView"
-             Title="CalculatorsView">
+             Title="Calculators">
     <ScrollView>
         <StackLayout x:Name="slPageContent" Orientation="Vertical"  Padding="20">
             <VerticalStackLayout>
@@ -16,7 +16,8 @@
 
             <VerticalStackLayout>
                 <Label Text="Other Calculators" FontSize="Title" ></Label>
-                <Button Text="Pacing and Distance" x:Name="Pacing_Button" Clicked="Pacing_Button_Clicked" ImageSource="FootstepIcon.png" ></Button>
+                <Button Text="Paces to Distance" x:Name="Pacing_Button" Clicked="Pacing_Button_Clicked" ImageSource="FootstepIcon.png" ></Button>
+                <Button Text="Distance to Paces" x:Name="DistToPacing_Button" Clicked="DistToPacing_Button_Clicked" ImageSource="FootstepIcon.png" ></Button>
                 <Button Text="Sweep Width" x:Name="VisualSearch_Button"  Clicked="VisualSearch_Button_Clicked" ImageSource="SpacingIcon.png" ></Button>
                 <Button Text="Coordinate Converter" x:Name="CoordinateConverterButton" ImageSource="MapMarkIcon.png" Clicked="CoordinateConverterButton_Clicked" ></Button>
             </VerticalStackLayout>
