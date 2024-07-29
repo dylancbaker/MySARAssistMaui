@@ -14,32 +14,32 @@
         <ScrollView VerticalOptions="Fill" >
             <VerticalStackLayout VerticalOptions="Fill">
 
-                <Label Style="{DynamicResource titleLabelStyle}">Pacing Calculator</Label>
+                <Label >Pacing Calculator</Label>
 
-                <StackLayout x:Name="slPacesPer100" Orientation="Horizontal">
+                <HorizontalStackLayout x:Name="slPacesPer100">
                     <Entry Keyboard="Numeric"  Placeholder="0" Text="{Binding PacesPer100Text, Mode=TwoWay}"></Entry>
                     <Label Text="Enter your paces per 100m"></Label>
-                </StackLayout>
+                </HorizontalStackLayout>
 
 
-                <Frame Style="{DynamicResource PacingCalculatorSection}">
-                    <StackLayout>
+               
+                    <VerticalStackLayout>
                         <Label >Number of paces</Label>
-                        <StackLayout x:Name="slCalculateDistance"  Orientation="Horizontal">
+                        <HorizontalStackLayout x:Name="slCalculateDistance"  >
                             <Entry Keyboard="Numeric" Placeholder="0" Text="{Binding PacesTakenText, Mode=TwoWay}"></Entry>
                             <Label  Text="Paces"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                </Frame>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                
             </VerticalStackLayout>
         </ScrollView>
 
         <VerticalStackLayout  >
             <Label x:Name="lblResultTypeTitle"  Text="{Binding CalculationTitle}"></Label>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <HorizontalStackLayout HorizontalOptions="Center">
                 <Label x:Name="lblResultsValue"  Text="{Binding CalculationResult}"></Label>
                 <Label x:Name="lblUnitOfMeasure"  Text="{Binding CalculationUnits}"></Label>
-            </StackLayout>
+            </HorizontalStackLayout>
 
         </VerticalStackLayout>
     </StackLayout>

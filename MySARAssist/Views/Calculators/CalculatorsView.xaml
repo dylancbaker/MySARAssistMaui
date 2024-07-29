@@ -7,19 +7,33 @@
         <StackLayout x:Name="slPageContent" Orientation="Vertical"  Padding="20">
             <VerticalStackLayout>
                 <Label Text="Work Estimations" FontSize="Title" ></Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Grid Search" ContentLayout="Top,0"  Grid.Column="0" Grid.Row="0" ImageSource="grid_icon.png" x:Name="GridSearch_Button" Clicked="GridSearch_Button_Clicked"  HorizontalOptions="Fill" ></Button>
+                    <Button Text="Linear Search" ContentLayout="Top,0" Grid.Column="1" Grid.Row="0"  ImageSource="line_icon.png" x:Name="LinearSearch_Button" Clicked="LinearSearch_Button_Clicked"  HorizontalOptions="Fill" ></Button>
+
+                </Grid>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                    <Button Text="Grid Search" ContentLayout="Top,0"  ImageSource="GridIcon.png" x:Name="GridSearch_Button" Clicked="GridSearch_Button_Clicked"  HorizontalOptions="Fill" ></Button>
-                    <Button Text="Linear Search" ContentLayout="Top,0"  ImageSource="LineIcon.png" x:Name="LinearSearch_Button" Clicked="LinearSearch_Button_Clicked"  HorizontalOptions="Fill" ></Button>
                 </StackLayout>
-                <Button Text="Visual Search Resource Est." x:Name="VisualSearchResources_Button" Clicked="VisualSearchResources_Button_Clicked" ImageSource="GridIcon.png"  HorizontalOptions="Fill"  ></Button>
+                <Button Text="Visual Search Resource Est." x:Name="VisualSearchResources_Button" Clicked="VisualSearchResources_Button_Clicked" ImageSource="grid_icon.png"  HorizontalOptions="Fill"  ></Button>
             </VerticalStackLayout>
 
             <VerticalStackLayout>
                 <Label Text="Other Calculators" FontSize="Title" ></Label>
-                <Button Text="Paces to Distance" x:Name="Pacing_Button" Clicked="Pacing_Button_Clicked" ImageSource="FootstepIcon.png" ></Button>
-                <Button Text="Distance to Paces" x:Name="DistToPacing_Button" Clicked="DistToPacing_Button_Clicked" ImageSource="FootstepIcon.png" ></Button>
-                <Button Text="Sweep Width" x:Name="VisualSearch_Button"  Clicked="VisualSearch_Button_Clicked" ImageSource="SpacingIcon.png" ></Button>
-                <Button Text="Coordinate Converter" x:Name="CoordinateConverterButton" ImageSource="MapMarkIcon.png" Clicked="CoordinateConverterButton_Clicked" ></Button>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Paces to Distance" ContentLayout="Top,0" Grid.Column="0" Grid.Row="0" x:Name="Pacing_Button" Clicked="Pacing_Button_Clicked" ImageSource="footstep_icon.png" ></Button>
+                    <Button Text="Distance to Paces" ContentLayout="Top,0" Grid.Column="1" Grid.Row="0" x:Name="DistToPacing_Button" Clicked="DistToPacing_Button_Clicked" ImageSource="footstep_icon.png" ></Button>
+
+                </Grid>
+                <Button Text="Sweep Width" x:Name="VisualSearch_Button"  Clicked="VisualSearch_Button_Clicked" ImageSource="spacing_icon.png" ></Button>
+                <Button Text="Coordinate Converter" x:Name="CoordinateConverterButton" ImageSource="map_mark_icon.png" Clicked="CoordinateConverterButton_Clicked" ></Button>
             </VerticalStackLayout>
         </StackLayout>
     </ScrollView>

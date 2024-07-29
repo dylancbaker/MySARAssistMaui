@@ -46,7 +46,7 @@
                         <Button  Text="-" Command="{Binding SpeedDownCommand}" ></Button>
                     </VerticalStackLayout>
 
-                    <Label Grid.Row="2" Grid.Column="0"  VerticalOptions="Center" FontSize="Large" FontAttributes="Bold" Text="Length (in KM)" ></Label>
+                    <Label Grid.Row="2" Grid.Column="0"  VerticalOptions="Center" Text="Length (in KM)" ></Label>
                     <Entry Grid.Row="2" Grid.Column="1"  Keyboard="Numeric" Text="{Binding LengthStr, Mode=TwoWay}" Placeholder="KM"  ></Entry>
                     <VerticalStackLayout Grid.Row="2" Grid.Column="2" >
                         <Button  Text="+"  Command="{Binding LengthUpCommand}" ></Button>

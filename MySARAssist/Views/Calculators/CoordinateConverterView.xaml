@@ -67,7 +67,7 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </HorizontalStackLayout>
-                <Label   FontSize="Small" FontAttributes="Italic">*Tap on a coordinate to copy it</Label>
+                <Label>*Tap on a coordinate to copy it</Label>
 
                 <Button  Text="Map it" Command="{Binding OpenMapCommand}"></Button>
 
