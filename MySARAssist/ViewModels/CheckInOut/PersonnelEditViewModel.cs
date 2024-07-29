@@ -2,6 +2,7 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.Logging.Abstractions;
+using MySARAssist.Interfaces;
 using MySARAssist.Models;
 
 using MySARAssist.Models.People;
@@ -22,24 +23,20 @@ namespace MySARAssist.ViewModels.CheckInOut
         {
             Organizations = OrganizationTools.GetOrganizations(Guid.Empty);
             CancelCommand = new Command(OnCancelCommand);
-            SaveCommand = new Command(OnSaveCommand);
             NextCommand = new Command(OnNextCommand);
             DeleteCommand = new Command(OnDeleteCommand);
-            BackCommand = new Command(OnBackCommand);
-            CurrentMember = new Personnel();
+            //CurrentMember = new Personnel();
         }
 
         public List<Organization> Organizations { get; private set; }
         public List<Organization> ParentOrganizations { get => OrganizationTools.GetParentOrganizations(); }
 
-        public Personnel CurrentMember { get; private set; } = new Personnel();
+        public Personnel CurrentMember { get; private set; }= new Personnel();
         public Command CancelCommand { get; }
-        public Command SaveCommand { get; }
         public Command DeleteCommand { get; }
         public Command NextCommand { get; }
         public Command BackCommand { get; }
         public bool ShowPersonnel { get; set; } = true;
-        public bool ShowQualifications { get; set; } = false;
 
         public Guid TeamMemberID
         {
@@ -60,7 +57,6 @@ namespace MySARAssist.ViewModels.CheckInOut
                 OnPropertyChanged(nameof(CurrentMember));
             }
         }
-        public List<Qualification> PersonQualifications { get; set; } = new List<Qualification>();
 
         private async void SetTeamMember(Guid ID)
         {
@@ -82,17 +78,12 @@ namespace MySARAssist.ViewModels.CheckInOut
             {
                 CurrentMember.MemberOrganization = OrganizationTools.GetOrganization(CurrentMember.OrganizationID);
             }
-            if (CurrentMember != null)
-            {
-                PersonQualifications = CurrentMember.GetPersonnelQualifications();
-            }
             if (CurrentMember != null && CurrentMember.MemberOrganization != null && ParentOrganizations.Any(o => o.OrganizationID == CurrentMember.MemberOrganization.ParentOrganizationID))
             {
                 SelectedParentOrg = ParentOrganizations.First(o => o.OrganizationID == CurrentMember.MemberOrganization.ParentOrganizationID);
                 _selectedParentOrgID = SelectedParentOrg.OrganizationID;
             }
 
-            OnPropertyChanged(nameof(PersonQualifications));
             OnPropertyChanged(nameof(ParentOrgIndex));
         }
 
@@ -145,13 +136,13 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnCancelCommand()
         {
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync($"..");
         }
-        private async void OnSaveCommand()
-        {
-            if (Organizations.Count > OrgIndex) { CurrentMember.MemberOrganization = Organizations[OrgIndex]; }
-            else { CurrentMember.MemberOrganization = Organizations.First(); }
+       
 
+
+        private async void OnNextCommand()
+        {
             List<string> issues = CurrentMember.GetValidationIssues();
             if (issues.Any())
             {
@@ -161,73 +152,59 @@ namespace MySARAssist.ViewModels.CheckInOut
                     text += "\n" + issue;
                 }
                 SendShortToast(text);
+
             }
-
-
-
             else
             {
-
-                CurrentMember.Group = CurrentMember.MemberOrganization.OrganizationName;
-                CurrentMember.OrganizationID = CurrentMember.MemberOrganization.OrganizationID;
-
-                CurrentMember = removeBadChrs(CurrentMember);
-                foreach (Qualification q in PersonQualifications)
+                try
                 {
-                    CurrentMember.QualificationList[q.QualificationListIndex] = q.PersonHas;
-                }
-
-                if (await new PersonnelService().UpsertItemAsync(CurrentMember))
-                {
-                    if (new PersonnelService().GetCurrentPersonAsync() == null)
-                    {
-                        new PersonnelService().setCurrentPerson(CurrentMember.PersonID);
-                        App.CurrentPerson =await new PersonnelService().GetCurrentPersonAsync();
-                        OnPropertyChanged(nameof(App.CurrentPerson));
-                    }
+                   await SaveCurrentPerson();
                     var toast = Toast.Make("Saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
                     await toast.Show(new CancellationToken());
-                    await Shell.Current.GoToAsync("..");
+                    await Shell.Current.GoToAsync($"CheckInOut/EditPersonnel/Qualifications/?PersonnelID={CurrentMember.ID.ToString()}");
+
                 }
-                else
+
+                catch
                 {
                     var toast = Toast.Make("ERROR, personnel was not saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
                     await toast.Show(new CancellationToken());
                 }
+
             }
         }
 
 
-        private void OnNextCommand()
+        private async Task SaveCurrentPerson()
         {
-            List<string> issues = CurrentMember.GetValidationIssues();
-            if (issues.Any())
+            if (CurrentMember != null)
             {
-                string text = "There were issues saving the information:";
-                foreach (string issue in issues)
+                CurrentMember.Group = CurrentMember.MemberOrganization.OrganizationName;
+                CurrentMember.OrganizationID = CurrentMember.MemberOrganization.OrganizationID;
+
+                CurrentMember = removeBadChrs(CurrentMember);
+
+                if (await new PersonnelService().UpsertItemAsync(CurrentMember))
                 {
-                    text += "\n" + issue;
+                    if (await new PersonnelService().GetCurrentPersonAsync() == null)
+                    {
+
+                        new PersonnelService().setCurrentPerson(CurrentMember.PersonID);
+                        App.CurrentPerson = await new PersonnelService().GetCurrentPersonAsync();
+                        OnPropertyChanged(nameof(App.CurrentPerson));
+                        return;
+
+                    }
                 }
-                SendShortToast(text);
+                else
+                {
+                    throw new Exception("ERROR, personnel was not saved");
 
-            }
-            else
-            {
-                //hide the individual stuff, show qualifications
-
-                ShowPersonnel = false;
-                OnPropertyChanged(nameof(ShowPersonnel));
-                ShowQualifications = true;
-                OnPropertyChanged(nameof(ShowQualifications));
+                }
             }
         }
-        private void OnBackCommand()
-        {
-            ShowPersonnel = true;
-            OnPropertyChanged(nameof(ShowPersonnel));
-            ShowQualifications = false;
-            OnPropertyChanged(nameof(ShowQualifications));
-        }
+
+    
 
         private Personnel? removeBadChrs(Personnel member)
         {

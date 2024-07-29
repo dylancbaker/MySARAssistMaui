@@ -7,14 +7,26 @@
                xmlns:local="clr-namespace:MySARAssist.Models.ValidationTools"
              xmlns:models="clr-namespace:MySARAssist.Models.People"
              Title="Edit Person">
-   
-    <VerticalStackLayout>
-        
-            <ScrollView IsVisible="{Binding ShowPersonnel}">
+
+ 
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <ScrollView Grid.Row="0" Grid.Column="0" VerticalOptions="Fill">
+
+
                 <VerticalStackLayout>
 
 
-                    <Label  >Member Information</Label>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                         <StackLayout HorizontalOptions="FillAndExpand">
                             <Label >Name</Label>
@@ -32,20 +44,9 @@
 
 
                     <Label >SAR Group  / Organization</Label>
-                    <Picker x:Name="pickParentOrganization" ItemsSource="{Binding ParentOrganizations}" SelectedIndex="{Binding ParentOrgIndex}" SelectedIndexChanged="pickParentOrganization_SelectedIndexChanged" 
-                
-               
-                ItemDisplayBinding="{Binding OrganizationName}"
-                >
-                    </Picker>
+                    <Picker x:Name="pickParentOrganization" ItemsSource="{Binding ParentOrganizations}" SelectedIndex="{Binding ParentOrgIndex}" SelectedIndexChanged="pickParentOrganization_SelectedIndexChanged" ItemDisplayBinding="{Binding OrganizationName}">                    </Picker>
 
-                    <Picker x:Name="pickOrganization" 
-                Title="Select a SAR Team / Organization" 
-                
-                SelectedIndex="{Binding OrgIndex}"
-                ItemDisplayBinding="{Binding OrganizationName}"
-                >
-                    </Picker>
+                    <Picker x:Name="pickOrganization" Title="Select a SAR Team / Organization" SelectedIndex="{Binding OrgIndex}" ItemDisplayBinding="{Binding OrganizationName}">                    </Picker>
 
                     <Label >Email*</Label>
                     <Entry  Placeholder="Email address (required)" Keyboard="Email" x:Name="txtEmail" Text="{Binding CurrentMember.Email, Mode=TwoWay}">
@@ -75,47 +76,32 @@
                     <Entry  Placeholder="Emergency Contact Name" x:Name="txtNOKName" Text="{Binding CurrentMember.NOKName, Mode=TwoWay}"></Entry>
                     <Entry  Placeholder="Relationship" x:Name="txtNOKRelationship" Text="{Binding CurrentMember.NOKRelation, Mode=TwoWay}"></Entry>
                     <Entry  Placeholder="Phone Number" Keyboard="Telephone" x:Name="txtNOKPhone" Text="{Binding CurrentMember.NOKPhone, Mode=TwoWay}"></Entry>
-                    <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
-                        <Button x:Name="btnCancel" Text="Cancel" HorizontalOptions="FillAndExpand" Command="{Binding CancelCommand}"></Button>
-
-                        <Button x:Name="btnNext"  Text="Next" HorizontalOptions="FillAndExpand" Command="{Binding NextCommand}" Clicked="btnNext_Clicked"></Button>
-                    </StackLayout>
-                    <StackLayout>
-                        <Button x:Name="btnDelete"  Text="Delete" HorizontalOptions="Center" Clicked="btnDelete_Clicked"></Button>
-                    </StackLayout>
-                </VerticalStackLayout>
-            </ScrollView>
-        
-        
-            <ScrollView IsVisible="{Binding ShowQualifications}">
-                <VerticalStackLayout>
-
-                    <Label  >Qualifications</Label>
-                    <ListView ItemsSource="{Binding PersonQualifications}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="models:Qualification">
-                                <ViewCell>
-                                    <HorizontalStackLayout>
-                                        <Switch x:Name="chk" IsToggled="{Binding PersonHas}"></Switch>
-                                        <Label Text="{Binding FullName}" VerticalOptions="Center"></Label>
-                                    </HorizontalStackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
 
 
-                    <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
-                        <Button x:Name="btnBack"  Text="Back" HorizontalOptions="FillAndExpand" Command="{Binding BackCommand}"></Button>
-
-                        <Button x:Name="btnSave"  Text="Save" HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}"></Button>
-                    </StackLayout>
                 </VerticalStackLayout>
             </ScrollView>
 
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnCancel" Grid.Column="0" Text="Cancel" HorizontalOptions="FillAndExpand" Command="{Binding CancelCommand}"></Button>
+                <Button x:Name="btnDelete" Grid.Column="1"  Text="Delete" HorizontalOptions="Center" Clicked="btnDelete_Clicked"></Button>
+                <Button x:Name="btnNext" Grid.Column="2" Text="Next" HorizontalOptions="FillAndExpand" Command="{Binding NextCommand}" Clicked="btnNext_Clicked"></Button>
+            </Grid>
+
+        </Grid>
+
+
+
+
+
+
+
+
+
+
         
-
-
-
-    </VerticalStackLayout>
 </ContentPage>

@@ -12,13 +12,12 @@
         <VerticalStackLayout>
             <VerticalStackLayout x:Name="slCurrentMemberExists" IsVisible="{Binding AllowSignInAndOut}">
 
-                <Label  HorizontalTextAlignment="Center" FontSize="Large" HorizontalOptions="Fill" Text="Currently Selected Member:"></Label>
-                <HorizontalStackLayout HorizontalOptions="Fill">
-                    <Label x:Name="lblCurrentMember"  HorizontalTextAlignment="Center" HorizontalOptions="Fill"></Label>
-                    <VerticalStackLayout HorizontalOptions="Fill">
+                <Label  HorizontalTextAlignment="Center" HorizontalOptions="Fill" Text="Currently Selected Member:"></Label>
+                <Label x:Name="lblCurrentMember" Text="{Binding CurrentMemberName}"  HorizontalTextAlignment="Center" HorizontalOptions="Fill"></Label>
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    
                         <Button x:Name="btnEditMember" Text="Edit" Clicked="btnEditMember_Clicked" HorizontalOptions="Fill"></Button>
                         <Button Text="Swap" x:Name="btnChangeSelectedMember" Clicked="btnChangeSelectedMember_Clicked"   HorizontalOptions="Fill"></Button>
-                    </VerticalStackLayout>
                 </HorizontalStackLayout>
 
                 <Label Text="Check in by QR Code"></Label>
@@ -29,7 +28,7 @@
 
             </VerticalStackLayout>
             <VerticalStackLayout x:Name="slNoCurrentMemberExists" IsVisible="{Binding ShowCreateNewUser}">
-                <Label  HorizontalTextAlignment="Center" FontSize="Large" HorizontalOptions="Fill" Text="In order to sign in or out of a SAR task, you'll need to add some information."></Label>
+                <Label  HorizontalTextAlignment="Center" HorizontalOptions="Fill" Text="In order to sign in or out of a SAR task, you'll need to add some information."></Label>
                 <Button x:Name="btnAddUser" Clicked="btnAddUser_Clicked"  Text="Add New Person" ></Button>
             </VerticalStackLayout>
 

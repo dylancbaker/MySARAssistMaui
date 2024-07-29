@@ -25,7 +25,7 @@ public partial class CheckInOutView : ContentPage
 
     private async  void btnChangeSelectedMember_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Views.CheckInOut.PersonnelEditView());
+        await Navigation.PushAsync(new Views.CheckInOut.PersonnelListView());
     }
 
     private async void btnEditMember_Clicked(object sender, EventArgs e)

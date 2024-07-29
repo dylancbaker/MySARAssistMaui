@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MySARAssist.Models
 {
-    public class SyncableItem
+    public abstract class SyncableItem
     {
         private Guid _ID;
         private bool _Active;

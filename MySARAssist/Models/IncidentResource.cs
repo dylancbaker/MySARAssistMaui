@@ -68,7 +68,6 @@ namespace MySARAssist.Models
 
         public IncidentResource()
         {
-            ID = Guid.NewGuid();
             Active = true;
             LastUpdatedUTC = DateTime.UtcNow;
         }

@@ -4,16 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySARAssist.Interfaces;
 using MySARAssist.Models;
 using SQLite;
 
 namespace MySARAssist.Models.People
 {
-    public class Personnel : IncidentResource, IEquatable<Personnel>, ICloneable
+    public class Personnel : IncidentResource, IEquatable<Personnel>, ICloneable, IPersonnel
     {
         public Personnel()
         {
-            PersonID = Guid.NewGuid();
             MemberActive = true;
             QualificationList = new bool[28];
         }

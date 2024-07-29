@@ -15,7 +15,7 @@ public partial class PersonnelEditView : ContentPage
 		InitializeComponent();
         _viewModel = new ViewModels.CheckInOut.PersonnelEditViewModel();
         this.BindingContext = _viewModel;
-        _viewModel.TeamMemberID = Guid.NewGuid();
+
     }
 
     public string PersonnelID

@@ -2,11 +2,36 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.CheckInOut.PersonnelListView"
+                  xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
+    x:DataType="vm:PersonnelListViewModel"
              Title="PersonnelListView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnAdd" Text="Add Member" Command="{Binding AddMemberCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <vm:PersonnelListViewModel></vm:PersonnelListViewModel>
+    </ContentPage.BindingContext>
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ListView x:Name="lbMemberList" HasUnevenRows="True"  ItemsSource="{Binding Items}" ItemSelected="lbMemberList_ItemSelected"
+           IsPullToRefreshEnabled="True" RefreshCommand="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsRefreshing}" SeparatorVisibility="None" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+                            <Label  Text="{Binding NameWithGroupAndCurrent}" HorizontalOptions="FillAndExpand"></Label>
+                            <Button  VerticalOptions="Center" Text="Select" CommandParameter="{Binding PersonID}" Command="{Binding 
+                            Path=BindingContext.SelectTeamMemberCommand, 
+                            Source={x:Reference lbMemberList}}"></Button>
+                            <Button  VerticalOptions="Center" Text="Edit" CommandParameter="{Binding PersonID}" Command="{Binding 
+                            Path=BindingContext.EditTeamMemberCommand, 
+                            Source={x:Reference lbMemberList}}"></Button>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>
