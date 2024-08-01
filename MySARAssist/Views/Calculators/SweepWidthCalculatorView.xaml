@@ -40,7 +40,7 @@
 
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"   Text="Range of Detection (meters)"  ></Label>
 
-                <ImageButton Grid.Row="0" Grid.Column="3" x:Name="HowToRDImageButton" Clicked="HowToRDImageButton_Clicked" Padding="10" Aspect="AspectFit"  Source="InfoIcon.png"></ImageButton>
+                <ImageButton Grid.Row="0" Grid.Column="3" x:Name="HowToRDImageButton" Clicked="HowToRDImageButton_Clicked"  Aspect="AspectFit"  Source="info_icon.png"></ImageButton>
 
 
                 <Editor Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Keyboard="Numeric" Text="{Binding RangeOfDetection}"  Placeholder="Range of Detection / AMDR"  ></Editor>

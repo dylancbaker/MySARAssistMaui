@@ -18,10 +18,8 @@
 
 
                 <Entry Keyboard="Default" x:Name="txtCoordinates"  Placeholder="UTM, MGRS, or Lat/Long" Text="{Binding CoordinateInputText, Mode=TwoWay}"></Entry>
-                <HorizontalStackLayout >
-                    <Label x:Name="lblCoordinateOK" VerticalOptions="Center" FontAttributes="Italic" HorizontalOptions="Fill" Text="{Binding CoordinateParseResult}"></Label>
-                    <Button x:Name="btnGetCurrent"   Clicked="btnGetCurrent_Clicked" Text="Get Current"></Button>
-                </HorizontalStackLayout>
+                <Label x:Name="lblCoordinateOK" VerticalOptions="Center" FontAttributes="Italic" HorizontalOptions="Fill" Text="{Binding CoordinateParseResult}"></Label>
+                <Button x:Name="btnGetCurrent"   Clicked="btnGetCurrent_Clicked" Text="Get Current"></Button>
             </VerticalStackLayout>
         </StackLayout>
 
