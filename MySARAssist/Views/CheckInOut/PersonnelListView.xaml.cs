@@ -6,4 +6,12 @@ public partial class PersonnelListView : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void lbMemberList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        lbMemberList.SelectedItem = null;
+
+
+
+    }
 }

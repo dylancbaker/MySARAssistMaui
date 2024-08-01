@@ -62,6 +62,21 @@ namespace MySARAssist.Models.People
                 else { return Name; }
             }
         }
+
+        public string? NameWithGroupAndCurrent
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                if (CurrentlySelected) { sb.Append("*"); }
+                sb.Append(Name);
+                if (!string.IsNullOrEmpty(Group))
+                {
+                    sb.Append(" ("); sb.Append(Group); sb.Append(")");
+                }
+                return sb.ToString();
+            }
+        }
         public string? NameWithTL
         {
             get
@@ -78,21 +93,7 @@ namespace MySARAssist.Models.People
                 else { return Name; }
             }
         }
-        public string? NameWithGroupAndCurrent
-        {
-            get
-            {
-                StringBuilder sb = new StringBuilder();
-                if (CurrentlySelected) { sb.Append("*"); }
-                sb.Append(Name);
-                if (!string.IsNullOrEmpty(Group))
-                {
-                    sb.Append(" ("); sb.Append(Group); sb.Append(")");
-                }
-                return sb.ToString();
-            }
-        }
-
+        
         [Ignore] public bool[] QualificationList { get { if (_QualificationList == null) { _QualificationList = new bool[28]; } return _QualificationList; } set => _QualificationList = value; }
 
         public string? Callsign { get => _Callsign; set => _Callsign = value; }
