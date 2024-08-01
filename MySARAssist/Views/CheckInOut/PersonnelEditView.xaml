@@ -14,65 +14,85 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
 
-            <ScrollView Grid.Row="0" Grid.Column="0" VerticalOptions="Fill">
+            <ScrollView Grid.Row="0" Grid.Column="0" Padding="20,0,20,10" VerticalOptions="Fill">
 
 
                 <VerticalStackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource FormFieldTitle}">Name</Label>
+                    <Entry Grid.Row="1" Grid.Column="0"  Placeholder="Full Name" x:Name="txtFullName" Text="{Binding CurrentMember.Name, Mode=TwoWay}">
+                        <Entry.Behaviors>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Grid.Row="0" Grid.Column="2"  Style="{StaticResource FormFieldTitle}" >Pronouns</Label>
+                    <Entry Grid.Row="1" Grid.Column="2" Placeholder="Pronouns"  x:Name="txtPronouns" Text="{Binding CurrentMember.Pronouns, Mode=TwoWay}"></Entry>
+
+                </Grid>
+
+                  
 
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <StackLayout HorizontalOptions="FillAndExpand">
-                            <Label >Name</Label>
-                            <Entry  Placeholder="Full Name" x:Name="txtFullName" Text="{Binding CurrentMember.Name, Mode=TwoWay}">
-                                <Entry.Behaviors>
-                                </Entry.Behaviors>
-                            </Entry>
-                        </StackLayout>
-                        <StackLayout HorizontalOptions="FillAndExpand">
-                            <Label >Pronouns</Label>
-                            <Entry  Placeholder="Pronouns"  x:Name="txtPronouns" Text="{Binding CurrentMember.Pronouns, Mode=TwoWay}"></Entry>
-
-                        </StackLayout>
-                    </StackLayout>
-
-
-                    <Label >SAR Group  / Organization</Label>
-                    <Picker x:Name="pickParentOrganization" ItemsSource="{Binding ParentOrganizations}" SelectedIndex="{Binding ParentOrgIndex}" SelectedIndexChanged="pickParentOrganization_SelectedIndexChanged" ItemDisplayBinding="{Binding OrganizationName}">                    </Picker>
+                <Label Style="{StaticResource FormFieldTitle}" >SAR Group  / Organization</Label>
+                    <Picker x:Name="pickParentOrganization" ItemsSource="{Binding ParentOrganizations}" SelectedIndex="{Binding ParentOrgIndex}" SelectedIndexChanged="pickParentOrganization_SelectedIndexChanged" ItemDisplayBinding="{Binding OrganizationName}"></Picker>
 
                     <Picker x:Name="pickOrganization" Title="Select a SAR Team / Organization" SelectedIndex="{Binding OrgIndex}" ItemDisplayBinding="{Binding OrganizationName}">                    </Picker>
 
-                    <Label >Email*</Label>
+                <Label Style="{StaticResource FormFieldTitle}" >Email*</Label>
                     <Entry  Placeholder="Email address (required)" Keyboard="Email" x:Name="txtEmail" Text="{Binding CurrentMember.Email, Mode=TwoWay}">
                         <Entry.Behaviors>
                         </Entry.Behaviors>
                     </Entry>
 
 
-                    <Label >Home Address</Label>
+                <Label Style="{StaticResource FormFieldTitle}" >Home Address</Label>
                     <Entry  Placeholder="Address"  x:Name="txtAddress" Text="{Binding CurrentMember.Address, Mode=TwoWay}"></Entry>
 
-                    <Label >Phone #</Label>
+                <Label Style="{StaticResource FormFieldTitle}" >Phone #</Label>
                     <Entry  Placeholder="Phone" Keyboard="Telephone" x:Name="txtPhone" Text="{Binding CurrentMember.Phone, Mode=TwoWay}"></Entry>
 
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <StackLayout HorizontalOptions="FillAndExpand">
-                            <Label >Agency/EMCR ID#</Label>
-                            <Entry  Placeholder="Agency/EMCR ID#" Keyboard="Numeric" x:Name="txtRef" Text="{Binding CurrentMember.Reference, Mode=TwoWay}"></Entry>
-                        </StackLayout>
-                        <StackLayout HorizontalOptions="FillAndExpand">
-                            <Label >Call sign</Label>
-                            <Entry  Placeholder="Call sign" x:Name="txtCallsign" Text="{Binding CurrentMember.Callsign, Mode=TwoWay}"></Entry>
-                        </StackLayout>
-                    </StackLayout>
-                    <Label >Emergency Contact</Label>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource FormFieldTitle}" >Agency/EMCR ID#</Label>
+                    <Entry  Grid.Column="0" Grid.Row="1"  Placeholder="Agency/EMCR ID#" Keyboard="Numeric" x:Name="txtRef" Text="{Binding CurrentMember.Reference, Mode=TwoWay}"></Entry>
+
+                    <Label Grid.Column="2" Grid.Row="0"  Style="{StaticResource FormFieldTitle}" >Call sign</Label>
+                    <Entry  Grid.Column="2" Grid.Row="1"  Placeholder="Call sign" x:Name="txtCallsign" Text="{Binding CurrentMember.Callsign, Mode=TwoWay}"></Entry>
+
+                </Grid>
+                    
+                    
+                
+                <Label Style="{StaticResource FormFieldTitle}" >Emergency Contact</Label>
                     <Entry  Placeholder="Emergency Contact Name" x:Name="txtNOKName" Text="{Binding CurrentMember.NOKName, Mode=TwoWay}"></Entry>
                     <Entry  Placeholder="Relationship" x:Name="txtNOKRelationship" Text="{Binding CurrentMember.NOKRelation, Mode=TwoWay}"></Entry>
                     <Entry  Placeholder="Phone Number" Keyboard="Telephone" x:Name="txtNOKPhone" Text="{Binding CurrentMember.NOKPhone, Mode=TwoWay}"></Entry>
