@@ -11,14 +11,7 @@ public partial class SweepWidthCalculatorView : ContentPage
     {
         base.OnSizeAllocated(width, height);
 
-        if (width > height)
-        {
-            slPageContent.Orientation = StackOrientation.Horizontal;
-        }
-        else
-        {
-            slPageContent.Orientation = StackOrientation.Vertical;
-        }
+        
 
     }
 

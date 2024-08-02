@@ -86,14 +86,14 @@ namespace MySARAssist.ViewModels.Calculators
         public double SearcherSpeed { get => _searcherSpeed; set { _searcherSpeed = value; CalculateEstimate(); OnPropertyChanged(nameof(SearcherSpeed)); OnPropertyChanged(nameof(SearcherSpeedStr)); } }
         public string SearcherSpeedStr
         {
-            get { if (SearcherSpeed > 0) { return SearcherSpeed.ToString(); } else { return null; } }
+            get { if (SearcherSpeed > 0) { return Math.Round( SearcherSpeed,1).ToString(); } else { return null; } }
             set { if (!string.IsNullOrEmpty(value)) { double temp; double.TryParse(value, out temp); SearcherSpeed = temp; } }
         }
         double _length = 0;
         public double Length { get => _length; set { _length = value; CalculateEstimate(); OnPropertyChanged(nameof(Length)); OnPropertyChanged(nameof(LengthStr)); } }
         public string LengthStr
         {
-            get { if (Length > 0) { return Length.ToString(); } else { return null; } }
+            get { if (Length > 0) { return Math.Round( Length,1).ToString(); } else { return null; } }
             set { if (!string.IsNullOrEmpty(value)) { double temp; double.TryParse(value, out temp); Length = temp; } }
         }
     }

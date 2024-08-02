@@ -11,14 +11,7 @@ public partial class VisualSearchResourceEstimationView : ContentPage
     {
         base.OnSizeAllocated(width, height);
 
-        if (width > height)
-        {
-            slMainLayout.Orientation = StackOrientation.Horizontal;
-        }
-        else
-        {
-            slMainLayout.Orientation = StackOrientation.Vertical;
-        }
+       
 
     }
 }

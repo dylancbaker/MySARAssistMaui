@@ -7,21 +7,30 @@
     <ContentPage.BindingContext>
         <vm:SweepWidthCalculatorViewModel></vm:SweepWidthCalculatorViewModel>
     </ContentPage.BindingContext>
-    
-    <StackLayout x:Name="slPageContent">
-        <ScrollView   Style="{DynamicResource backgroundStyle}" Padding="20">
+
+    <Grid Padding="20,10,20,10">
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ScrollView Grid.Column="0" Grid.Row="0">
             <Grid >
                 <Grid.RowDefinitions>
 
 
                     <!-- RD -->
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                     <!-- Visibility -->
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                     <!-- Target POD -->
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
 
@@ -38,19 +47,19 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"   Text="Range of Detection (meters)"  ></Label>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  Style="{StaticResource FormFieldTitle}"  Text="Range of Detection (meters)"  ></Label>
 
                 <ImageButton Grid.Row="0" Grid.Column="3" x:Name="HowToRDImageButton" Clicked="HowToRDImageButton_Clicked"  Aspect="AspectFit"  Source="info_icon.png"></ImageButton>
 
 
-                <Editor Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Keyboard="Numeric" Text="{Binding RangeOfDetection}"  Placeholder="Range of Detection / AMDR"  ></Editor>
-                <Button Grid.Row="1" Grid.Column="2"  Grid.ColumnSpan="1" Text="+"  Command="{Binding RDUpCommand}" ></Button>
-                <Button Grid.Row="1" Grid.Column="3"  Grid.ColumnSpan="1" Text="-" Command="{Binding RDDownCommand}" ></Button>
+                <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Keyboard="Numeric" Text="{Binding RangeOfDetection}"  Placeholder="Range of Detection / AMDR"  ></Entry>
+                <Button Grid.Row="1" Grid.Column="2"  Grid.ColumnSpan="1" Text="+"  Style="{StaticResource UpDownButton}"  Command="{Binding RDUpCommand}" ></Button>
+                <Button Grid.Row="1" Grid.Column="3"  Grid.ColumnSpan="1" Text="-" Style="{StaticResource UpDownButton}"  Command="{Binding RDDownCommand}" ></Button>
 
 
 
-                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"   Text="Target Visibility"  ></Label>
-                <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" x:Name="Visibility" Title="Select Target Visibility" SelectedIndex="{Binding SelectedVisibilityIndex}" >
+                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"  Style="{StaticResource FormFieldTitle}" Text="Target Visibility"  ></Label>
+                <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" x:Name="Visibility"  SelectedIndex="{Binding SelectedVisibilityIndex}" >
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Low Visibility</x:String>
@@ -60,16 +69,16 @@
                     </Picker.ItemsSource>
                 </Picker>
 
-                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4"   Text="Target POD" ></Label>
-                <Editor Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Keyboard="Numeric" Text="{Binding TargetPODAsPercentText}"  Placeholder="Target POD"  ></Editor>
-                
-                
-                <Button Grid.Row="6" Grid.Column="0"  Grid.ColumnSpan="2" Text="63%"  Command="{Binding TargetPODTo63}" ></Button>
-                <Button Grid.Row="6" Grid.Column="2"  Grid.ColumnSpan="2" Text="83%" Command="{Binding TargetPODTo83}" ></Button>
+                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4"  Style="{StaticResource FormFieldTitle}"  Text="Target POD" ></Label>
+                <Entry Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Keyboard="Numeric" Text="{Binding TargetPODAsPercentText}"  Placeholder="Target POD"  ></Entry>
+
+
+                <Button Grid.Row="5" Grid.Column="2"   Text="63%" Style="{StaticResource UpDownButton}"  Command="{Binding TargetPODTo63}" ></Button>
+                <Button Grid.Row="5" Grid.Column="3"   Text="83%" Style="{StaticResource UpDownButton}" Command="{Binding TargetPODTo83}" ></Button>
             </Grid>
         </ScrollView>
 
-        <VerticalStackLayout  >
+        <VerticalStackLayout Grid.Column="0" Grid.Row="1"  >
             <Label x:Name="lblResultTypeTitle"  Text="Sweep Width"></Label>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                 <Label x:Name="lblResultsValue"  Text="{Binding TeamSpacing}"></Label>
@@ -77,5 +86,5 @@
             </StackLayout>
 
         </VerticalStackLayout>
-    </StackLayout>
+    </Grid>
 </ContentPage>

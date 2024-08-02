@@ -38,27 +38,9 @@ namespace MySARAssist.ViewModels.CheckInOut
         public Command BackCommand { get; }
         public bool ShowPersonnel { get; set; } = true;
 
-        public Guid TeamMemberID
-        {
-            set
-            {
-                Guid ID = value;
-                if (ID != Guid.Empty)
-                {
-                    SetTeamMember(ID);
-                }
-                else
-                {
-                    CurrentMember = new Personnel();
+     
 
-
-                }
-                DisplayMember();
-                OnPropertyChanged(nameof(CurrentMember));
-            }
-        }
-
-        private async void SetTeamMember(Guid ID)
+        public async Task SetTeamMember(Guid ID)
         {
             CurrentMember = await new PersonnelService().GetItemAsync(ID);
             if(CurrentMember == null) { CurrentMember = new Personnel(); }
@@ -85,7 +67,32 @@ namespace MySARAssist.ViewModels.CheckInOut
             }
 
             OnPropertyChanged(nameof(ParentOrgIndex));
+
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(CurrentMember.Pronouns));
+            OnPropertyChanged(nameof(Email));
+            OnPropertyChanged(nameof(CurrentMember.Address));
+            OnPropertyChanged(nameof(CurrentMember.Phone));
+            OnPropertyChanged(nameof(CurrentMember.Reference));
+            OnPropertyChanged(nameof(CurrentMember.Callsign));
+            OnPropertyChanged(nameof(CurrentMember.NOKName));
+            OnPropertyChanged(nameof(CurrentMember.NOKPhone)); 
+            OnPropertyChanged(nameof(CurrentMember.NOKRelation));
+
         }
+
+        public string Name { get => CurrentMember.Name; set => CurrentMember.Name = value; }
+        public string Pronouns { get => CurrentMember.Pronouns??string.Empty; set => CurrentMember.Pronouns = value; }
+        public string Email { get => CurrentMember.Email; set => CurrentMember.Email = value; }
+        public string Address { get => CurrentMember.Address ?? string.Empty; set => CurrentMember.Address = value; }
+        public string Phone { get => CurrentMember.Phone ?? string.Empty; set => CurrentMember.Phone = value; }
+        public string Reference { get => CurrentMember.Reference ?? string.Empty; set => CurrentMember.Reference = value; }
+        public string Callsign { get => CurrentMember.Callsign ?? string.Empty; set => CurrentMember.Callsign = value; }
+        public string NOKName { get => CurrentMember.NOKName ?? string.Empty; set => CurrentMember.NOKName = value; }
+        public string NOKPhone { get => CurrentMember.NOKPhone ?? string.Empty; set => CurrentMember.NOKPhone = value; }
+        public string NOKRelation { get => CurrentMember.NOKRelation ?? string.Empty; set => CurrentMember.NOKRelation = value; }
+
+
 
 
         Guid _selectedParentOrgID = Guid.Empty;
@@ -130,9 +137,14 @@ namespace MySARAssist.ViewModels.CheckInOut
             {
                 return _OrgIndex;
             }
-            set { _OrgIndex = value; }
+            set { _OrgIndex = value; 
+            if(Organizations.Count > _OrgIndex && _OrgIndex >= 0)
+                {
+                    CurrentMember.MemberOrganization = Organizations[OrgIndex];
+                }
+            }
         }
-
+        
 
         private async void OnCancelCommand()
         {
@@ -179,11 +191,14 @@ namespace MySARAssist.ViewModels.CheckInOut
         {
             if (CurrentMember != null)
             {
-                CurrentMember.Group = CurrentMember.MemberOrganization.OrganizationName;
-                CurrentMember.OrganizationID = CurrentMember.MemberOrganization.OrganizationID;
+                if (CurrentMember.MemberOrganization != null)
+                {
+                    CurrentMember.Group = CurrentMember.MemberOrganization.OrganizationName;
+                    CurrentMember.OrganizationID = CurrentMember.MemberOrganization.OrganizationID;
+                }
 
                 CurrentMember = removeBadChrs(CurrentMember);
-
+                if (CurrentMember == null) { throw new Exception("ERROR, personnel was not saved"); }
                 if (await new PersonnelService().UpsertItemAsync(CurrentMember))
                 {
                     if (await new PersonnelService().GetCurrentPersonAsync() == null)

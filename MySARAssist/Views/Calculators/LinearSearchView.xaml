@@ -8,7 +8,7 @@
     <ContentPage.BindingContext>
         <vm:LinearWorkEstimationViewModel></vm:LinearWorkEstimationViewModel>
     </ContentPage.BindingContext>
-    <Grid>
+    <Grid Padding="20,10,20,10">
 
 
         <Grid.RowDefinitions>
@@ -20,38 +20,34 @@
         </Grid.ColumnDefinitions>
         <ScrollView Grid.Column="0" Grid.Row="0">
 
-            <VerticalStackLayout VerticalOptions="Fill">
-                <Label >Linear Assignment Estimation</Label>
                 <Grid >
                     <Grid.RowDefinitions>
-                        <!-- RD -->
-                        <RowDefinition Height="*"></RowDefinition>
+                        <!-- Speed -->
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
                         <RowDefinition Height="10"></RowDefinition>
-                        <!-- POD -->
-                        <RowDefinition Height="*"></RowDefinition>
+                        <!-- Distance -->
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
                         <RowDefinition Height="10"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                        <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
 
 
-                    <Label Grid.Row="0" Grid.Column="0" VerticalOptions="Center" Text="Searcher Speed (in KM/h)" ></Label>
-                    <Entry Grid.Row="0" Grid.Column="1" Keyboard="Numeric" Text="{Binding SearcherSpeedStr, Mode=TwoWay}" Placeholder="KM/h"   ></Entry>
-                    <VerticalStackLayout Grid.Row="0" Grid.Column="2" >
-                        <Button  Text="+"  Command="{Binding SpeedUpCommand}" ></Button>
-                        <Button  Text="-" Command="{Binding SpeedDownCommand}" ></Button>
-                    </VerticalStackLayout>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" VerticalOptions="Center" Text="Searcher Speed (in KM/h)" ></Label>
+                    <Entry Grid.Row="1" Grid.Column="0" Keyboard="Numeric" Text="{Binding SearcherSpeedStr, Mode=TwoWay}" Placeholder="KM/h"   ></Entry>
+                <Button  Grid.Row="1" Grid.Column="1" Text="+" Style="{StaticResource UpDownButton}" Command="{Binding SpeedUpCommand}" ></Button>
+                <Button  Grid.Row="1" Grid.Column="2" Text="-" Style="{StaticResource UpDownButton}" Command="{Binding SpeedDownCommand}" ></Button>
 
-                    <Label Grid.Row="2" Grid.Column="0"  VerticalOptions="Center" Text="Length (in KM)" ></Label>
-                    <Entry Grid.Row="2" Grid.Column="1"  Keyboard="Numeric" Text="{Binding LengthStr, Mode=TwoWay}" Placeholder="KM"  ></Entry>
-                    <VerticalStackLayout Grid.Row="2" Grid.Column="2" >
-                        <Button  Text="+"  Command="{Binding LengthUpCommand}" ></Button>
-                        <Button  Text="-" Command="{Binding LengthDownCommand}" ></Button>
-                    </VerticalStackLayout>
+                    <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}"  VerticalOptions="Center" Text="Length (in KM)" ></Label>
+                    <Entry Grid.Row="4" Grid.Column="0"  Keyboard="Numeric" Text="{Binding LengthStr, Mode=TwoWay}" Placeholder="KM"  ></Entry>
+                <Button  Grid.Row="4" Grid.Column="1" Text="+" Style="{StaticResource UpDownButton}" Command="{Binding LengthUpCommand}" ></Button>
+                <Button  Grid.Row="4" Grid.Column="2" Text="-" Style="{StaticResource UpDownButton}" Command="{Binding LengthDownCommand}" ></Button>
 
 
 
@@ -59,30 +55,37 @@
 
 
                 </Grid>
-            </VerticalStackLayout>
         </ScrollView>
 
-        <VerticalStackLayout x:Name="slResults" Grid.Column="0" Grid.Row="1" >
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                <StackLayout Orientation="Vertical" HorizontalOptions="Fill">
-                    <Label x:Name="lblResultTypeTitle"  Text="One-Way"></Label>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                        <Label x:Name="lblResultsValue" Text="{Binding EstimatedDuration}"></Label>
-                        <Label x:Name="lblUnitOfMeasure"  Text="hrs"></Label>
-                    </StackLayout>
-                </StackLayout>
 
-                <StackLayout Orientation="Vertical" HorizontalOptions="Fill">
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                
+                <ColumnDefinition Width="10"></ColumnDefinition>
+                
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-                    <Label x:Name="lblRoundTripResultTitle" Text="Round Trip"></Label>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                        <Label x:Name="lblRoundTripValue"  Text="{Binding EstimatedDurationWithRoundTrip}"></Label>
-                        <Label x:Name="lblRoundTripUOM"  Text="hrs"></Label>
-                    </StackLayout>
-                </StackLayout>
+            <Label Grid.Row="0" Grid.Column="0"  x:Name="lblResultTypeTitle"  Text="One-Way"></Label>
+            <HorizontalStackLayout Grid.Row="1" Grid.Column="0">
+            <Label x:Name="lblResultsValue" Text="{Binding EstimatedDuration}"></Label>
+            <Label x:Name="lblUnitOfMeasure" Padding="5,0,0,0" Text="hrs"></Label>
+            </HorizontalStackLayout>
 
-            </StackLayout>
+            <Label x:Name="lblRoundTripResultTitle" Grid.Row="0" Grid.Column="2" Text="Round Trip"></Label>
+            <HorizontalStackLayout Grid.Row="1" Grid.Column="2">
+                <Label x:Name="lblRoundTripValue" Text="{Binding EstimatedDurationWithRoundTrip}"></Label>
+                <Label x:Name="lblRoundTripUOM" Padding="5, 0, 0 , 0" Text="hrs"></Label>
+            </HorizontalStackLayout>
 
-        </VerticalStackLayout>
+        </Grid>
+        
+     
+
     </Grid>
 </ContentPage>
