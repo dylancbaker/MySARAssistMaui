@@ -8,29 +8,47 @@
                xmlns:local="clr-namespace:MySARAssist.Models.ValidationTools"
              xmlns:models="clr-namespace:MySARAssist.Models.People"
              Title="Edit Qualifications">
-    <ScrollView >
-        <VerticalStackLayout>
 
-            <Label Text="{Binding CurrentMember.Name}"></Label>
-            <ListView ItemsSource="{Binding PersonQualifications}">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Qualification">
-                        <ViewCell>
-                            <HorizontalStackLayout>
-                                <Switch x:Name="chk" IsToggled="{Binding PersonHas}"></Switch>
-                                <Label Text="{Binding FullName}" VerticalOptions="Center"></Label>
-                            </HorizontalStackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+    <Grid Padding="20,10,20,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Column="0" Grid.Row="0">
+            <VerticalStackLayout>
+
+                <Label Text="{Binding CurrentMember.Name}"></Label>
+                <ListView ItemsSource="{Binding PersonQualifications}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Qualification">
+                            <ViewCell>
+                                <HorizontalStackLayout>
+                                    <Switch x:Name="chk" IsToggled="{Binding PersonHas}"></Switch>
+                                    <Label Text="{Binding FullName}" VerticalOptions="Center"></Label>
+                                </HorizontalStackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
 
-            <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
-                <Button x:Name="btnBack"  Text="Back" HorizontalOptions="FillAndExpand" Command="{Binding BackCommand}"></Button>
+                
+            </VerticalStackLayout>
+        </ScrollView>
 
-                <Button x:Name="btnSave"  Text="Save" HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}"></Button>
-            </StackLayout>
-        </VerticalStackLayout>
-    </ScrollView>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnBack" Grid.Row="0" Grid.Column="0" Text="Back" HorizontalOptions="FillAndExpand" Command="{Binding BackCommand}"></Button>
+            <Button x:Name="btnSave"  Grid.Row="0" Grid.Column="1"  Text="Save" HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}"></Button>
+        </Grid>
+
+
+    </Grid>
+    
+    
+    
 </ContentPage>

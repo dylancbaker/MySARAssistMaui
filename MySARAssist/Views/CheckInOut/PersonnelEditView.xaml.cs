@@ -25,8 +25,8 @@ public partial class PersonnelEditView : ContentPage
             string temp = Uri.UnescapeDataString(value ?? string.Empty);
             if (!string.IsNullOrEmpty(temp))
             {
-                try { _viewModel.TeamMemberID = new Guid(temp); }
-                catch { _viewModel.TeamMemberID = Guid.NewGuid(); }
+                try { _ = _viewModel.SetTeamMember(new Guid(temp)); }
+                catch { _ = _viewModel.SetTeamMember(Guid.NewGuid()); }
             }
         }
     }
