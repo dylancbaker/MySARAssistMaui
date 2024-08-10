@@ -28,8 +28,8 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Text="Paces to Distance" ContentLayout="Top,0" Grid.Column="0" Grid.Row="0" x:Name="Pacing_Button" Clicked="Pacing_Button_Clicked" ImageSource="footstep_icon.png" ></Button>
-                    <Button Text="Distance to Paces" ContentLayout="Top,0" Grid.Column="1" Grid.Row="0" x:Name="DistToPacing_Button" Clicked="DistToPacing_Button_Clicked" ImageSource="footstep_icon.png" ></Button>
+                    <Button Text="Paces to Meters" ContentLayout="Top,0" Grid.Column="0" Grid.Row="0" x:Name="Pacing_Button" Clicked="Pacing_Button_Clicked" ImageSource="footstep_icon.png" ></Button>
+                    <Button Text="Meters to Paces" ContentLayout="Top,0" Grid.Column="1" Grid.Row="0" x:Name="DistToPacing_Button" Clicked="DistToPacing_Button_Clicked" ImageSource="footstep_icon.png" ></Button>
 
                 </Grid>
                 <Button Text="Sweep Width" x:Name="VisualSearch_Button"  Clicked="VisualSearch_Button_Clicked" ImageSource="spacing_icon.png" ></Button>

@@ -41,14 +41,7 @@ public partial class CoordinateConverterView : ContentPage
     {
         base.OnSizeAllocated(width, height);
 
-        if (width > height)
-        {
-            slPageContent.Orientation = StackOrientation.Horizontal;
-        }
-        else
-        {
-            slPageContent.Orientation = StackOrientation.Vertical;
-        }
+       
 
     }
     private async void ShowToastAsync(string message)

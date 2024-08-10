@@ -11,7 +11,7 @@
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -87,11 +87,11 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <VerticalStackLayout Grid.Row="1" Grid.Column="0">
-            <Label x:Name="lblResultTypeTitle"  Text="Est. Time to Complete"></Label>
+        <VerticalStackLayout Grid.Row="1" Grid.Column="0"  Style="{StaticResource CalculatorResult}" >
+            <Label x:Name="lblResultTypeTitle"  Style="{StaticResource CalculatorResultTitle}"  Text="Est. Time to Complete"></Label>
             <HorizontalStackLayout HorizontalOptions="Center">
-                <Label x:Name="lblResultsValue"  Text="{Binding EstimatedDuration}"></Label>
-                <Label x:Name="lblUnitOfMeasure" Text="hrs"></Label>
+                <Label x:Name="lblResultsValue"  Style="{StaticResource CalculatorResultValue}"  Text="{Binding EstimatedDuration}"></Label>
+                <Label x:Name="lblUnitOfMeasure" Style="{StaticResource CalculatorResultUOM}"  Text="hrs"></Label>
             </HorizontalStackLayout>
 
         </VerticalStackLayout>

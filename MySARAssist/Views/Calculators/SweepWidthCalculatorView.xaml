@@ -8,18 +8,18 @@
         <vm:SweepWidthCalculatorViewModel></vm:SweepWidthCalculatorViewModel>
     </ContentPage.BindingContext>
 
-    <Grid Padding="20,10,20,10">
+    <Grid>
 
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <ScrollView Grid.Column="0" Grid.Row="0">
-            <Grid >
+            <Grid  Padding="20,10,20,10">
                 <Grid.RowDefinitions>
 
 
@@ -78,11 +78,11 @@
             </Grid>
         </ScrollView>
 
-        <VerticalStackLayout Grid.Column="0" Grid.Row="1"  >
-            <Label x:Name="lblResultTypeTitle"  Text="Sweep Width"></Label>
+        <VerticalStackLayout Grid.Column="0" Grid.Row="1"   Style="{StaticResource CalculatorResult}" >
+            <Label x:Name="lblResultTypeTitle"  Style="{StaticResource CalculatorResultTitle}"  Text="Sweep Width"></Label>
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label x:Name="lblResultsValue"  Text="{Binding TeamSpacing}"></Label>
-                <Label x:Name="lblUnitOfMeasure"  Text="meters between searchers"></Label>
+                <Label x:Name="lblResultsValue"  Style="{StaticResource CalculatorResultValue}"  Text="{Binding TeamSpacing}"></Label>
+                <Label x:Name="lblUnitOfMeasure"  Style="{StaticResource CalculatorResultUOM}"  Text="meters between searchers"></Label>
             </StackLayout>
 
         </VerticalStackLayout>

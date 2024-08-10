@@ -24,8 +24,8 @@
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource PrimaryDarkText}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="BorderWidth" Value="0"/>
@@ -439,6 +439,36 @@
         <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Magenta}, Dark={StaticResource White}}" />
         <Setter Property="UnselectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
+    </Style>
+
+    <Style TargetType="VerticalStackLayout" x:Key="CalculatorResult">
+        <Setter Property="Padding" Value="20,10,20,10"></Setter>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource PrimaryDark}}" />
+        
+    </Style>
+    <Style TargetType="Label" x:Key="CalculatorResultTitle">
+        <Setter Property="FontSize" Value="Medium"></Setter>
+        <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="0, 10, 0, 5"></Setter>
+        <Setter Property="TextTransform" Value="Uppercase"></Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Tertiary}}" />
+    </Style>
+    <Style TargetType="Label" x:Key="CalculatorResultValue">
+        <Setter Property="FontSize" Value="Large"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+
+        <Setter Property="Margin" Value="5,0,5,20"></Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Tertiary}}" />
+
+    </Style>
+    <Style TargetType="Label" x:Key="CalculatorResultUOM">
+        <Setter Property="FontSize" Value="Medium"></Setter>
+        <Setter Property="FontAttributes" Value="Italic"></Setter>
+        <Setter Property="Margin" Value="5,0,5,20"></Setter>
+        <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Tertiary}}" />
+
     </Style>
 
 </ResourceDictionary>

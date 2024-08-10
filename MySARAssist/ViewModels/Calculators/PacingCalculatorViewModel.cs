@@ -10,7 +10,57 @@ namespace MySARAssist.ViewModels.Calculators
 {
     public class PacingCalculatorViewModel : ObservableObject
     {
+       public PacingCalculatorViewModel()
+        {
+            PaceUpCommand = new Command(() =>
+            {
+                PacesPer100m++;
+                OnPropertyChanged(nameof(PacesPer100Text));
 
+                updatePacing();
+
+            });
+            PaceDownCommand = new Command(() =>
+            {
+                PacesPer100m--;
+                OnPropertyChanged(nameof(PacesPer100Text));
+
+                updatePacing();
+
+            });
+
+            DistanceUpCommand = new Command(() =>
+            {
+                if ((currentMode??string.Empty).Equals("Distance"))
+                {
+                    PacesTaken++;
+                    OnPropertyChanged(nameof(PacesTakenText));
+
+                }
+                else
+                {
+                    DistanceToTravel++;
+                    OnPropertyChanged(nameof(DistanceToTravelText));
+
+                }
+                updatePacing();
+
+            });
+            DistanceDownCommand = new Command(() =>
+            {
+                if ((currentMode ?? string.Empty).Equals("Distance"))
+                {
+                    PacesTaken++;
+                }
+                else
+                {
+                    DistanceToTravel++;
+                }
+                updatePacing();
+
+            });
+
+        }
         public double CurrentMemberPace
         {
             get
@@ -98,7 +148,7 @@ namespace MySARAssist.ViewModels.Calculators
                     default:
                         CalculationResult = "";
                         CalculationUnits = "";
-                        CalculationTitle = "SELECT AN OPTION ABOVE";
+                        CalculationTitle = "ENTER DETAILS ABOVE";
                         break;
                 }
 
@@ -107,7 +157,7 @@ namespace MySARAssist.ViewModels.Calculators
             {
                 CalculationResult = "";
                 CalculationUnits = "";
-                CalculationTitle = "SELECT AN OPTION ABOVE";
+                CalculationTitle = "ENTER DETAILS ABOVE";
             }
             OnPropertyChanged(nameof(CalculationResult));
             OnPropertyChanged(nameof(CalculationUnits));
@@ -137,9 +187,16 @@ namespace MySARAssist.ViewModels.Calculators
             }
         }
 
-        public string CalculationResult { get; set; }
-        public string CalculationUnits { get; set; }
-        public string CalculationTitle { get; set; }
+        public string CalculationResult { get; set; } = string.Empty;
+        public string CalculationUnits { get; set; } = string.Empty;
+        public string CalculationTitle { get; set; } = string.Empty;
+
+
+        public Command PaceUpCommand { get; }
+        public Command PaceDownCommand { get; }
+        public Command DistanceUpCommand { get; }
+        public Command DistanceDownCommand { get; }
+
 
     }
 

@@ -9,12 +9,12 @@ x:DataType="vm:VisualSearchResourceEstimationViewModel"
     <ContentPage.BindingContext>
         <vm:VisualSearchResourceEstimationViewModel></vm:VisualSearchResourceEstimationViewModel>
     </ContentPage.BindingContext>
-    <Grid Padding="20,10,20,10">
+    <Grid>
 
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -22,7 +22,7 @@ x:DataType="vm:VisualSearchResourceEstimationViewModel"
         <ScrollView Grid.Column="0" Grid.Row="0">
 
 
-            <Grid >
+            <Grid  Padding="20,10,20,10" >
                     <Grid.RowDefinitions>
                         <!-- Speed -->
                     <RowDefinition Height="40"></RowDefinition>
@@ -108,14 +108,14 @@ x:DataType="vm:VisualSearchResourceEstimationViewModel"
               
     
         </ScrollView>
-        <StackLayout x:Name="slResults" Grid.Row="1" Grid.Column="0" >
-            <Label x:Name="lblResultTypeTitle"  Text="Estimated People Needed"></Label>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label x:Name="lblResultsValue"  Text="{Binding ResourcesNeeded}"></Label>
-                <Label x:Name="lblUnitOfMeasure"  Text="people"></Label>
-            </StackLayout>
+        <VerticalStackLayout x:Name="slResults" Grid.Row="1" Grid.Column="0" Style="{StaticResource CalculatorResult}"  >
+            <Label x:Name="lblResultTypeTitle"  Style="{StaticResource CalculatorResultTitle}"  Text="Estimated People Needed"></Label>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label x:Name="lblResultsValue"  Style="{StaticResource CalculatorResultValue}"  Text="{Binding ResourcesNeeded}"></Label>
+                <Label x:Name="lblUnitOfMeasure"  Style="{StaticResource CalculatorResultUOM}"  Text="people"></Label>
+            </HorizontalStackLayout>
 
-        </StackLayout>
+        </VerticalStackLayout>
     </Grid>
     
 </ContentPage>

@@ -8,68 +8,83 @@
     <ContentPage.BindingContext>
         <vm:CoordinateConverterViewModel></vm:CoordinateConverterViewModel>
     </ContentPage.BindingContext>
-    <StackLayout  x:Name="slPageContent">
-        <StackLayout Orientation="Vertical" VerticalOptions="Fill" Padding="20">
 
-            <Label >Coordinate Conversion</Label>
+
+    <Grid>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <VerticalStackLayout Grid.Column="0" Grid.Row="0" Padding="20">
+
 
             <VerticalStackLayout x:Name="slPacesPer100" >
-                <Label  HorizontalOptions="Fill" Text="Enter the coordinates"></Label>
+                <Label  HorizontalOptions="Fill" Text="Enter the coordinates" Style="{StaticResource FormFieldTitle}"></Label>
 
 
                 <Entry Keyboard="Default" x:Name="txtCoordinates"  Placeholder="UTM, MGRS, or Lat/Long" Text="{Binding CoordinateInputText, Mode=TwoWay}"></Entry>
-                <Label x:Name="lblCoordinateOK" VerticalOptions="Center" FontAttributes="Italic" HorizontalOptions="Fill" Text="{Binding CoordinateParseResult}"></Label>
+                <Label x:Name="lblCoordinateOK" HorizontalTextAlignment="Center" VerticalOptions="Center" FontAttributes="Italic" HorizontalOptions="Fill" Text="{Binding CoordinateParseResult}"></Label>
                 <Button x:Name="btnGetCurrent"   Clicked="btnGetCurrent_Clicked" Text="Get Current"></Button>
             </VerticalStackLayout>
-        </StackLayout>
+        </VerticalStackLayout>
 
-        <ScrollView HorizontalOptions="Fill">
-            <VerticalStackLayout x:Name="slResults" >
-                <HorizontalStackLayout  HorizontalOptions="Fill">
-                    <Label   Text="UTM:" FontAttributes="Bold"></Label>
-                    <Label   Text="{Binding UTM}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CopyUTMCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout  HorizontalOptions="Fill">
-                    <Label   Text="Short UTM:" FontAttributes="Bold"></Label>
-                    <Label    Text="{Binding ShortUTM}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CopyShortUTMCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout  HorizontalOptions="Fill">
-                    <Label   Text="DD:" FontAttributes="Bold"></Label>
-                    <Label    Text="{Binding DecimalDegrees}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CopyDDCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout  HorizontalOptions="Fill">
-                    <Label   Text="DMS:" FontAttributes="Bold"></Label>
-                    <Label   Text="{Binding DMS}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CopyDMSCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout  HorizontalOptions="Fill">
-                    <Label    Text="MGRS:" FontAttributes="Bold"></Label>
-                    <Label   Text="{Binding MGRS}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CopyMGRSCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </HorizontalStackLayout>
-                <Label>*Tap on a coordinate to copy it</Label>
 
-                <Button  Text="Map it" Command="{Binding OpenMapCommand}"></Button>
 
-            </VerticalStackLayout>
+        <ScrollView Grid.Row="1" Grid.Column="0">
+        <VerticalStackLayout  x:Name="slResults" Style="{StaticResource CalculatorResult}" >
+            <HorizontalStackLayout  HorizontalOptions="Fill">
+                <Label  Style="{StaticResource CalculatorResultUOM}"   Text="UTM:" ></Label>
+                <Label  Style="{StaticResource CalculatorResultValue}"   Text="{Binding UTM}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CopyUTMCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout  HorizontalOptions="Fill">
+                <Label   Style="{StaticResource CalculatorResultUOM}"  Text="Short UTM:" FontAttributes="Bold"></Label>
+                <Label   Style="{StaticResource CalculatorResultValue}"   Text="{Binding ShortUTM}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CopyShortUTMCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout  HorizontalOptions="Fill">
+                <Label  Style="{StaticResource CalculatorResultUOM}"   Text="DD:" FontAttributes="Bold"></Label>
+                <Label   Style="{StaticResource CalculatorResultValue}"   Text="{Binding DecimalDegrees}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CopyDDCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout  HorizontalOptions="Fill">
+                <Label  Style="{StaticResource CalculatorResultUOM}"   Text="DMS:" FontAttributes="Bold"></Label>
+                <Label  Style="{StaticResource CalculatorResultValue}"   Text="{Binding DMS}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CopyDMSCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout  HorizontalOptions="Fill">
+                <Label   Style="{StaticResource CalculatorResultUOM}"   Text="MGRS:" FontAttributes="Bold"></Label>
+                <Label  Style="{StaticResource CalculatorResultValue}"   Text="{Binding MGRS}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CopyMGRSCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+                <Label  Style="{StaticResource CalculatorResultUOM}" HorizontalTextAlignment="Center">*Tap on a coordinate to copy it</Label>
+
+            <Button  Text="Map it" Command="{Binding OpenMapCommand}"></Button>
+
+        </VerticalStackLayout>
         </ScrollView>
-    </StackLayout>
+
+    </Grid>
+
+  
 </ContentPage>
