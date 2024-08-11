@@ -15,10 +15,10 @@ namespace MySARAssist.Models.RADeMS
         private int _ID;
         private string _Name = string.Empty;
 
-        private List<RADeMSQuestion> _Questions = new List<RADeMSQuestion>();
-        public int ID { get { return _ID; } }
-        public string Name { get { return _Name; } }
-        public List<RADeMSQuestion> Questions { get => _Questions; private set => _Questions = value; }
+        private List<RADeMSQuestion>? _Questions = new List<RADeMSQuestion>();
+        public int ID { get { return _ID; } set => _ID = value; }
+        public string Name { get { return _Name; } set => _Name = value; }
+        public List<RADeMSQuestion>? Questions { get => _Questions; set => _Questions = value; }
         
         public RADeMSCategory(int id, string name, List<RADeMSQuestion> questions) { _ID = id; _Name = name; Questions = questions; }
     }

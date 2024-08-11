@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.RADeMSView"
-             xmlns:models="clr-namespace:MySARAssist.Models.RADeMS"
+             xmlns:models="clr-namespace:MySARAssist.ViewModels.RADeMS"
                           xmlns:vm="clr-namespace:MySARAssist.ViewModels.RADeMS"
 x:DataType="vm:RADeMSTypesViewModel"
              Title="RADeMS">
@@ -23,10 +23,10 @@ x:DataType="vm:RADeMSTypesViewModel"
     HorizontalOptions="Center" />
         <ListView ItemsSource="{Binding RADeMSCategories}">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:RADeMSCategory">
+                <DataTemplate x:DataType="models:RADeMSCategoryViewModel">
                     <ViewCell>
                         <VerticalStackLayout>
-                            <Button Grid.Column="0" Grid.Row="0" Text="{Binding Name}"></Button>
+                            <Button Grid.Column="0" Grid.Row="0" Command="{Binding NavigateToDetailsCommand}" Text="{Binding Name}"></Button>
                             
                         </VerticalStackLayout>
                     </ViewCell>

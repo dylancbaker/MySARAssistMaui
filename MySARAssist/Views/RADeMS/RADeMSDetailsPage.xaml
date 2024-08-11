@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MySARAssist.Views.RADeMS.RADeMSDetailsPage"
+             
+            xmlns:models="clr-namespace:MySARAssist.Models.RADeMS"
+
+             Title="RADeMSDetailsPage">
+
+    <Grid>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="180"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ScrollView Grid.Column="0" Grid.Row="0">
+
+
+
+
+
+            <VerticalStackLayout  Padding="20">
+                <Label             Text="{Binding CategoryTitle}"            VerticalOptions="Center"             HorizontalOptions="Center" />
+                <Label>Operational Risk</Label>
+
+                <ListView ItemsSource="{Binding OperationalRiskQuestions}" SelectionMode="None" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:RADeMSQuestion">
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"></RowDefinition> <!-- title-->
+                                        <RowDefinition Height="40"></RowDefinition> <!-- description-->
+                                        <RowDefinition Height="*"></RowDefinition> <!-- buttons -->
+                                        <RowDefinition Height="*"></RowDefinition> <!-- help buttons -->
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding QuestionText}" Style="{StaticResource FormFieldTitle}" FontAttributes="Bold"></Label>
+                                    <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  Text="{Binding Description}" Style="{StaticResource FormFieldTitle}"></Label>
+
+                                    <Button Text="{Binding Option1LabelWithNum}" BackgroundColor="{StaticResource RADGreen}" Grid.Row="2" Grid.Column="0"></Button>
+                                    <Button Text="{Binding Option2LabelWithNum}" BackgroundColor="{StaticResource RADYellow}" Grid.Row="2" Grid.Column="1"></Button>
+                                    <Button Text="{Binding Option3LabelWithNum}" BackgroundColor="{StaticResource RADRed}" Grid.Row="2" Grid.Column="2"></Button>
+                                    <Button Text="View Details" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"></Button>
+                                </Grid>
+
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <Label>Response Capacity</Label>
+                <ListView ItemsSource="{Binding ResponseCapacityQuestions}" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:RADeMSQuestion">
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <!-- title-->
+                                        <RowDefinition Height="40"></RowDefinition>
+                                        <!-- description-->
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <!-- buttons -->
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <!-- help buttons -->
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding QuestionText}" Style="{StaticResource FormFieldTitle}" FontAttributes="Bold"></Label>
+                                    <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  Text="{Binding Description}" Style="{StaticResource FormFieldTitle}"></Label>
+
+                                    <Button Text="{Binding Option1LabelWithNum}" BackgroundColor="{StaticResource RADGreen}" Grid.Row="2" Grid.Column="0"></Button>
+                                    <Button Text="{Binding Option2LabelWithNum}" BackgroundColor="{StaticResource RADYellow}" Grid.Row="2" Grid.Column="1"></Button>
+                                    <Button Text="{Binding Option3LabelWithNum}" BackgroundColor="{StaticResource RADRed}" Grid.Row="2" Grid.Column="2"></Button>
+                                    <Button Text="View Details" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"></Button>
+                                </Grid>
+
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </VerticalStackLayout>
+
+
+        </ScrollView>
+
+
+        <VerticalStackLayout Grid.Row="1" Grid.Column="0"  Style="{StaticResource CalculatorResult}" Padding="0" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <VerticalStackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" BackgroundColor="{Binding ScoreColor}"></VerticalStackLayout>
+                <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Style="{StaticResource CalculatorResultTitle}"  Text="Risk Assessment Score"></Label>
+                <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"   Style="{StaticResource CalculatorResultValue}"  Text="{Binding RademsResultText}"></Label>
+                <Button Grid.Column="1" Grid.Row="2" Text="View Card"></Button>
+                <Button Grid.Column="2" Grid.Row="2" Text="Share Score"></Button>
+
+                <VerticalStackLayout Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" BackgroundColor="{Binding ScoreColor}"></VerticalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+
+
+    </Grid>
+</ContentPage>

@@ -13,8 +13,11 @@
     <Color x:Key="SecondaryDarkText">#b6bfc3</Color>
     <Color x:Key="Tertiary">#07283d</Color>
     
-    
-    
+    <!-- RADEMS Colours-->
+    <Color x:Key="RADRed">#D62828</Color>
+    <Color x:Key="RADYellow">#FF9F1C</Color>
+    <Color x:Key="RADGreen">#0EAD69</Color>
+
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>

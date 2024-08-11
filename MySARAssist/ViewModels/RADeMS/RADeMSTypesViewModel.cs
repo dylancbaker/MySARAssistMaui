@@ -15,11 +15,11 @@ namespace MySARAssist.ViewModels.RADeMS
             
         }
 
-        public List<RADeMSCategory> RADeMSCategories
+        public List<RADeMSCategoryViewModel> RADeMSCategories
         {
             get
             {
-                return RADeMSTools.GetCategories();
+                return RADeMSTools.GetCategoryViewModels();
             }
         }
     }

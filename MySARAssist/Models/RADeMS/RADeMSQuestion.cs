@@ -64,6 +64,12 @@
         public string Option1Label { get => _Option1Label; set => _Option1Label = value; }
         public string Option2Label { get => _Option2Label; set => _Option2Label = value; }
         public string Option3Label { get => _Option3Label; set => _Option3Label = value; }
+
+        public string Option1LabelWithNum { get => _Option1Label + " (0)"; }
+        public string Option2LabelWithNum { get => _Option2Label + " (1)"; }
+        public string Option3LabelWithNum { get => _Option3Label + " (2)"; }
+
+
         public string Description { get => _Description; set => _Description = value; }
         public int CategoryID { get => _CategoryID; set => _CategoryID = value; }
 

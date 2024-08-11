@@ -457,7 +457,7 @@
         <Setter Property="FontSize" Value="Large"></Setter>
         <Setter Property="FontAttributes" Value="Bold"></Setter>
         <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
-
+        <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
         <Setter Property="Margin" Value="5,0,5,20"></Setter>
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Tertiary}}" />
 

@@ -1,4 +1,5 @@
 ﻿using MySARAssist.Views.CheckInOut;
+using MySARAssist.Views.RADeMS;
 
 namespace MySARAssist
 {
@@ -11,6 +12,9 @@ namespace MySARAssist
             Routing.RegisterRoute("CheckInOut", typeof(CheckInOutView));
             Routing.RegisterRoute("CheckInOut/EditPersonnel", typeof(PersonnelEditView));
             Routing.RegisterRoute("CheckInOut/EditPersonnel/Qualifications", typeof(EditQualificationsPage));
+
+            Routing.RegisterRoute(nameof(RADeMSDetailsPage), typeof(RADeMSDetailsPage));
+
         }
     }
 }

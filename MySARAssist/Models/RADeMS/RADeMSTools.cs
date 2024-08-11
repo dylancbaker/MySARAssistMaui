@@ -1,4 +1,6 @@
-﻿namespace MySARAssist.Models.RADeMS
+﻿using MySARAssist.ViewModels.RADeMS;
+
+namespace MySARAssist.Models.RADeMS
 {
     public static class RADeMSTools
     {
@@ -31,9 +33,11 @@
         }
         private static Color GetGradientColor(Color startColor, Color endColor, float position)
         {
-            int r = (int)(startColor.Red + (endColor.Red - startColor.Red) * position);
-            int g = (int)(startColor.Green + (endColor.Green - startColor.Green) * position);
-            int b = (int)(startColor.Blue + (endColor.Blue - startColor.Blue) * position);
+            
+
+            int r = (int)((startColor.Red + (endColor.Red - startColor.Red) * position) * 255);
+            int g = (int)((startColor.Green + (endColor.Green - startColor.Green) * position) * 255);
+            int b = (int)((startColor.Blue + (endColor.Blue - startColor.Blue) * position) * 255);
             return Color.FromRgb(r, g, b);
         }
 
@@ -54,6 +58,22 @@
                     if (isSelected) { return Colors.Blue; }
                     else { return Color.FromRgb(151, 157, 172); }
             }
+        }
+
+        public static List<RADeMSCategoryViewModel> GetCategoryViewModels()
+        {
+            List<RADeMSCategoryViewModel> categories = new List<RADeMSCategoryViewModel>();
+
+            categories.Add(new RADeMSCategoryViewModel { ID = 1, Name = "Ground Search", Questions = GetQuestions(1) }); //(1, "Ground Search", GetQuestions(1)));
+            categories.Add(new RADeMSCategoryViewModel { ID = 2, Name = "Human Disease Outbreak", Questions = GetQuestions(2) }); //(2, "Human Disease Outbreak", GetQuestions(2)));
+            categories.Add(new RADeMSCategoryViewModel { ID = 3, Name = "Motor Vehicle Operations", Questions = GetQuestions(3) }); //(3, "Motor Vehicle Operations", GetQuestions(3)));
+            categories.Add(new RADeMSCategoryViewModel { ID = 4, Name = "Mountain Rescue", Questions = GetQuestions(4) }); //(4, "Mountain Rescue", GetQuestions(4)));
+            categories.Add(new RADeMSCategoryViewModel { ID = 5, Name = "Rope Rescue", Questions = GetQuestions(5) }); //(5, "Rope Rescue", GetQuestions(5)));
+            categories.Add(new RADeMSCategoryViewModel { ID = 6, Name = "Swiftwater Rescue", Questions = GetQuestions(6) }); //(6, "Swiftwater Rescue", GetQuestions(6)));
+
+
+            return categories;
+
         }
 
         public static List<RADeMSCategory> GetCategories()

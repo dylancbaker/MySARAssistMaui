@@ -84,8 +84,8 @@ namespace MySARAssist.Models.RADeMS
             get
             {
                 StringBuilder fullText = new StringBuilder();
-                fullText.Append(" Op. Risk: "); fullText.Append(OperationalRisk);
-                fullText.Append(", Response Cap.: "); fullText.Append(ResponseCapacity);
+                fullText.Append("Op. Risk: "); fullText.Append(OperationalRisk);
+                fullText.Append(", Resp. Cap.: "); fullText.Append(ResponseCapacity);
                 return fullText.ToString();
             }
         }
@@ -106,11 +106,8 @@ namespace MySARAssist.Models.RADeMS
             get
             {
                 Color color = Colors.White;
-
-
-
-
-                return color;
+                float position = (float)(OperationalRisk * ResponseCapacity) / 100;
+                return RADeMSTools.GetColorOnGradient(position);
             }
         }
 
