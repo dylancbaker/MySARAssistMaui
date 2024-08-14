@@ -8,4 +8,6 @@ namespace MySARAssist
     public class MainActivity : MauiAppCompatActivity
     {
     }
+
+
 }
