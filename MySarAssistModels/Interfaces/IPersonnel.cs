@@ -1,6 +1,8 @@
-﻿using MySARAssist.Models.People;
+﻿
 
-namespace MySARAssist.Interfaces
+using MySarAssistModels.People;
+
+namespace MySarAssistModels.Interfaces
 {
     public interface IPersonnel
     {

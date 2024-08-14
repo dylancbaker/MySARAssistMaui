@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySARAssist.Models
+namespace MySarAssistModels
 {
     public class IncidentResource : SyncableItem, ICloneable
     {

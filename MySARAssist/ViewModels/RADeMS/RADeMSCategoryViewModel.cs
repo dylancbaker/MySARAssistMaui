@@ -1,4 +1,4 @@
-﻿using MySARAssist.Models.RADeMS;
+﻿using MySarAssistModels.RADeMS;
 using MySARAssist.Views.RADeMS;
 using System;
 using System.Collections.Generic;

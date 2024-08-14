@@ -1,6 +1,8 @@
-﻿using MySARAssist.ViewModels.RADeMS;
+﻿
 
-namespace MySARAssist.Models.RADeMS
+using System.Drawing;
+
+namespace MySarAssistModels.RADeMS
 {
     public static class RADeMSTools
     {
@@ -8,9 +10,9 @@ namespace MySARAssist.Models.RADeMS
 
         public static Color GetColorOnGradient(float position)
         {
-            Color GradientStart = Color.FromRgb(14, 173, 105);
-            Color GradientMid = Color.FromRgb(255, 159, 28);
-            Color GradientEnd = Color.FromRgb(214, 40, 40);
+            Color GradientStart = Color.FromArgb(14, 173, 105);
+            Color GradientMid = Color.FromArgb(255, 159, 28);
+            Color GradientEnd = Color.FromArgb(214, 40, 40);
 
             return GetGradientColor(GradientStart, GradientMid, GradientEnd, position);
         }
@@ -35,10 +37,10 @@ namespace MySARAssist.Models.RADeMS
         {
             
 
-            int r = (int)((startColor.Red + (endColor.Red - startColor.Red) * position) * 255);
-            int g = (int)((startColor.Green + (endColor.Green - startColor.Green) * position) * 255);
-            int b = (int)((startColor.Blue + (endColor.Blue - startColor.Blue) * position) * 255);
-            return Color.FromRgb(r, g, b);
+            int r = (int)((startColor.R + (endColor.R - startColor.R) * position) * 255);
+            int g = (int)((startColor.G + (endColor.G - startColor.G) * position) * 255);
+            int b = (int)((startColor.B + (endColor.B - startColor.B) * position) * 255);
+            return Color.FromArgb(r, g, b);
         }
 
         public static Color GetColor(string baseColour, bool isSelected)
@@ -46,34 +48,18 @@ namespace MySARAssist.Models.RADeMS
             switch (baseColour)
             {
                 case "Red":
-                    if (isSelected) { return Color.FromRgb(214, 40, 40); }
-                    else return Color.FromRgb(242, 132, 130);
+                    if (isSelected) { return Color.FromArgb(214, 40, 40); }
+                    else return Color.FromArgb(242, 132, 130);
                 case "Green":
-                    if (isSelected) { return Color.FromRgb(14, 173, 105); }
-                    else return Color.FromRgb(132, 165, 157);
+                    if (isSelected) { return Color.FromArgb(14, 173, 105); }
+                    else return Color.FromArgb(132, 165, 157);
                 case "Yellow":
-                    if (isSelected) { return Color.FromRgb(255, 159, 28); }
-                    else return Color.FromRgb(255, 229, 217);
+                    if (isSelected) { return Color.FromArgb(255, 159, 28); }
+                    else return Color.FromArgb(255, 229, 217);
                 default:
-                    if (isSelected) { return Colors.Blue; }
-                    else { return Color.FromRgb(151, 157, 172); }
+                    if (isSelected) { return Color.Blue; }
+                    else { return Color.FromArgb(151, 157, 172); }
             }
-        }
-
-        public static List<RADeMSCategoryViewModel> GetCategoryViewModels()
-        {
-            List<RADeMSCategoryViewModel> categories = new List<RADeMSCategoryViewModel>();
-
-            categories.Add(new RADeMSCategoryViewModel { ID = 1, Name = "Ground Search", Questions = GetQuestions(1) }); //(1, "Ground Search", GetQuestions(1)));
-            categories.Add(new RADeMSCategoryViewModel { ID = 2, Name = "Human Disease Outbreak", Questions = GetQuestions(2) }); //(2, "Human Disease Outbreak", GetQuestions(2)));
-            categories.Add(new RADeMSCategoryViewModel { ID = 3, Name = "Motor Vehicle Operations", Questions = GetQuestions(3) }); //(3, "Motor Vehicle Operations", GetQuestions(3)));
-            categories.Add(new RADeMSCategoryViewModel { ID = 4, Name = "Mountain Rescue", Questions = GetQuestions(4) }); //(4, "Mountain Rescue", GetQuestions(4)));
-            categories.Add(new RADeMSCategoryViewModel { ID = 5, Name = "Rope Rescue", Questions = GetQuestions(5) }); //(5, "Rope Rescue", GetQuestions(5)));
-            categories.Add(new RADeMSCategoryViewModel { ID = 6, Name = "Swiftwater Rescue", Questions = GetQuestions(6) }); //(6, "Swiftwater Rescue", GetQuestions(6)));
-
-
-            return categories;
-
         }
 
         public static List<RADeMSCategory> GetCategories()
@@ -98,7 +84,7 @@ namespace MySARAssist.Models.RADeMS
             else { return null; }
         }
 
-        private static List<RADeMSQuestion>? GetQuestions(int CategoryID)
+        public static List<RADeMSQuestion>? GetQuestions(int CategoryID)
         {
             List<RADeMSQuestion> questions = new List<RADeMSQuestion>();
             switch (CategoryID)

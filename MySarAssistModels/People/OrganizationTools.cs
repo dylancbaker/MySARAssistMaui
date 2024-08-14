@@ -1,4 +1,4 @@
-﻿namespace MySARAssist.Models.People
+﻿namespace MySarAssistModels.People
 {
     public static class OrganizationTools
     {

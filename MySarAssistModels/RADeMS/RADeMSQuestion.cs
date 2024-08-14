@@ -1,4 +1,4 @@
-﻿namespace MySARAssist.Models.RADeMS
+﻿namespace MySarAssistModels.RADeMS
 {
   
     public class RADeMSQuestion

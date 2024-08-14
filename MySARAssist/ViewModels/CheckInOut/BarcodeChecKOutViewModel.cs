@@ -1,11 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MySARAssist.Models.People;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MySarAssistModels.People;
 namespace MySARAssist.ViewModels.CheckInOut
 {
     public class BarcodeChecKOutViewModel : ObservableObject

@@ -1,4 +1,4 @@
-﻿using MySARAssist.Interfaces;
+﻿
 
 /* Unmerged change from project 'MySARAssist (net8.0-ios)'
 Before:
@@ -26,8 +26,10 @@ After:
 using MySARAssist.Models.Personnel;
 using SQLite;
 */
-using MySARAssist.Models.People;
+
 using MySARAssist.Views.CheckInOut;
+using MySarAssistModels.Interfaces;
+using MySarAssistModels.People;
 using SQLite;
 using System;
 using System.Collections.Generic;

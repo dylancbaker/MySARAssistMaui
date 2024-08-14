@@ -6,7 +6,7 @@
 
                            x:DataType="vm:EditQualificationsViewModel"
                xmlns:local="clr-namespace:MySARAssist.Models.ValidationTools"
-             xmlns:models="clr-namespace:MySARAssist.Models.People"
+             xmlns:models="clr-namespace:MySarAssistModels.People;assembly=MySarAssistModels"
              Title="Edit Qualifications">
 
     <Grid Padding="20,10,20,10">

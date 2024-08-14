@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
+using MySarAssistModels;
 using MySARAssist.Models;
 namespace MySARAssist.Views.Calculators;
 

@@ -15,9 +15,8 @@ using MySARAssist.Models.Personnel.Personnel;
 Added:
 using MySARAssist.Models.Personnel;
 */
-using MySARAssist.Interfaces;
-using MySARAssist.Models.People;
 using MySARAssist.Services;
+using MySarAssistModels.People;
 
 namespace MySARAssist
 {

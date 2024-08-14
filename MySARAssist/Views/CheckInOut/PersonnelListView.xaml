@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.CheckInOut.PersonnelListView"
                   xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
-             xmlns:models="clr-namespace:MySARAssist.Models.People"
+             xmlns:models="clr-namespace:MySarAssistModels.People;assembly=MySarAssistModels"
     x:DataType="vm:PersonnelListViewModel"
              Title="PersonnelListView">
     <ContentPage.ToolbarItems>

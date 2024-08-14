@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.34909.67
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySARAssist", "MySARAssist\MySARAssist.csproj", "{73E8C322-636B-4FC5-8538-CDC23467BBC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySARAssist", "MySARAssist\MySARAssist.csproj", "{73E8C322-636B-4FC5-8538-CDC23467BBC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySarAssistUnitTests", "MySarAssistUnitTests\MySarAssistUnitTests.csproj", "{5CA2A3A0-EE79-4F5C-B15F-DC66C63A99DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySarAssistModels", "MySarAssistModels\MySarAssistModels.csproj", "{275D0B21-772D-475E-84EA-92A0102ACABF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +21,14 @@ Global
 		{73E8C322-636B-4FC5-8538-CDC23467BBC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73E8C322-636B-4FC5-8538-CDC23467BBC1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{73E8C322-636B-4FC5-8538-CDC23467BBC1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5CA2A3A0-EE79-4F5C-B15F-DC66C63A99DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA2A3A0-EE79-4F5C-B15F-DC66C63A99DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA2A3A0-EE79-4F5C-B15F-DC66C63A99DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA2A3A0-EE79-4F5C-B15F-DC66C63A99DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{275D0B21-772D-475E-84EA-92A0102ACABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{275D0B21-772D-475E-84EA-92A0102ACABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{275D0B21-772D-475E-84EA-92A0102ACABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{275D0B21-772D-475E-84EA-92A0102ACABF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

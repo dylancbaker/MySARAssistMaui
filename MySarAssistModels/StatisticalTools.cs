@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySARAssist.Models
+namespace MySarAssistModels
 {
-    static class StatisticalTools
+    public static class StatisticalTools
     {
         public static double calculateSpacing(double rd, double correctiveFactor, double idealPOD)
         {

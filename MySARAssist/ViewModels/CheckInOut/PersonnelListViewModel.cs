@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using MySARAssist.Models.People;
+using MySarAssistModels.People;
 using MySARAssist.Services;
 
 namespace MySARAssist.ViewModels.CheckInOut

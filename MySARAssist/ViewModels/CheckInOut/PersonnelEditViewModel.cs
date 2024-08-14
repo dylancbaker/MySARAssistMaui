@@ -2,10 +2,9 @@
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.Logging.Abstractions;
-using MySARAssist.Interfaces;
-using MySARAssist.Models;
-
-using MySARAssist.Models.People;
+using MySarAssistModels.Interfaces;
+using MySarAssistModels;
+using MySarAssistModels.People;
 using MySARAssist.Services;
 using System;
 using System.Collections.Generic;
@@ -197,7 +196,7 @@ namespace MySARAssist.ViewModels.CheckInOut
                     CurrentMember.OrganizationID = CurrentMember.MemberOrganization.OrganizationID;
                 }
 
-                CurrentMember = removeBadChrs(CurrentMember);
+                CurrentMember. RemoveBadChrs();
                 if (CurrentMember == null) { throw new Exception("ERROR, personnel was not saved"); }
                 if (await new PersonnelService().UpsertItemAsync(CurrentMember))
                 {
@@ -221,25 +220,7 @@ namespace MySARAssist.ViewModels.CheckInOut
 
     
 
-        private Personnel? removeBadChrs(Personnel member)
-        {
-            if(member == null) { return null; }
-            member.Name = member.Name.removeBadChrsForQR();
-            member.Callsign = member.Callsign.removeBadChrsForQR();
-            member.Phone = member.Phone.removeBadChrsForQR();
-            member.SpecialSkills = member.SpecialSkills.removeBadChrsForQR();
-            member.Reference = member.Reference.removeBadChrsForQR();
-            member.Barcode = member.Barcode.removeBadChrsForQR();
-            member.Email = member.Email.removeBadChrsForQR();
-            member.Pronouns = member.Pronouns.removeBadChrsForQR();
-            member.Address = member.Address.removeBadChrsForQR();
-            member.NOKName = member.NOKName.removeBadChrsForQR();
-            member.NOKRelation = member.NOKRelation.removeBadChrsForQR();
-            member.NOKPhone = member.NOKPhone.removeBadChrsForQR();
-            member.D4HStatus = member.D4HStatus.removeBadChrsForQR();
-            return member;
-        }
-
+       
 
       
 

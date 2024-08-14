@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MySARAssist.Models.RADeMS;
+
+using MySARAssist.Models.Events;
+using MySarAssistModels.RADeMS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +17,17 @@ namespace MySARAssist.ViewModels.RADeMS
         public RADeMSCategory? rademsCateogry { get => _rademsCateogry; private set => _rademsCateogry = value; }
         public RADeMSScore rademsScore { get => _rademsScore; }
 
-
+        RADeMSEventHandler? eventHandler = null;
+        public string SetByName { get => rademsScore.SetByName; set => rademsScore.SetByName = value; }
+        public string Comment { get => rademsScore.Comment; set => rademsScore.Comment = value; }
         public RADeMSDetailsViewModel()
         {
-            //DEBUG
-            rademsScore.ManualOpRisk = 10;
-            rademsScore.ManualRespCap = 10;
+            ShareScoreCommand = new Command(async () => await OnShareScoreCommand());
+            if (App.CurrentPerson != null) { SetByName = App.CurrentPerson.Name; }
             OnPropertyChanged(nameof(ScoreColor));
-
+            OnPropertyChanged(nameof(RademsResultText));
         }
+
 
 
         public void SetRademsType(string typeIdStr)
@@ -44,27 +48,70 @@ namespace MySARAssist.ViewModels.RADeMS
 
         public string CategoryTitle
         {
-           get
+            get
             {
                 if (_rademsCateogry == null) { return string.Empty; }
                 return _rademsCateogry.Name;
             }
         }
 
-        public List<RADeMSQuestion> OperationalRiskQuestions
+        private List<RADeMSQuestionViewModel>? _AllQuestionViewModels;
+        public List<RADeMSQuestionViewModel> AllQuestionViewModels
         {
             get
             {
-                if(rademsCateogry == null || rademsCateogry.Questions == null) { return new List<RADeMSQuestion>(); }
-                return rademsCateogry.Questions.Where(o => o.IsOperationalRisk).ToList();
+                if ((_AllQuestionViewModels == null || !_AllQuestionViewModels.Any()) && rademsCateogry != null && rademsCateogry.Questions != null)
+                {
+                    List<RADeMSQuestionViewModel> models = new List<RADeMSQuestionViewModel>();
+                    foreach (RADeMSQuestion q in rademsCateogry.Questions)
+                    {
+                        models.Add(new RADeMSQuestionViewModel { question = q, SelectedValue = 0 });
+                    }
+
+                    foreach (RADeMSQuestionViewModel model in models)
+                    {
+                        model.ScoreChanged += Model_ScoreChanged;
+                    }
+                    _AllQuestionViewModels = models;
+                }
+
+                if (_AllQuestionViewModels != null)
+                {
+                    return _AllQuestionViewModels;
+                }
+                else { return new List<RADeMSQuestionViewModel>(); }
             }
         }
-        public List<RADeMSQuestion> ResponseCapacityQuestions
+
+        private void Model_ScoreChanged(RADeMSEventArgs e)
+        {
+            if (e != null && rademsCateogry != null && rademsCateogry.Questions != null)
+            {
+                if (rademsCateogry.Questions.Any(o => o.ID == e.question.ID))
+                {
+                    //get the index of that question
+                    RADeMSQuestion question = rademsCateogry.Questions.First(o => o.ID == e.question.ID);
+                    int index = rademsCateogry.Questions.IndexOf(question);
+                    rademsScore.Scores[index] = e.SelectedValue;
+
+                    OnPropertyChanged(nameof(RademsResultText));
+                    OnPropertyChanged(nameof(ScoreColor));
+                }
+            }
+        }
+
+        public List<RADeMSQuestionViewModel> OperationalRiskQuestions
         {
             get
             {
-                if (rademsCateogry == null || rademsCateogry.Questions == null) { return new List<RADeMSQuestion>(); }
-                return rademsCateogry.Questions.Where(o => !o.IsOperationalRisk).ToList();
+                return AllQuestionViewModels.Where(o => o.question.IsOperationalRisk).ToList();
+            }
+        }
+        public List<RADeMSQuestionViewModel> ResponseCapacityQuestions
+        {
+            get
+            {
+                return AllQuestionViewModels.Where(o => !o.question.IsOperationalRisk).ToList();
             }
         }
         public string RademsResultText
@@ -72,12 +119,84 @@ namespace MySARAssist.ViewModels.RADeMS
             get { return rademsScore.ShortText; }
         }
 
-        public Color ScoreColor { get
+        public Color ScoreColor
+        {
+            get
             {
                 //return Color.FromArgb("33CCFF");
-                Color col = rademsScore.ScoreColor;
-                return rademsScore.ScoreColor;
+                Color col = Color.FromArgb("33CCFF");
+                return col;
+            }
+        }
 
-            } }
+
+        public Command ShareScoreCommand { get; }
+
+        private async Task OnShareScoreCommand()
+        {
+            await Share.Default.RequestAsync(new ShareTextRequest
+            {
+                Text = GetFullTextForShare(),
+                Title = "Share Score"
+            });
+
+        }
+
+
+        public string GetFullTextForShare()
+        {
+            StringBuilder full = new StringBuilder();
+            full.Append("RADeMS Score - "); full.Append(CategoryTitle); full.Append(Environment.NewLine);
+            full.Append("Conducted: "); full.Append(rademsScore.LastUpdatedLocal.ToString("yyyy-MMM-dd HH:mm")); full.Append(Environment.NewLine);
+            if (!string.IsNullOrEmpty(SetByName))
+            {
+                full.Append("By: "); full.Append(SetByName); full.Append(Environment.NewLine);
+            }
+            full.Append(Environment.NewLine);
+
+            full.AppendLine("Operational Risk");
+            
+            foreach(RADeMSQuestionViewModel q in OperationalRiskQuestions)
+            {
+                full.Append(q.question.QuestionText); full.Append(" - ");
+                switch (q.SelectedValue)
+                {
+                    case 1:
+                        full.Append(q.question.Option2LabelWithNum); break;
+                    case 2:
+                        full.Append(q.question.Option3LabelWithNum); break;
+                    default:
+                        full.Append(q.question.Option1LabelWithNum); break;
+                }
+                full.Append(Environment.NewLine);
+            }
+            full.Append(Environment.NewLine);
+
+            full.AppendLine("Response Capacity");
+
+            foreach (RADeMSQuestionViewModel q in ResponseCapacityQuestions)
+            {
+                full.Append(q.question.QuestionText); full.Append(" - ");
+                switch (q.SelectedValue)
+                {
+                    case 1:
+                        full.Append(q.question.Option2LabelWithNum); break;
+                    case 2:
+                        full.Append(q.question.Option3LabelWithNum); break;
+                    default:
+                        full.Append(q.question.Option1LabelWithNum); break;
+                }
+                full.Append(Environment.NewLine);
+            }
+
+            if (!string.IsNullOrEmpty(Comment))
+            {
+                full.Append(Environment.NewLine);
+                full.AppendLine("Comments:");
+                full.Append(Comment);
+            }
+
+            return full.ToString();
+        }
     }
 }

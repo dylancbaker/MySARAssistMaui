@@ -85,6 +85,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\MySarAssistModels\MySarAssistModels.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Views\Calculators\PacingToDistancePage.xaml.cs">
 	    <DependentUpon>PacingToDistancePage.xaml</DependentUpon>
 	  </Compile>

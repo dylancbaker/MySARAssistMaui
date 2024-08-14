@@ -1,6 +1,7 @@
-﻿using System.Text;
+﻿using SQLite;
+using System.Text;
 
-namespace MySARAssist.Models.RADeMS
+namespace MySarAssistModels.RADeMS
 {
     public class RADeMSScore : SyncableItem, ICloneable
     {
@@ -15,11 +16,25 @@ namespace MySARAssist.Models.RADeMS
         public DateTime LastUpdatedLocal { get => LastUpdatedUTC.ToLocalTime(); }
         public Guid SetByPositionID { get => _SetByPositionID; set => _SetByPositionID = value; }
         public string SetByName { get => _SetByName; set => _SetByName = value; }
-        public int[] Scores { get => _Scores; set => _Scores = value; }
+       [Ignore] public int[] Scores { get => _Scores; set => _Scores = value; }
         public int CategoryID { get => _CategoryID; set => _CategoryID = value; }
         public string Comment { get => _Comment; set => _Comment = value; }
         public int ManualOpRisk { get => _ManualOpRisk; set => _ManualOpRisk = value; }
         public int ManualRespCap { get => _ManualRespCap; set => _ManualRespCap = value; }
+
+        /* these variables are just used for saving the int array to sqlite */
+        public int ScoreValue0 { get => Scores[0]; set => Scores[0] = value; }
+        public int ScoreValue1 { get => Scores[1]; set => Scores[1] = value; }
+        public int ScoreValue2 { get => Scores[2]; set => Scores[2] = value; }
+        public int ScoreValue3 { get => Scores[3]; set => Scores[3] = value; }
+        public int ScoreValue4 { get => Scores[4]; set => Scores[4] = value; }
+        public int ScoreValue5 { get => Scores[5]; set => Scores[5] = value; }
+        public int ScoreValue6 { get => Scores[6]; set => Scores[6] = value; }
+        public int ScoreValue7 { get => Scores[7]; set => Scores[7] = value; }
+        public int ScoreValue8 { get => Scores[8]; set => Scores[8] = value; }
+        public int ScoreValue9 { get => Scores[9]; set => Scores[9] = value; }
+
+
 
         public RADeMSScore()
         {
@@ -61,7 +76,7 @@ namespace MySARAssist.Models.RADeMS
             }
         }
 
-        public string FullTextForLog
+        public string SummaryTextForLog
         {
             get
             {
@@ -77,7 +92,7 @@ namespace MySARAssist.Models.RADeMS
             }
         }
 
-
+       
 
         public string ShortText
         {
@@ -101,15 +116,7 @@ namespace MySARAssist.Models.RADeMS
 
             }
         }
-        public Color ScoreColor
-        {
-            get
-            {
-                Color color = Colors.White;
-                float position = (float)(OperationalRisk * ResponseCapacity) / 100;
-                return RADeMSTools.GetColorOnGradient(position);
-            }
-        }
+     
 
         public RADeMSScore Clone()
         {

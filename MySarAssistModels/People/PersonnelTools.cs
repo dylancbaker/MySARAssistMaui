@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace MySARAssist.Models.People
+namespace MySarAssistModels.People
 {
     public static class PersonnelTools
     {
@@ -12,6 +12,27 @@ namespace MySARAssist.Models.People
             if (string.IsNullOrEmpty(person.Email) || !person.Email.isValidEmail()) { issues.Add("A valid email is required"); }
             return issues;
         }
+
+        public static void RemoveBadChrs(this Personnel? member)
+        {
+            if (member != null)
+            {
+                member.Name = member.Name.removeBadChrsForQR();
+                member.Callsign = member.Callsign.removeBadChrsForQR();
+                member.Phone = member.Phone.removeBadChrsForQR();
+                member.SpecialSkills = member.SpecialSkills.removeBadChrsForQR();
+                member.Reference = member.Reference.removeBadChrsForQR();
+                member.Barcode = member.Barcode.removeBadChrsForQR();
+                member.Email = member.Email.removeBadChrsForQR();
+                member.Pronouns = member.Pronouns.removeBadChrsForQR();
+                member.Address = member.Address.removeBadChrsForQR();
+                member.NOKName = member.NOKName.removeBadChrsForQR();
+                member.NOKRelation = member.NOKRelation.removeBadChrsForQR();
+                member.NOKPhone = member.NOKPhone.removeBadChrsForQR();
+                member.D4HStatus = member.D4HStatus.removeBadChrsForQR();
+            }
+        }
+
 
 
         public static string StringForQRV6(this Personnel person)

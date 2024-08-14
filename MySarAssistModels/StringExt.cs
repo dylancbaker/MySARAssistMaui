@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace MySARAssist.Models
+namespace MySarAssistModels
 {
     public static class StringExt
     {

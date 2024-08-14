@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
+using MySarAssistModels;
 using MySARAssist.Models;
 using System;
 using System.Collections.Generic;
