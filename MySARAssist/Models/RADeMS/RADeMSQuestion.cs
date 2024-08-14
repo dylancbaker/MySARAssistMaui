@@ -87,13 +87,13 @@
             if (isOpRisk)
             {
                 Option1Label = "Low";
-                Option2Label = "Moderate";
+                Option2Label = "Mid";
                 Option3Label = "High";
             }
             else
             {
                 Option1Label = "High";
-                Option2Label = "Moderate";
+                Option2Label = "Mid";
                 Option3Label = "Low";
 
             }

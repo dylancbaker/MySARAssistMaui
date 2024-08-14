@@ -21,18 +21,16 @@ x:DataType="vm:RADeMSTypesViewModel"
     Text="Select a response type"
     VerticalOptions="Center" 
     HorizontalOptions="Center" />
-        <ListView ItemsSource="{Binding RADeMSCategories}">
-            <ListView.ItemTemplate>
+
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding RADeMSCategories}">
+            <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="models:RADeMSCategoryViewModel">
-                    <ViewCell>
-                        <VerticalStackLayout>
-                            <Button Grid.Column="0" Grid.Row="0" Command="{Binding NavigateToDetailsCommand}" Text="{Binding Name}"></Button>
-                            
-                        </VerticalStackLayout>
-                    </ViewCell>
+                    <Button Command="{Binding NavigateToDetailsCommand}" Text="{Binding Name}"></Button>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+        
+      
 
     </VerticalStackLayout>
 </ContentPage>

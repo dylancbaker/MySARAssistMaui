@@ -57,6 +57,13 @@
 
     </Style>
 
+    <Style TargetType="Button" x:Key="RademsButton" >
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="LineBreakMode" Value="WordWrap"></Setter>
+
+    </Style>
+
     <Style TargetType="CheckBox">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
         <Setter Property="MinimumHeightRequest" Value="44"/>
@@ -213,6 +220,15 @@
         <Setter Property="HorizontalOptions" Value="Start" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="Padding" Value="0, 15, 0, 0"></Setter>
+    </Style>
+
+    <Style TargetType="Label" x:Key="RADeMSCategoryTitle">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource MidnightBlue}, Dark={StaticResource White}}" />
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="Margin" Value="0, 15, 15, 0"></Setter>
     </Style>
 
     <Style TargetType="ListView">

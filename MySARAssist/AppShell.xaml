@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:MySARAssist"
     xmlns:views="clr-namespace:MySARAssist.Views"
     
-    Title="MySARAssist">
+    Title="My SAR Assist">
     <FlyoutItem Title="Home">
         <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
     </FlyoutItem>
