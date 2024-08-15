@@ -123,9 +123,15 @@ namespace MySARAssist.ViewModels.RADeMS
         {
             get
             {
-                //return Color.FromArgb("33CCFF");
-                Color col = Color.FromArgb("33CCFF");
-                return col;
+                float position =(float)(rademsScore.OperationalRisk * rademsScore.ResponseCapacity) / 100;
+                if (rademsScore.OperationalRisk == 0 || rademsScore.ResponseCapacity == 0)
+                {
+                    //TODO this isn't gettng a good value for the color, it is staying green far too long
+                    position = (float)(Math.Max(rademsScore.OperationalRisk, rademsScore.ResponseCapacity)) / 100;
+                }
+                System.Drawing.Color sdColor = RADeMSTools.GetColorOnGradient(position);
+                return new Color(sdColor.R, sdColor.G, sdColor.B);
+
             }
         }
 

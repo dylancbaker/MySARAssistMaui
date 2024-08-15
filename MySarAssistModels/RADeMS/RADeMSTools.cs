@@ -37,9 +37,9 @@ namespace MySarAssistModels.RADeMS
         {
             
 
-            int r = (int)((startColor.R + (endColor.R - startColor.R) * position) * 255);
-            int g = (int)((startColor.G + (endColor.G - startColor.G) * position) * 255);
-            int b = (int)((startColor.B + (endColor.B - startColor.B) * position) * 255);
+            int r = (int)((startColor.R + (endColor.R - startColor.R) * position) );
+            int g = (int)((startColor.G + (endColor.G - startColor.G) * position) );
+            int b = (int)((startColor.B + (endColor.B - startColor.B) * position));
             return Color.FromArgb(r, g, b);
         }
 

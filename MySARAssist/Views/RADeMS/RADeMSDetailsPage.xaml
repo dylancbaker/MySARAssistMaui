@@ -25,7 +25,7 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
 
             <VerticalStackLayout  Padding="20">
                 <Label Style="{StaticResource FormFieldTitle}" Text="Your name / team (optional)"></Label>
-                <Entry Text="{Binding SetByName}" Placeholder="Jane Smith or 101"></Entry>
+                <Entry Text="{Binding SetByName}" Keyboard="Plain" Placeholder="Jane Smith or 101"></Entry>
                 
                 
                 <Label Style="{StaticResource RADeMSCategoryTitle}" >Operational Risk</Label>

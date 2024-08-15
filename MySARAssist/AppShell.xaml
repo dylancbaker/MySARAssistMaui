@@ -6,16 +6,28 @@
     xmlns:local="clr-namespace:MySARAssist"
     xmlns:views="clr-namespace:MySARAssist.Views"
     Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
+    Shell.FlyoutBackdrop="Silver"
     Title="My SAR Assist">
 
-   
-    
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="{StaticResource Tertiary}"
+                  HeightRequest="200">
+                <Image Aspect="AspectFill"
+                       Source="sar_command_assist_logo.png"
+                       Opacity="0.6" />
+                
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
     <FlyoutItem Title="Home">
         <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
     </FlyoutItem>
 
     <FlyoutItem Title="Calculators">
         <ShellContent ContentTemplate="{DataTemplate views:CalculatorsView}" Route="CalculatorsView"></ShellContent>
+        
     </FlyoutItem>
 
     <FlyoutItem Title="Check In / Out">
