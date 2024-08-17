@@ -9,7 +9,7 @@
         <vm:CheckInManagementViewModel></vm:CheckInManagementViewModel>
     </ContentPage.BindingContext>
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="20">
             <VerticalStackLayout x:Name="slCurrentMemberExists" IsVisible="{Binding AllowSignInAndOut}">
 
                 <Label  HorizontalTextAlignment="Center" HorizontalOptions="Fill" Text="Currently Selected Member:"></Label>
@@ -27,9 +27,10 @@
                 </HorizontalStackLayout>
 
             </VerticalStackLayout>
-            <VerticalStackLayout x:Name="slNoCurrentMemberExists" IsVisible="{Binding ShowCreateNewUser}">
+            <VerticalStackLayout x:Name="slNoCurrentMemberExists" IsVisible="{Binding ShowCreateNewUser}" >
                 <Label  HorizontalTextAlignment="Center" HorizontalOptions="Fill" Text="In order to sign in or out of a SAR task, you'll need to add some information."></Label>
                 <Button x:Name="btnAddUser" Clicked="btnAddUser_Clicked"  Text="Add New Person" ></Button>
+                <Button x:Name="btnSelectUser" Clicked="btnSelectUser_Clicked" Text="Select a Person" IsVisible="{Binding ShowSelectUserButton}"></Button>
             </VerticalStackLayout>
 
         </VerticalStackLayout>

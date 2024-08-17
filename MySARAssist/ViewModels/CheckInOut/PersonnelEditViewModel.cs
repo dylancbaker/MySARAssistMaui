@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using MySARAssist.Views.CheckInOut;
 
 namespace MySARAssist.ViewModels.CheckInOut
 {
@@ -30,7 +31,7 @@ namespace MySARAssist.ViewModels.CheckInOut
         public List<Organization> Organizations { get; private set; }
         public List<Organization> ParentOrganizations { get => OrganizationTools.GetParentOrganizations(); }
 
-        public Personnel CurrentMember { get; private set; }= new Personnel();
+        public Personnel MemberToEdit { get; private set; }= new Personnel();
         public Command CancelCommand { get; }
         public Command DeleteCommand { get; }
         public Command NextCommand { get; }
@@ -41,55 +42,55 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         public async Task SetTeamMember(Guid ID)
         {
-            CurrentMember = await new PersonnelService().GetItemAsync(ID);
-            if(CurrentMember == null) { CurrentMember = new Personnel(); }
+            MemberToEdit = await new PersonnelService().GetItemAsync(ID);
+            if(MemberToEdit == null) { MemberToEdit = new Personnel(); }
             await DisplayMember();
         }
 
         private async Task DisplayMember()
         {
-            if(CurrentMember != null && ( CurrentMember.MemberOrganization == null || CurrentMember.OrganizationID == Guid.Empty))
+            if(MemberToEdit != null && ( MemberToEdit.MemberOrganization == null || MemberToEdit.OrganizationID == Guid.Empty))
             {
                 Organization? mostPopularOrg = await new PersonnelService().GetMostFrequentOrganizationAsync();
-                if (mostPopularOrg != null) { CurrentMember.MemberOrganization = mostPopularOrg; }
+                if (mostPopularOrg != null) { MemberToEdit.MemberOrganization = mostPopularOrg; }
             }
 
 
-            if (CurrentMember != null && CurrentMember.MemberOrganization == null && CurrentMember.OrganizationID != Guid.Empty)
+            if (MemberToEdit != null && MemberToEdit.MemberOrganization == null && MemberToEdit.OrganizationID != Guid.Empty)
             {
-                CurrentMember.MemberOrganization = OrganizationTools.GetOrganization(CurrentMember.OrganizationID);
+                MemberToEdit.MemberOrganization = OrganizationTools.GetOrganization(MemberToEdit.OrganizationID);
             }
-            if (CurrentMember != null && CurrentMember.MemberOrganization != null && ParentOrganizations.Any(o => o.OrganizationID == CurrentMember.MemberOrganization.ParentOrganizationID))
+            if (MemberToEdit != null && MemberToEdit.MemberOrganization != null && ParentOrganizations.Any(o => o.OrganizationID == MemberToEdit.MemberOrganization.ParentOrganizationID))
             {
-                SelectedParentOrg = ParentOrganizations.First(o => o.OrganizationID == CurrentMember.MemberOrganization.ParentOrganizationID);
+                SelectedParentOrg = ParentOrganizations.First(o => o.OrganizationID == MemberToEdit.MemberOrganization.ParentOrganizationID);
                 _selectedParentOrgID = SelectedParentOrg.OrganizationID;
             }
 
             OnPropertyChanged(nameof(ParentOrgIndex));
 
             OnPropertyChanged(nameof(Name));
-            OnPropertyChanged(nameof(CurrentMember.Pronouns));
+            OnPropertyChanged(nameof(MemberToEdit.Pronouns));
             OnPropertyChanged(nameof(Email));
-            OnPropertyChanged(nameof(CurrentMember.Address));
-            OnPropertyChanged(nameof(CurrentMember.Phone));
-            OnPropertyChanged(nameof(CurrentMember.Reference));
-            OnPropertyChanged(nameof(CurrentMember.Callsign));
-            OnPropertyChanged(nameof(CurrentMember.NOKName));
-            OnPropertyChanged(nameof(CurrentMember.NOKPhone)); 
-            OnPropertyChanged(nameof(CurrentMember.NOKRelation));
+            OnPropertyChanged(nameof(MemberToEdit.Address));
+            OnPropertyChanged(nameof(MemberToEdit.Phone));
+            OnPropertyChanged(nameof(MemberToEdit.Reference));
+            OnPropertyChanged(nameof(MemberToEdit.Callsign));
+            OnPropertyChanged(nameof(MemberToEdit.NOKName));
+            OnPropertyChanged(nameof(MemberToEdit.NOKPhone)); 
+            OnPropertyChanged(nameof(MemberToEdit.NOKRelation));
 
         }
 
-        public string Name { get => CurrentMember.Name; set => CurrentMember.Name = value; }
-        public string Pronouns { get => CurrentMember.Pronouns??string.Empty; set => CurrentMember.Pronouns = value; }
-        public string Email { get => CurrentMember.Email; set => CurrentMember.Email = value; }
-        public string Address { get => CurrentMember.Address ?? string.Empty; set => CurrentMember.Address = value; }
-        public string Phone { get => CurrentMember.Phone ?? string.Empty; set => CurrentMember.Phone = value; }
-        public string Reference { get => CurrentMember.Reference ?? string.Empty; set => CurrentMember.Reference = value; }
-        public string Callsign { get => CurrentMember.Callsign ?? string.Empty; set => CurrentMember.Callsign = value; }
-        public string NOKName { get => CurrentMember.NOKName ?? string.Empty; set => CurrentMember.NOKName = value; }
-        public string NOKPhone { get => CurrentMember.NOKPhone ?? string.Empty; set => CurrentMember.NOKPhone = value; }
-        public string NOKRelation { get => CurrentMember.NOKRelation ?? string.Empty; set => CurrentMember.NOKRelation = value; }
+        public string Name { get => MemberToEdit.Name; set => MemberToEdit.Name = value; }
+        public string Pronouns { get => MemberToEdit.Pronouns??string.Empty; set => MemberToEdit.Pronouns = value; }
+        public string Email { get => MemberToEdit.Email; set => MemberToEdit.Email = value; }
+        public string Address { get => MemberToEdit.Address ?? string.Empty; set => MemberToEdit.Address = value; }
+        public string Phone { get => MemberToEdit.Phone ?? string.Empty; set => MemberToEdit.Phone = value; }
+        public string Reference { get => MemberToEdit.Reference ?? string.Empty; set => MemberToEdit.Reference = value; }
+        public string Callsign { get => MemberToEdit.Callsign ?? string.Empty; set => MemberToEdit.Callsign = value; }
+        public string NOKName { get => MemberToEdit.NOKName ?? string.Empty; set => MemberToEdit.NOKName = value; }
+        public string NOKPhone { get => MemberToEdit.NOKPhone ?? string.Empty; set => MemberToEdit.NOKPhone = value; }
+        public string NOKRelation { get => MemberToEdit.NOKRelation ?? string.Empty; set => MemberToEdit.NOKRelation = value; }
 
 
 
@@ -106,9 +107,9 @@ namespace MySARAssist.ViewModels.CheckInOut
             {
                 _selectedParentOrgID = value.OrganizationID;
                 Organizations = OrganizationTools.GetOrganizations(_selectedParentOrgID);
-                if (Organizations.Any(o => o.OrganizationID == CurrentMember.OrganizationID))
+                if (Organizations.Any(o => o.OrganizationID == MemberToEdit.OrganizationID))
                 {
-                    Organization selected = Organizations.First(o => o.OrganizationID == CurrentMember.OrganizationID);
+                    Organization selected = Organizations.First(o => o.OrganizationID == MemberToEdit.OrganizationID);
                     OrgIndex = Organizations.IndexOf(selected);
                 }
                 if (OrgIndex >= Organizations.Count) { OrgIndex = 0; }
@@ -139,7 +140,7 @@ namespace MySARAssist.ViewModels.CheckInOut
             set { _OrgIndex = value; 
             if(Organizations.Count > _OrgIndex && _OrgIndex >= 0)
                 {
-                    CurrentMember.MemberOrganization = Organizations[OrgIndex];
+                    MemberToEdit.MemberOrganization = Organizations[OrgIndex];
                 }
             }
         }
@@ -154,7 +155,7 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnNextCommand()
         {
-            List<string> issues = CurrentMember.GetValidationIssues();
+            List<string> issues = MemberToEdit.GetValidationIssues();
             if (issues.Any())
             {
                 string text = "There were issues saving the information:";
@@ -169,14 +170,14 @@ namespace MySARAssist.ViewModels.CheckInOut
             {
                 try
                 {
-                   await SaveCurrentPerson();
+                    await SaveMemberToEdit();
                     var toast = Toast.Make("Saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
                     await toast.Show(new CancellationToken());
-                    await Shell.Current.GoToAsync($"CheckInOut/EditPersonnel/Qualifications/?PersonnelID={CurrentMember.ID.ToString()}");
+                    await Shell.Current.GoToAsync($"//{nameof(CheckInOutView)}/{nameof(PersonnelEditView)}/{nameof(EditQualificationsPage)}/?PersonnelID={MemberToEdit.ID.ToString()}");
 
                 }
 
-                catch
+                catch (Exception ex)
                 {
                     var toast = Toast.Make("ERROR, personnel was not saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
                     await toast.Show(new CancellationToken());
@@ -186,24 +187,24 @@ namespace MySARAssist.ViewModels.CheckInOut
         }
 
 
-        private async Task SaveCurrentPerson()
+        private async Task SaveMemberToEdit()
         {
-            if (CurrentMember != null)
+            if (MemberToEdit != null)
             {
-                if (CurrentMember.MemberOrganization != null)
+                if (MemberToEdit.MemberOrganization != null)
                 {
-                    CurrentMember.Group = CurrentMember.MemberOrganization.OrganizationName;
-                    CurrentMember.OrganizationID = CurrentMember.MemberOrganization.OrganizationID;
+                    MemberToEdit.Group = MemberToEdit.MemberOrganization.OrganizationName;
+                    MemberToEdit.OrganizationID = MemberToEdit.MemberOrganization.OrganizationID;
                 }
 
-                CurrentMember. RemoveBadChrs();
-                if (CurrentMember == null) { throw new Exception("ERROR, personnel was not saved"); }
-                if (await new PersonnelService().UpsertItemAsync(CurrentMember))
+                MemberToEdit. RemoveBadChrs();
+                if (MemberToEdit == null) { throw new Exception("ERROR, personnel was not saved"); }
+                if (await new PersonnelService().UpsertItemAsync(MemberToEdit))
                 {
                     if (await new PersonnelService().GetCurrentPersonAsync() == null)
                     {
 
-                        new PersonnelService().setCurrentPerson(CurrentMember.PersonID);
+                        new PersonnelService().setCurrentPerson(MemberToEdit.PersonID);
                         App.CurrentPerson = await new PersonnelService().GetCurrentPersonAsync();
                         OnPropertyChanged(nameof(App.CurrentPerson));
                         return;
@@ -226,9 +227,9 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnDeleteCommand()
         {
-            if (await new PersonnelService().DeleteItemAsync(CurrentMember.PersonID))
+            if (await new PersonnelService().DeleteItemAsync(MemberToEdit.PersonID))
             {
-                if  (App.CurrentPerson != null && App.CurrentPerson.PersonID == CurrentMember.PersonID)
+                if  (App.CurrentPerson != null && App.CurrentPerson.PersonID == MemberToEdit.PersonID)
                 {
                     App.CurrentPerson = null;
                 }

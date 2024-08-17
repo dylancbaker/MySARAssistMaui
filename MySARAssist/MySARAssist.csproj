@@ -67,6 +67,9 @@
 	  <None Remove="Resources\Images\line_icon.png" />
 	  <None Remove="Resources\Images\location.png" />
 	  <None Remove="Resources\Images\map_mark_icon.png" />
+	  <None Remove="Resources\Images\radems_card.png" />
+	  <None Remove="Resources\Images\radems_grid.png" />
+	  <None Remove="Resources\Images\radems_grid_icon.png" />
 	  <None Remove="Resources\Images\range_of_detection.png" />
 	  <None Remove="Resources\Images\sar_command_assist_logo.png" />
 	  <None Remove="Resources\Images\spacing_icon.png" />

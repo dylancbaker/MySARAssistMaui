@@ -1,4 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using MySARAssist.Models.Exceptions;
+using MySARAssist.Services;
+using MySarAssistModels.People;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +20,27 @@ namespace MySARAssist.ViewModels.CheckInOut
             ChangeSelectedMemberCommand = new Command(OnChangeSelectedMemberCommand);
             AddMemberCommand = new Command(OnAddMember);
             EditMemberCommand = new Command(OnEditMember);
-
+            SetListVisible();
         }
 
+       
+        private async void SetListVisible()
+        {
+            try
+            {
+                var savedPeople = await new PersonnelService().GetItems();
+                ShowSelectUserButton = savedPeople != null && savedPeople.Any();
+                OnPropertyChanged(nameof(ShowSelectUserButton));
+
+            }
+            catch (PersonnelNotFoundException ex)
+            {
+                ShowSelectUserButton = false;
+                OnPropertyChanged(nameof(ShowSelectUserButton));
+            }
+
+
+        }
         public Command SignInCommand { get; }
         public Command SignOutCommand { get; }
         public Command EditTeamMembersCommand { get; }
@@ -31,6 +52,7 @@ namespace MySARAssist.ViewModels.CheckInOut
         {
             OnPropertyChanged(nameof(CurrentMemberName));
             OnPropertyChanged(nameof(AllowSignInAndOut));
+          
         }
 
         public string CurrentMemberName
@@ -54,6 +76,7 @@ namespace MySARAssist.ViewModels.CheckInOut
             get { return !AllowSignInAndOut; }
         }
 
+        public bool ShowSelectUserButton { get; set; }
 
         private async void OnSignInCommand()
         {

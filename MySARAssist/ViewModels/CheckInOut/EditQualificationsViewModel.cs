@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySARAssist.Views.CheckInOut;
 
 namespace MySARAssist.ViewModels.CheckInOut
 {
@@ -44,7 +45,8 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnBackCommand(object obj)
         {
-            await Shell.Current.GoToAsync($"CheckInOut/EditPersonnel/?PersonnelID={CurrentMember.ID.ToString()}");
+            string route = $"//{nameof(CheckInOutView)}/{nameof(PersonnelEditView)}?PersonnelID ={{CurrentMember.ID.ToString()}}";
+            await Shell.Current.GoToAsync(route);
         }
 
         private async void SetTeamMember(Guid ID)
@@ -87,7 +89,7 @@ namespace MySARAssist.ViewModels.CheckInOut
                     await SaveCurrentPerson();
                     var toast = Toast.Make("Saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
                     await toast.Show(new CancellationToken());
-                    await Shell.Current.GoToAsync($"../..");
+                    await Shell.Current.GoToAsync($"//{nameof(CheckInOutView)}");
 
                 }
 
@@ -108,16 +110,18 @@ namespace MySARAssist.ViewModels.CheckInOut
                 {
                     CurrentMember.QualificationList[q.QualificationListIndex] = q.PersonHas;
                 }
+                try
+                {
 
-                if (await new PersonnelService().UpsertItemAsync(CurrentMember))
-                {
-                    return;
-                }
-                else
-                {
-                    throw new Exception("ERROR, personnel was not saved");
+                    await new PersonnelService().UpsertItemAsync(CurrentMember);
 
                 }
+                catch (Exception ex)
+                {
+                    throw ex;// new Exception("ERROR, personnel was not saved");
+
+                }
+                   
             }
         }
 

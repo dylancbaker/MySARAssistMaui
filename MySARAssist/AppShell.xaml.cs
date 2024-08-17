@@ -10,8 +10,9 @@ namespace MySARAssist
             InitializeComponent();
 
             Routing.RegisterRoute("CheckInOut", typeof(CheckInOutView));
-            Routing.RegisterRoute("CheckInOut/EditPersonnel", typeof(PersonnelEditView));
-            Routing.RegisterRoute("CheckInOut/EditPersonnel/Qualifications", typeof(EditQualificationsPage));
+            Routing.RegisterRoute(nameof(CheckInOutView)+"/" + nameof(PersonnelEditView), typeof(PersonnelEditView));
+            Routing.RegisterRoute(nameof(CheckInOutView) + "/" + nameof(PersonnelEditView) + "/" + nameof(EditQualificationsPage), typeof(EditQualificationsPage));
+            Routing.RegisterRoute(nameof(CheckInOutView) + "/" + nameof(PersonnelListView), typeof(PersonnelListView));
 
             Routing.RegisterRoute(nameof(RADeMSDetailsPage), typeof(RADeMSDetailsPage));
 

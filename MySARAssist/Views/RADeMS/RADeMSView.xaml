@@ -11,15 +11,15 @@ x:DataType="vm:RADeMSTypesViewModel"
         <vm:RADeMSTypesViewModel></vm:RADeMSTypesViewModel>
     </ContentPage.BindingContext>
     
-    <VerticalStackLayout>
+    <VerticalStackLayout Padding="20">
         <Label 
             Text="Response Assessment and Decision Making Support (RADeMS)"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            VerticalOptions="Center" HorizontalTextAlignment="Center"
+            HorizontalOptions="Center" Margin="0, 0, 0, 20" />
 
         <Label 
     Text="Select a response type"
-    VerticalOptions="Center" 
+    VerticalOptions="Center" FontSize="Large" FontAttributes="Bold"
     HorizontalOptions="Center" />
 
         <VerticalStackLayout BindableLayout.ItemsSource="{Binding RADeMSCategories}">

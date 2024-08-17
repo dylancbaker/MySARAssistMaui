@@ -1,4 +1,6 @@
-﻿namespace MySARAssist
+﻿using MySARAssist.Views.CheckInOut;
+
+namespace MySARAssist
 {
     public partial class MainPage : ContentPage
     {
@@ -17,7 +19,7 @@
      
         private async void CheckInOutButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Views.CheckInOut.CheckInOutView());
+            await Shell.Current.GoToAsync("//" + nameof(CheckInOutView));
         }
 
         private async void RADeMSButton_Clicked(object sender, EventArgs e)

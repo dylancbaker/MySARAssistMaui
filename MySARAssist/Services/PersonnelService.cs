@@ -27,6 +27,7 @@ using MySARAssist.Models.Personnel;
 using SQLite;
 */
 
+using MySARAssist.Models.Exceptions;
 using MySARAssist.Views.CheckInOut;
 using MySarAssistModels.Interfaces;
 using MySarAssistModels.People;
@@ -53,7 +54,7 @@ namespace MySARAssist.Services
         {
             int check = await conn.InsertAsync(item);
             if (check > 0) { return true; }
-            else { return false; }
+            else { throw new Exception("Error adding item"); }// return false; }
         }
 
         public async Task<bool> DeleteItemAsync(Guid id)
@@ -73,22 +74,30 @@ namespace MySARAssist.Services
         public async Task<Personnel> GetItemAsync(Guid id)
         {
             await conn.CreateTableAsync<Personnel>();
-
-            return await conn.Table<Personnel>().FirstOrDefaultAsync(o => o.PersonID == id);
+            Personnel p = await conn.Table<Personnel>().FirstOrDefaultAsync(o => o.PersonID == id);
+            if(p == null) { throw new PersonnelNotFoundException(id.ToString()); }
+            return p;
         }
 
         public async Task<IEnumerable<Personnel>> GetItems(bool forceRefresh = false)
         {
-            List<Personnel> list = await conn.Table<Personnel>().ToListAsync(); 
-            list = list.OrderBy(o=>o.Name).ToList();
-            return list;
+            List<Personnel> list = await conn.Table<Personnel>().ToListAsync();
+            if (list != null && list.Any())
+            {
+                list = list.OrderBy(o => o.Name).ToList();
+
+                return list;
+            } else
+            {
+                throw new PersonnelNotFoundException("No records found");
+            }
         }
 
         public async Task<bool> UpdateItemAsync(Personnel item)
         {
             int check = await conn.UpdateAsync(item);
             if (check > 0) { return true; }
-            else { return false; }
+            else { throw new Exception("Error updating item"); }
         }
 
         public async Task<bool> UpsertItemAsync(Personnel item)
@@ -107,31 +116,37 @@ namespace MySARAssist.Services
 
         public async Task<Organization?> GetMostFrequentOrganizationAsync()
         {
-            Organization mostPopularOrg = null;
+            Organization? mostPopularOrg = null;
 
             List<Organization> allOrgs = OrganizationTools.GetOrganizations(Guid.Empty);
-            var _AllTeamMembers = await GetItems();
+            try
+            {
+                var _AllTeamMembers = await GetItems();
 
-            foreach (Organization org in allOrgs)
-            {
-                org.UserCount = _AllTeamMembers.Count(o => o.OrganizationID == org.OrganizationID);
-            }
-            if (allOrgs.Any(o => o.UserCount > 0))
-            {
-                mostPopularOrg = allOrgs.OrderByDescending(o => o.UserCount).First();
-            }
-
-            if(mostPopularOrg == null)
-            {
-                //when in doubt, use the Unassigned organization
-                Guid UnassignedOrg = new Guid("96BA69A4-436C-4DA1-85B1-992E84C36019");
-                if (allOrgs.Any(o => o.OrganizationID == UnassignedOrg))
+                foreach (Organization org in allOrgs)
                 {
-                    mostPopularOrg = allOrgs.First(o => o.OrganizationID == UnassignedOrg);
+                    org.UserCount = _AllTeamMembers.Count(o => o.OrganizationID == org.OrganizationID);
                 }
-            }
+                if (allOrgs.Any(o => o.UserCount > 0))
+                {
+                    mostPopularOrg = allOrgs.OrderByDescending(o => o.UserCount).First();
+                }
 
-            return mostPopularOrg;
+                if (mostPopularOrg == null)
+                {
+                    //when in doubt, use the Unassigned organization
+                    Guid UnassignedOrg = new Guid("96BA69A4-436C-4DA1-85B1-992E84C36019");
+                    if (allOrgs.Any(o => o.OrganizationID == UnassignedOrg))
+                    {
+                        mostPopularOrg = allOrgs.First(o => o.OrganizationID == UnassignedOrg);
+                    }
+                }
+
+                return mostPopularOrg;
+            } catch (PersonnelNotFoundException ex)
+            {
+                return null;
+            }
         }
 
         public async Task<Personnel?> GetCurrentPersonAsync()
@@ -139,11 +154,19 @@ namespace MySARAssist.Services
             string selectedID = Preferences.Get("SelectedPersonID", string.Empty);
             if (!string.IsNullOrEmpty(selectedID))
             {
-                Guid SelectedPersonID = new Guid(selectedID);
-
-                if (SelectedPersonID != Guid.Empty)
+                try
                 {
-                    return await GetItemAsync(SelectedPersonID);
+                    Guid SelectedPersonID = new Guid(selectedID);
+
+                    if (SelectedPersonID != Guid.Empty)
+                    {
+                        Personnel person = await GetItemAsync(SelectedPersonID);
+                        return person;
+                    }
+                }
+                catch (PersonnelNotFoundException pne)
+                {
+                    ;
                 }
             }
             return null;
