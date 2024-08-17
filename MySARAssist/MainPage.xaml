@@ -23,17 +23,17 @@
 
             
             <Button
-                Text="Check In or Out" 
+                Text="Check In or Out" ImageSource="clock_icon.png" MaximumHeightRequest="80"
                 x:Name="CheckInOutButton" Clicked="CheckInOutButton_Clicked"
                 HorizontalOptions="Fill" />
 
             <Button
-                Text="Calculators" 
+                Text="Calculators" ImageSource="calculator_icon.png" MaximumHeightRequest="80"
                 SemanticProperties.Hint="Counts the number of times you click"
                 HorizontalOptions="Fill" x:Name="CalculatorsButton" Clicked="CalculatorsButton_Clicked" />
 
             <Button
-                Text="RADeMS Risk Assessment" 
+                Text="RADeMS Risk Assessment"  ImageSource="radems_grid_icon.png" MaximumHeightRequest="80"
                 x:Name="RADeMSButton" Clicked="RADeMSButton_Clicked"
                 HorizontalOptions="Fill" />
 

@@ -21,24 +21,24 @@
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
 
-    <FlyoutItem Title="Home">
-        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+    <FlyoutItem Title="Home" Icon="house_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Icon="house_icon.png" Route="MainPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Calculators">
-        <ShellContent ContentTemplate="{DataTemplate views:CalculatorsView}" Route="CalculatorsView"></ShellContent>
+    <FlyoutItem Title="Calculators" Icon="calculator_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate views:CalculatorsView}" Icon="calculaor_icon.png" Route="CalculatorsView"></ShellContent>
         
     </FlyoutItem>
 
-    <FlyoutItem Title="Check In / Out">
+    <FlyoutItem Title="Check In / Out" Icon="clock_icon.png">
         <ShellContent ContentTemplate="{DataTemplate views:CheckInOut.CheckInOutView}" Route="CheckInOutView"></ShellContent>
     </FlyoutItem>
-    
-    <FlyoutItem Title="RADeMS Risk Assessment">
+
+    <FlyoutItem Title="RADeMS Risk Assessment" Icon="radems_grid_icon.png">
         <ShellContent ContentTemplate="{DataTemplate views:RADeMSView}" Route="RADeMSView"></ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="About My SAR Assist">
+    <FlyoutItem Title="About My SAR Assist"  Icon="icon_about.png">
         <ShellContent ContentTemplate="{DataTemplate views:AboutView}" Route="AboutView"></ShellContent>
     </FlyoutItem>
 </Shell>
