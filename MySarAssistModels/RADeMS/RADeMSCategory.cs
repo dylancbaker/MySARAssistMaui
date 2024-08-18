@@ -20,6 +20,6 @@ namespace MySarAssistModels.RADeMS
         public string Name { get { return _Name; } set => _Name = value; }
         public List<RADeMSQuestion>? Questions { get => _Questions; set => _Questions = value; }
         
-        public RADeMSCategory(int id, string name, List<RADeMSQuestion> questions) { _ID = id; _Name = name; Questions = questions; }
+        public RADeMSCategory(int id, string name, List<RADeMSQuestion>? questions) { _ID = id; _Name = name; Questions = questions; }
     }
 }

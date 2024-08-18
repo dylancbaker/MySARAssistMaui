@@ -6,7 +6,27 @@ namespace MySarAssistModels.RADeMS
 {
     public static class RADeMSTools
     {
+        public static Color GetGradientColor(int[] ScoreValue)
+        {
 
+            if (ScoreValue[0] == 0 && ScoreValue[1] == 0)            { return Color.FromArgb(14, 173, 105); }
+
+            int minValue = 0;
+             if (Math.Max(ScoreValue[0], ScoreValue[1]) == 1 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(0, 166, 81); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 2 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(0, 171, 80); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 3 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(75, 184, 77); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 4 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(139, 198, 72); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 5 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(187, 214, 66); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 6 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(225, 228, 57); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 7 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(245, 232, 50); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(246, 199, 48); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(244, 167, 45); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(241, 139, 42); }
+
+
+
+            return Color.FromArgb(14, 173, 105);
+        }
 
         public static Color GetColorOnGradient(float position)
         {

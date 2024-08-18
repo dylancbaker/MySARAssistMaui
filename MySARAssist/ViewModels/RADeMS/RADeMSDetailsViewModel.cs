@@ -123,15 +123,16 @@ namespace MySARAssist.ViewModels.RADeMS
         {
             get
             {
-                float position =(float)(rademsScore.OperationalRisk * rademsScore.ResponseCapacity) / 100;
-                if (rademsScore.OperationalRisk == 0 || rademsScore.ResponseCapacity == 0)
+                try
                 {
-                    //TODO this isn't gettng a good value for the color, it is staying green far too long
-                    position = (float)(Math.Max(rademsScore.OperationalRisk, rademsScore.ResponseCapacity)) / 100;
+                    int[] scores = new int[] { rademsScore.OperationalRisk, rademsScore.ResponseCapacity };
+                    System.Drawing.Color sdColor = RADeMSTools.GetGradientColor(scores);
+                    return new Color(sdColor.R, sdColor.G, sdColor.B);
+                } catch (Exception ex)
+                {
+                    ;
                 }
-                System.Drawing.Color sdColor = RADeMSTools.GetColorOnGradient(position);
-                return new Color(sdColor.R, sdColor.G, sdColor.B);
-
+                return Colors.Red;
             }
         }
 
