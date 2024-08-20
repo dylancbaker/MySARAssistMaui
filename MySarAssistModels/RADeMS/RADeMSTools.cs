@@ -9,79 +9,77 @@ namespace MySarAssistModels.RADeMS
         public static Color GetGradientColor(int[] ScoreValue)
         {
 
-            if (ScoreValue[0] == 0 && ScoreValue[1] == 0)            { return Color.FromArgb(14, 173, 105); }
+            if (ScoreValue[0] == 0 && ScoreValue[1] == 0) { return Color.FromArgb(14, 173, 105); }
 
-            int minValue = 0;
-             if (Math.Max(ScoreValue[0], ScoreValue[1]) == 1 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(0, 166, 81); }
-            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 2 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(0, 171, 80); }
-            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 3 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(75, 184, 77); }
-            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 4 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(139, 198, 72); }
-            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 5 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(187, 214, 66); }
-            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 6 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(225, 228, 57); }
-            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 7 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(245, 232, 50); }
-            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(246, 199, 48); }
-            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(244, 167, 45); }
-            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == minValue) { return Color.FromArgb(241, 139, 42); }
-
-
-
+            if (Math.Max(ScoreValue[0], ScoreValue[1]) == 1 && Math.Min(ScoreValue[0], ScoreValue[1]) == 0) { return Color.FromArgb(0, 166, 81); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 2 && Math.Min(ScoreValue[0], ScoreValue[1]) == 0) { return Color.FromArgb(0, 171, 80); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 3 && Math.Min(ScoreValue[0], ScoreValue[1]) == 0) { return Color.FromArgb(75, 184, 77); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 4 && Math.Min(ScoreValue[0], ScoreValue[1]) == 0) { return Color.FromArgb(139, 198, 72); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 5 && Math.Min(ScoreValue[0], ScoreValue[1]) == 0) { return Color.FromArgb(187, 214, 66); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 6 && Math.Min(ScoreValue[0], ScoreValue[1]) == 0) { return Color.FromArgb(225, 228, 57); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 7 && Math.Min(ScoreValue[0], ScoreValue[1]) == 0) { return Color.FromArgb(245, 232, 50); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == 0) { return Color.FromArgb(246, 199, 48); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == 0) { return Color.FromArgb(244, 167, 45); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 0) { return Color.FromArgb(241, 139, 42); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 1 && Math.Min(ScoreValue[0], ScoreValue[1]) == 1) { return Color.FromArgb(0, 170, 80); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 2 && Math.Min(ScoreValue[0], ScoreValue[1]) == 1) { return Color.FromArgb(0, 170, 80); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 3 && Math.Min(ScoreValue[0], ScoreValue[1]) == 1) { return Color.FromArgb(127, 195, 74); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 4 && Math.Min(ScoreValue[0], ScoreValue[1]) == 1) { return Color.FromArgb(173, 209, 69); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 5 && Math.Min(ScoreValue[0], ScoreValue[1]) == 1) { return Color.FromArgb(210, 223, 61); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 6 && Math.Min(ScoreValue[0], ScoreValue[1]) == 1) { return Color.FromArgb(240, 235, 51); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 7 && Math.Min(ScoreValue[0], ScoreValue[1]) == 1) { return Color.FromArgb(245, 220, 49); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == 1) { return Color.FromArgb(246, 186, 45); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == 1) { return Color.FromArgb(244, 161, 45); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 1) { return Color.FromArgb(241, 136, 42); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 2 && Math.Min(ScoreValue[0], ScoreValue[1]) == 2) { return Color.FromArgb(133, 197, 73); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 3 && Math.Min(ScoreValue[0], ScoreValue[1]) == 2) { return Color.FromArgb(177, 210, 68); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 4 && Math.Min(ScoreValue[0], ScoreValue[1]) == 2) { return Color.FromArgb(214, 224, 59); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 5 && Math.Min(ScoreValue[0], ScoreValue[1]) == 2) { return Color.FromArgb(240, 235, 51); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 6 && Math.Min(ScoreValue[0], ScoreValue[1]) == 2) { return Color.FromArgb(246, 213, 48); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 7 && Math.Min(ScoreValue[0], ScoreValue[1]) == 2) { return Color.FromArgb(246, 185, 46); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == 2) { return Color.FromArgb(243, 157, 44); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == 2) { return Color.FromArgb(242, 135, 41); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 2) { return Color.FromArgb(240, 108, 39); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 3 && Math.Min(ScoreValue[0], ScoreValue[1]) == 3) { return Color.FromArgb(209, 222, 61); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 4 && Math.Min(ScoreValue[0], ScoreValue[1]) == 3) { return Color.FromArgb(242, 236, 49); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 5 && Math.Min(ScoreValue[0], ScoreValue[1]) == 3) { return Color.FromArgb(246, 216, 49); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 6 && Math.Min(ScoreValue[0], ScoreValue[1]) == 3) { return Color.FromArgb(245, 184, 46); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 7 && Math.Min(ScoreValue[0], ScoreValue[1]) == 3) { return Color.FromArgb(243, 159, 44); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == 3) { return Color.FromArgb(241, 131, 41); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == 3) { return Color.FromArgb(240, 109, 39); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 3) { return Color.FromArgb(239, 83, 37); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 4 && Math.Min(ScoreValue[0], ScoreValue[1]) == 4) { return Color.FromArgb(246, 211, 49); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 5 && Math.Min(ScoreValue[0], ScoreValue[1]) == 4) { return Color.FromArgb(245, 182, 47); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 6 && Math.Min(ScoreValue[0], ScoreValue[1]) == 4) { return Color.FromArgb(242, 151, 43); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 7 && Math.Min(ScoreValue[0], ScoreValue[1]) == 4) { return Color.FromArgb(241, 129, 41); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == 4) { return Color.FromArgb(240, 106, 39); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == 4) { return Color.FromArgb(238, 78, 38); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 4) { return Color.FromArgb(237, 49, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 5 && Math.Min(ScoreValue[0], ScoreValue[1]) == 5) { return Color.FromArgb(242, 152, 43); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 6 && Math.Min(ScoreValue[0], ScoreValue[1]) == 5) { return Color.FromArgb(241, 125, 40); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 7 && Math.Min(ScoreValue[0], ScoreValue[1]) == 5) { return Color.FromArgb(239, 97, 38); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == 5) { return Color.FromArgb(238, 67, 37); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == 5) { return Color.FromArgb(237, 36, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 5) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 6 && Math.Min(ScoreValue[0], ScoreValue[1]) == 6) { return Color.FromArgb(239, 96, 38); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 7 && Math.Min(ScoreValue[0], ScoreValue[1]) == 6) { return Color.FromArgb(237, 70, 37); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == 6) { return Color.FromArgb(237, 35, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == 6) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 6) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 7 && Math.Min(ScoreValue[0], ScoreValue[1]) == 7) { return Color.FromArgb(237, 39, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == 7) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == 7) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 7) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 8 && Math.Min(ScoreValue[0], ScoreValue[1]) == 8) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == 8) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 8) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 9 && Math.Min(ScoreValue[0], ScoreValue[1]) == 9) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 9) { return Color.FromArgb(237, 29, 36); }
+            else if (Math.Max(ScoreValue[0], ScoreValue[1]) == 10 && Math.Min(ScoreValue[0], ScoreValue[1]) == 10) { return Color.FromArgb(237, 29, 36); }
             return Color.FromArgb(14, 173, 105);
         }
 
-        public static Color GetColorOnGradient(float position)
-        {
-            Color GradientStart = Color.FromArgb(14, 173, 105);
-            Color GradientMid = Color.FromArgb(255, 159, 28);
-            Color GradientEnd = Color.FromArgb(214, 40, 40);
-
-            return GetGradientColor(GradientStart, GradientMid, GradientEnd, position);
-        }
-
-        private static Color GetGradientColor(Color color1, Color color2, Color color3, float position)
-        {
-            if (position < 0 || position > 1)
-                throw new ArgumentOutOfRangeException("position", "Position must be between 0 and 1");
-
-            if (position < 0.3f)
-            {
-                position = position / 0.3f;
-                return GetGradientColor(color1, color2, position);
-            }
-            else
-            {
-                position = (position - 0.3f) / 0.7f;
-                return GetGradientColor(color2, color3, position);
-            }
-        }
-        private static Color GetGradientColor(Color startColor, Color endColor, float position)
-        {
-            
-
-            int r = (int)((startColor.R + (endColor.R - startColor.R) * position) );
-            int g = (int)((startColor.G + (endColor.G - startColor.G) * position) );
-            int b = (int)((startColor.B + (endColor.B - startColor.B) * position));
-            return Color.FromArgb(r, g, b);
-        }
-
-        public static Color GetColor(string baseColour, bool isSelected)
-        {
-            switch (baseColour)
-            {
-                case "Red":
-                    if (isSelected) { return Color.FromArgb(214, 40, 40); }
-                    else return Color.FromArgb(242, 132, 130);
-                case "Green":
-                    if (isSelected) { return Color.FromArgb(14, 173, 105); }
-                    else return Color.FromArgb(132, 165, 157);
-                case "Yellow":
-                    if (isSelected) { return Color.FromArgb(255, 159, 28); }
-                    else return Color.FromArgb(255, 229, 217);
-                default:
-                    if (isSelected) { return Color.Blue; }
-                    else { return Color.FromArgb(151, 157, 172); }
-            }
-        }
-
+      
         public static List<RADeMSCategory> GetCategories()
         {
             List<RADeMSCategory> categories = new List<RADeMSCategory>();
