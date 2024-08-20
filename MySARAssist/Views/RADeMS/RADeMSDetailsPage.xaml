@@ -12,7 +12,7 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="180"></RowDefinition>
+            <RowDefinition Height="190"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -155,18 +155,21 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <VerticalStackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" BackgroundColor="{Binding ScoreColor}"></VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" BackgroundColor="{Binding ScoreColor}"></VerticalStackLayout>
                 <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Style="{StaticResource CalculatorResultTitle}"  Text="Risk Assessment Score"></Label>
                 <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"   Style="{StaticResource CalculatorResultValue}"  Text="{Binding RademsResultText}"></Label>
-                <Button Grid.Column="1" Grid.Row="2" Text="View Card"></Button>
-                <Button Grid.Column="2" Grid.Row="2" Command="{Binding ShareScoreCommand}" Text="Share Score"></Button>
+                <Label Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="2"   Style="{StaticResource CalculatorResultUOM}" HorizontalTextAlignment="End" Text="Short Code"></Label>
+                <Label Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="2"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"  Text="{Binding ShortCodeText}"></Label>
+                <Button Grid.Column="1" Grid.Row="3" Text="View Card"></Button>
+                <Button Grid.Column="2" Grid.Row="3" Command="{Binding ShareScoreCommand}" Text="Share Score"></Button>
 
-                <VerticalStackLayout Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" BackgroundColor="{Binding ScoreColor}"></VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="4" Grid.Row="0" Grid.RowSpan="4" BackgroundColor="{Binding ScoreColor}"></VerticalStackLayout>
             </Grid>
         </VerticalStackLayout>
 

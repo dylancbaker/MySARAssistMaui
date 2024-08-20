@@ -23,9 +23,13 @@ namespace MySARAssist.ViewModels.RADeMS
         public RADeMSDetailsViewModel()
         {
             ShareScoreCommand = new Command(async () => await OnShareScoreCommand());
+            if (rademsCateogry != null) { rademsScore.CategoryID = rademsCateogry.ID; }
+
             if (App.CurrentPerson != null) { SetByName = App.CurrentPerson.Name; }
             OnPropertyChanged(nameof(ScoreColor));
             OnPropertyChanged(nameof(RademsResultText));
+            OnPropertyChanged(nameof(ShortCodeText));
+
         }
 
 
@@ -36,11 +40,14 @@ namespace MySARAssist.ViewModels.RADeMS
             if (int.TryParse(typeIdStr, out typeId))
             {
                 rademsCateogry = RADeMSTools.GetCategory(typeId);
+                if (rademsCateogry != null) { rademsScore.CategoryID = rademsCateogry.ID; }
 
 
                 OnPropertyChanged(nameof(CategoryTitle));
                 OnPropertyChanged(nameof(OperationalRiskQuestions));
                 OnPropertyChanged(nameof(ResponseCapacityQuestions));
+                OnPropertyChanged(nameof(ShortCodeText));
+
             }
 
         }
@@ -96,6 +103,7 @@ namespace MySARAssist.ViewModels.RADeMS
 
                     OnPropertyChanged(nameof(RademsResultText));
                     OnPropertyChanged(nameof(ScoreColor));
+                    OnPropertyChanged(nameof(ShortCodeText));
                 }
             }
         }
@@ -117,6 +125,14 @@ namespace MySARAssist.ViewModels.RADeMS
         public string RademsResultText
         {
             get { return rademsScore.ShortText; }
+        }
+
+        public string ShortCodeText
+        {
+            get
+            {
+                return RADeMSTools.GetScoreShortCode(rademsScore);
+            }
         }
 
         public Color ScoreColor

@@ -1,6 +1,7 @@
 ﻿
 
 using System.Drawing;
+using System.Text;
 
 namespace MySarAssistModels.RADeMS
 {
@@ -79,7 +80,131 @@ namespace MySarAssistModels.RADeMS
             return Color.FromArgb(14, 173, 105);
         }
 
-      
+
+        public static RADeMSScore? GetScoreFromShortCode(string shortCode)
+        {
+            if (shortCode == null) { return null; }
+            string[] parts = shortCode.Split('-');
+
+            RADeMSScore score = new RADeMSScore();
+            if (parts.Length == 3)
+            {
+                int[] OpRisk = getScoreFromSequenceNumber(int.Parse(parts[0])) ?? new int[5];
+                int[] RespCap = getScoreFromSequenceNumber(int.Parse(parts[2])) ?? new int[5];
+
+                score.CategoryID = GetRademsCategoryIDFromShortCode(parts[1]);
+                for (int x = 0; x < 5; x++) { score.Scores[x] = OpRisk[x]; }
+                for (int x = 5; x < 10; x++) { score.Scores[x] = RespCap[x - 5]; }
+            }
+
+            return score;
+        }
+
+        public static string GetScoreShortCode(RADeMSScore score)
+        {
+            StringBuilder sb = new StringBuilder();
+
+
+            sb.Append(getScoreSequenceNumber(score.OpRiskScores)); sb.Append("-");
+            sb.Append(GetRademsCategoryShortCode(score.CategoryID)); sb.Append("-");
+            sb.Append(getScoreSequenceNumber(score.RespCapScores));
+            return sb.ToString();
+        }
+
+        private static string GetRademsCategoryShortCode(int categoryID)
+        {
+            switch (categoryID)
+            {
+                case 1: return "Alpha";
+                case 2: return "Bravo";
+                case 3: return "Charlie";
+                case 4: return "Delta";
+                case 5: return "Echo";
+                case 6: return "Foxtrot";
+                default: return string.Empty;
+            }
+        }
+        private static int GetRademsCategoryIDFromShortCode(string shortCode)
+        {
+            switch (shortCode)
+            {
+                case "Alpha": return 1;
+                case "Bravo": return 2;
+                case "Charlie": return 3;
+                case "Delta": return 4;
+                case "Echo": return 5;
+                case "Foxtrot": return 6;
+                default: return 0;
+            }
+        }
+
+
+        private static int[]? getScoreFromSequenceNumber(int sequenceNumber)
+        {
+            int[,] sequence = GetAllScoresInSequence();
+
+            if (sequenceNumber < sequence.Length)
+            {
+                int[] score = new int[5];
+                score[0] = sequence[sequenceNumber, 0];
+                score[1] = sequence[sequenceNumber, 1];
+                score[2] = sequence[sequenceNumber, 2];
+                score[3] = sequence[sequenceNumber, 3];
+                score[4] = sequence[sequenceNumber, 4];
+                return score;
+            }
+            return null;
+        }
+
+        private static string getScoreSequenceNumber(int[] scores)
+        {
+            int[,] sequence = GetAllScoresInSequence();
+
+            for (int i = 0; i < sequence.Length; i++)
+            {
+                if (sequence[i, 0] == scores[0] && sequence[i, 1] == scores[1] && sequence[i, 2] == scores[2] && sequence[i, 3] == scores[3] && sequence[i, 4] == scores[4])
+                {
+                    return i.ToString();
+                }
+            }
+            return string.Empty;
+        }
+
+        private static int[,] GetAllScoresInSequence()
+        {
+            int[,] sequence = new int[243,5];
+
+            int index = 0;
+
+            for(int a = 0; a < 3; a++)
+            {
+                for (int b = 0; b < 3; b++)
+                {
+                    for (int c = 0; c < 3; c++)
+                    {
+                        for (int d = 0; d < 3; d++)
+                        {
+                            for (int e = 0; e < 3; e++)
+                            {
+                                sequence[index, 0] = a;
+                                sequence[index, 1] = b;
+                                sequence[index, 2] = c;
+                                sequence[index, 3] = d;
+                                sequence[index, 4] = e;
+                                index++;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+            return sequence;
+        }
+
+
+
         public static List<RADeMSCategory> GetCategories()
         {
             List<RADeMSCategory> categories = new List<RADeMSCategory>();

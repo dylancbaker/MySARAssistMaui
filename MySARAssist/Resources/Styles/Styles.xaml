@@ -474,14 +474,14 @@
         <Setter Property="FontAttributes" Value="Bold"></Setter>
         <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
         <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="5,0,5,20"></Setter>
+        <Setter Property="Margin" Value="5,0,5,10"></Setter>
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Tertiary}}" />
 
     </Style>
     <Style TargetType="Label" x:Key="CalculatorResultUOM">
         <Setter Property="FontSize" Value="Medium"></Setter>
         <Setter Property="FontAttributes" Value="Italic"></Setter>
-        <Setter Property="Margin" Value="5,0,5,20"></Setter>
+        <Setter Property="Margin" Value="5,0,5,10"></Setter>
         <Setter Property="VerticalTextAlignment" Value="Center"></Setter>
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SecondaryDarkText}, Dark={StaticResource Tertiary}}" />
 

@@ -17,6 +17,18 @@ namespace MySarAssistModels.RADeMS
         public Guid SetByPositionID { get => _SetByPositionID; set => _SetByPositionID = value; }
         public string SetByName { get => _SetByName; set => _SetByName = value; }
        [Ignore] public int[] Scores { get => _Scores; set => _Scores = value; }
+        public int[] OpRiskScores { get
+            {
+                return Scores.Take(5).ToArray();
+            } }
+        public int[] RespCapScores
+        {
+            get
+            {
+                return Scores.Skip(5).Take(5).ToArray();
+            }
+        }
+        public string ShortCode { get { return RADeMSTools.GetScoreShortCode(this); } } 
         public int CategoryID { get => _CategoryID; set => _CategoryID = value; }
         public string Comment { get => _Comment; set => _Comment = value; }
         public int ManualOpRisk { get => _ManualOpRisk; set => _ManualOpRisk = value; }
