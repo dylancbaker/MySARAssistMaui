@@ -16,6 +16,7 @@ namespace MySARAssist.ViewModels.RADeMS
             SetOption1 = new Command(() => SetOption(0));
             SetOption2 = new Command(() => SetOption(1));
             SetOption3 = new Command(() => SetOption(2));
+            ToggleDetailsCommand = new Command(() => OnToggleDetails());
 
         }
         public event RADeMSEventHandler ScoreChanged;
@@ -34,6 +35,9 @@ namespace MySARAssist.ViewModels.RADeMS
                 handler(e);
             }
         }
+        public bool ShowDetails { get; set; } = false;
+        public bool ShowSummary { get => !ShowDetails; set => ShowDetails = !value; }
+
 
         public RADeMSQuestion question { get; set; } = new RADeMSQuestion();
         public int SelectedValue { get; set; }  = 0;
@@ -80,7 +84,7 @@ namespace MySARAssist.ViewModels.RADeMS
         public Command SetOption1 { get; }
         public Command SetOption2 { get; }
         public Command SetOption3 { get; }
-
+        public Command ToggleDetailsCommand { get; }
         public void SetOption(int optionValue)
         {
             SelectedValue = optionValue;
@@ -91,8 +95,15 @@ namespace MySARAssist.ViewModels.RADeMS
 
         }
 
+        public void OnToggleDetails()
+        {
+            ShowDetails = !ShowDetails;
+            OnPropertyChanged(nameof(ShowDetails));
+            OnPropertyChanged(nameof(ShowSummary));
 
-      
+        }
+
+
 
     }
 }
