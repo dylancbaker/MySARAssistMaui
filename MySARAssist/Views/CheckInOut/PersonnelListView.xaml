@@ -5,34 +5,52 @@
                   xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
              xmlns:models="clr-namespace:MySarAssistModels.People;assembly=MySarAssistModels"
     x:DataType="vm:PersonnelListViewModel"
-             Title="PersonnelListView">
+             Title="List of Personnel">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnAdd" Text="Add Member" Command="{Binding AddMemberCommand}"></ToolbarItem>
+        <ToolbarItem x:Name="btnAdd" Text="NEW" Command="{Binding AddMemberCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
         <vm:PersonnelListViewModel></vm:PersonnelListViewModel>
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout>
-        <ListView x:Name="lbMemberList" HasUnevenRows="True"  ItemsSource="{Binding Items}" ItemSelected="lbMemberList_ItemSelected"
-           IsPullToRefreshEnabled="True" RefreshCommand="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsRefreshing}" SeparatorVisibility="None" >
-            <ListView.ItemTemplate>
-                <DataTemplate  x:DataType="models:Personnel">
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
-                            <Label  Text="{Binding NameWithGroupAndCurrent}" HorizontalOptions="FillAndExpand"></Label>
-                            <Button  VerticalOptions="Center" Text="Select" CommandParameter="{Binding PersonID}" Command="{Binding 
-                            Path=BindingContext.SelectTeamMemberCommand, 
-                            Source={x:Reference lbMemberList}}"></Button>
-                            <Button  VerticalOptions="Center" Text="Edit" CommandParameter="{Binding PersonID}" Command="{Binding 
-                            Path=BindingContext.EditTeamMemberCommand, 
-                            Source={x:Reference lbMemberList}}"></Button>
+    <ScrollView Padding="20">
 
-                        </StackLayout>
-                    </ViewCell>
+
+
+
+
+        <VerticalStackLayout x:Name="vslItems" BindableLayout.ItemsSource="{Binding Items}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="models:Personnel">
+                    <Grid Padding="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Grid.Row="0"  Text="{Binding NameWithGroupAndCurrent}" HorizontalOptions="FillAndExpand"></Label>
+
+                        <Button  Grid.Column="1" Grid.Row="0"  VerticalOptions="Center" Text="Select" CommandParameter="{Binding PersonID}" Command="{Binding 
+Path=BindingContext.SelectPersonnelCommand, 
+Source={x:Reference vslItems}}"></Button>
+                        <Button  Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" Text="Edit" CommandParameter="{Binding PersonID}" Command="{Binding 
+Path=BindingContext.EditPersonnelCommand, 
+Source={x:Reference vslItems}}"></Button>
+
+
+                    </Grid>
+                   
                 </DataTemplate>
+            </BindableLayout.ItemTemplate>
+            
+        </VerticalStackLayout>
 
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+
+
+
+
+       
+    
+    </ScrollView>
 </ContentPage>

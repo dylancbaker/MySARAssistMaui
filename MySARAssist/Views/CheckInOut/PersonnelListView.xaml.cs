@@ -9,9 +9,20 @@ public partial class PersonnelListView : ContentPage
 
     private void lbMemberList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        lbMemberList.SelectedItem = null;
+        
 
 
 
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        if (this.BindingContext != null)
+        {
+            ViewModels.CheckInOut.PersonnelListViewModel vm = (ViewModels.CheckInOut.PersonnelListViewModel)this.BindingContext;
+            vm.OnAppearing();
+
+        }
     }
 }
