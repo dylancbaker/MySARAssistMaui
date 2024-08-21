@@ -2,11 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.CheckInOut.CheckInView"
-             Title="CheckInView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+                           xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
+xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             Title="Check In">
+    <ContentPage.BindingContext>
+        <vm:BarcodeCheckInViewModel></vm:BarcodeCheckInViewModel>
+    </ContentPage.BindingContext>
+    
+    
+        
+            <Grid VerticalOptions="Fill" Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource SubHeadline}" Text="{Binding CurrentMemberName}"></Label>
+
+                <!-- time in-->
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  Margin="0,0,10,0" Text="Sign In Time"></Label>
+                <TimePicker Grid.Column="2" Grid.Row="1" x:Name="tpSignInTime"  Time="{Binding SignInTime, Mode=TwoWay}"></TimePicker>
+
+                <!-- must be out-->
+                <CheckBox Grid.Row="2" Grid.Column="0"  x:Name="chkMustBeOut" IsChecked="{Binding UseMustBeOutTime, Mode=TwoWay}"></CheckBox>
+                <Label  Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Margin="0,0,10,0" Text="Must be Out Time"></Label>
+                <TimePicker Grid.Row="2" Grid.Column="2"  x:Name="tpMustBeOut"  IsEnabled="{Binding UseMustBeOutTime}" Time="{Binding MustBeOutTime, Mode=TwoWay}"></TimePicker>
+
+
+              
+                <!--<Button x:Name="btnUpdateQR" Text="Update QR Code" HorizontalOptions="FillAndExpand" Clicked="btnUpdateQR_Clicked"></Button>
+                -->
+
+                <zxing:BarcodeGeneratorView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+ForegroundColor="Black"
+Value="{Binding FullQRString}"
+Format="QrCode"  HorizontalOptions="Fill" VerticalOptions="Fill"
+Margin="10" />
+            </Grid>
+       
+
+      
+  
 </ContentPage>
