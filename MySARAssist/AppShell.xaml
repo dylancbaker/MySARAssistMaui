@@ -5,8 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MySARAssist"
     xmlns:views="clr-namespace:MySARAssist.Views"
-    Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"
-    Shell.FlyoutBackdrop="Silver"
+    Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Primary}}"
+    Shell.FlyoutBackdrop="DarkGray"
     Title="My SAR Assist">
 
     <Shell.FlyoutHeaderTemplate>

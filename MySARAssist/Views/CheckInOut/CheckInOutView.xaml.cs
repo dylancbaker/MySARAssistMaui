@@ -1,10 +1,22 @@
 namespace MySARAssist.Views.CheckInOut;
 
+
 public partial class CheckInOutView : ContentPage
 {
 	public CheckInOutView()
 	{
         InitializeComponent();
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        if(this.BindingContext != null)
+        {
+            ViewModels.CheckInOut.CheckInManagementViewModel vm = (ViewModels.CheckInOut.CheckInManagementViewModel)this.BindingContext;
+            vm.OnAppearing();
+
+        }
     }
 
     private async void btnAddUser_Clicked(object sender, EventArgs e)

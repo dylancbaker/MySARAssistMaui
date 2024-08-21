@@ -59,7 +59,7 @@ namespace MySARAssist.ViewModels.Calculators
                 updatePacing();
 
             });
-
+            this._personnelService = new PersonnelService();
         }
         public double CurrentMemberPace
         {
@@ -73,8 +73,8 @@ namespace MySARAssist.ViewModels.Calculators
         private async void updatePacing()
         {
 
-            PersonnelService service = new PersonnelService();
-            if (App.CurrentPerson != null) { await service.UpdateItemAsync(App.CurrentPerson); }
+          
+            if (App.CurrentPerson != null) { await _personnelService.UpdateItemAsync(App.CurrentPerson); }
         }
 
 
@@ -110,6 +110,8 @@ namespace MySARAssist.ViewModels.Calculators
 
 
         double _DistanceToTravel = 0;
+        private readonly PersonnelService _personnelService;
+
         public double DistanceToTravel
         {
             get => _DistanceToTravel;

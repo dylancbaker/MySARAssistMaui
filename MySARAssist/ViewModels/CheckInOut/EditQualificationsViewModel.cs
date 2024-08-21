@@ -14,6 +14,8 @@ namespace MySARAssist.ViewModels.CheckInOut
 {
     public class EditQualificationsViewModel : ObservableObject
     {
+        private readonly PersonnelService _personnelService;
+
         public Personnel CurrentMember { get; private set; } = new Personnel();
 
         public Guid TeamMemberID
@@ -41,6 +43,7 @@ namespace MySARAssist.ViewModels.CheckInOut
         {
             BackCommand = new Command(OnBackCommand);
             SaveCommand = new Command(OnSaveCommand);
+            this._personnelService = new PersonnelService();
         }
 
         private async void OnBackCommand(object obj)
@@ -51,7 +54,7 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void SetTeamMember(Guid ID)
         {
-            CurrentMember = await new PersonnelService().GetItemAsync(ID);
+            CurrentMember = await _personnelService.GetItemAsync(ID);
             if (CurrentMember == null) { CurrentMember = new Personnel(); }
             DisplayMember();
         }
@@ -113,7 +116,7 @@ namespace MySARAssist.ViewModels.CheckInOut
                 try
                 {
 
-                    await new PersonnelService().UpsertItemAsync(CurrentMember);
+                    await _personnelService.UpsertItemAsync(CurrentMember);
 
                 }
                 catch (Exception ex)

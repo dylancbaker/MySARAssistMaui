@@ -9,24 +9,38 @@
         <vm:CheckInManagementViewModel></vm:CheckInManagementViewModel>
     </ContentPage.BindingContext>
     <ScrollView>
-        <VerticalStackLayout Padding="20">
-            <VerticalStackLayout x:Name="slCurrentMemberExists" IsVisible="{Binding AllowSignInAndOut}">
+       
+        
+        
+        <VerticalStackLayout Padding="20" >
+            <Grid IsVisible="{Binding AllowSignInAndOut}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-                <Label  HorizontalTextAlignment="Center" HorizontalOptions="Fill" Text="Currently Selected Member:"></Label>
-                <Label x:Name="lblCurrentMember" Text="{Binding CurrentMemberName}"  HorizontalTextAlignment="Center" HorizontalOptions="Fill"></Label>
-                <HorizontalStackLayout HorizontalOptions="Center">
-                    
-                        <Button x:Name="btnEditMember" Text="Edit" Clicked="btnEditMember_Clicked" HorizontalOptions="Fill"></Button>
-                        <Button Text="Swap" x:Name="btnChangeSelectedMember" Clicked="btnChangeSelectedMember_Clicked"   HorizontalOptions="Fill"></Button>
-                </HorizontalStackLayout>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" Style="{StaticResource FormFieldTitle}" HorizontalOptions="Fill" Text="Currently Selected Member"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="lblCurrentMember" Text="{Binding CurrentMemberName}" Style="{StaticResource SubHeadline}"  HorizontalTextAlignment="Center" HorizontalOptions="Fill"></Label>
 
-                <Label Text="Check in by QR Code"></Label>
-                <HorizontalStackLayout HorizontalOptions="Fill">
-                    <Button x:Name="btnSignIn" Text="Check In"  Clicked="btnSignIn_Clicked" HorizontalOptions="Fill" IsEnabled="{Binding AllowSignInAndOut}" ></Button>
-                    <Button x:Name="btnSignOut" Text="Check Out" Clicked="btnSignOut_Clicked"  HorizontalOptions="Fill" IsEnabled="{Binding AllowSignInAndOut}"  ></Button>
-                </HorizontalStackLayout>
+                <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditMember" Text="Edit" Command="{Binding EditMemberCommand}" HorizontalOptions="Fill"></Button>
+                <Button  Grid.Row="2" Grid.Column="1" Text="Swap" x:Name="btnChangeSelectedMember" Command="{Binding ChangeSelectedMemberCommand}"   HorizontalOptions="Fill"></Button>
 
-            </VerticalStackLayout>
+                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SubHeadline}" Text="Check in by QR Code"></Label>
+
+                <Button  Grid.Row="5" Grid.Column="0" Command="{Binding SignInCommand}"  Text="Check In" IsEnabled="{Binding AllowSignInAndOut}" ></Button>
+                <Button Grid.Row="5" Grid.Column="1" Command="{Binding SignOutCommand}"  Text="Check Out"  IsEnabled="{Binding AllowSignInAndOut}"  ></Button>
+
+            </Grid>
+            
+        
             <VerticalStackLayout x:Name="slNoCurrentMemberExists" IsVisible="{Binding ShowCreateNewUser}" >
                 <Label  HorizontalTextAlignment="Center" HorizontalOptions="Fill" Text="In order to sign in or out of a SAR task, you'll need to add some information."></Label>
                 <Button x:Name="btnAddUser" Clicked="btnAddUser_Clicked"  Text="Add New Person" ></Button>

@@ -14,28 +14,26 @@ namespace MySARAssist.ViewModels.CheckInOut
     {
         public ObservableCollection<Personnel> Items { get; private set; } = new ObservableCollection<Personnel>();
         Personnel? SelectedItem;
+        private readonly PersonnelService _personnelService;
 
         public PersonnelListViewModel()
         {
-            Items = new ObservableCollection<Personnel>();
-
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-            //ItemTapped = new Command<Personnel>(OnItemSelected);
+            this._personnelService = new PersonnelService();
+            IsRefreshing = false;
             EditPersonnelCommand = new Command(async (e) =>
             {
                 Guid selected_memberID = Guid.Empty;
                 if (e != null) { selected_memberID = new Guid(e.ToString()); }
                 await OnEditPersonnel(selected_memberID);
-                
+
             });
 
             SelectPersonnelCommand = new Command(async (e) =>
             {
                 Guid selected_memberID = new Guid(e.ToString());
 
-                new PersonnelService().setCurrentPerson(selected_memberID);
-                App.CurrentPerson = await new PersonnelService().GetCurrentPersonAsync();
+                _personnelService.setCurrentPerson(selected_memberID);
+                App.CurrentPerson = await _personnelService.GetCurrentPersonAsync();
                 //DependencyService.Get<Toast>().Show("Selected Member Updated");
                 try
                 {
@@ -49,11 +47,20 @@ namespace MySARAssist.ViewModels.CheckInOut
             });
 
             AddMemberCommand = new Command(OnAddMember);
+
+
+
+            Items = new ObservableCollection<Personnel>();
+
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+
+            //ItemTapped = new Command<Personnel>(OnItemSelected);
+    
         }
 
         public async Task OnEditPersonnel(Guid PersonID)
         {
-            await Shell.Current.GoToAsync($"{"/CheckInOut/" + nameof(Views.CheckInOut.PersonnelEditView)}?strPersonnelID={PersonID}");
+            await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={PersonID}");
 
         }
 
@@ -81,7 +88,7 @@ namespace MySARAssist.ViewModels.CheckInOut
 
                 Items.Clear();
                 //new Mitigation_Assessment().deleteBlankAssessments(); //for debug reasons
-                var allItems = await new PersonnelService().GetItems();
+                var allItems = await _personnelService.GetItems();
 
                 foreach (Personnel m in allItems)
                 {
@@ -97,6 +104,8 @@ namespace MySARAssist.ViewModels.CheckInOut
             {
                 IsRefreshing = false;
                 OnPropertyChanged(nameof(IsRefreshing));
+                OnPropertyChanged(nameof(Items));
+
             }
         }
 
@@ -109,7 +118,7 @@ namespace MySARAssist.ViewModels.CheckInOut
         }
         public async void OnAddMember()
         {
-            await Shell.Current.GoToAsync($"{"/CheckInOut/" + nameof(Views.CheckInOut.PersonnelEditView)}");
+            await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}");
         }
     }
 }

@@ -12,8 +12,11 @@ namespace MySARAssist.ViewModels.CheckInOut
 {
     public class CheckInManagementViewModel : ObservableObject
     {
+        private readonly PersonnelService _personnelService;
+
         public CheckInManagementViewModel()
         {
+            this._personnelService = new PersonnelService();
             SignInCommand = new Command(OnSignInCommand);
             SignOutCommand = new Command(OnSignOutCommand);
             EditTeamMembersCommand = new Command(OnEditTeamMembersCommand);
@@ -21,14 +24,17 @@ namespace MySARAssist.ViewModels.CheckInOut
             AddMemberCommand = new Command(OnAddMember);
             EditMemberCommand = new Command(OnEditMember);
             SetListVisible();
+            
         }
+
+
 
        
         private async void SetListVisible()
         {
             try
             {
-                var savedPeople = await new PersonnelService().GetItems();
+                var savedPeople = await _personnelService.GetItems();
                 ShowSelectUserButton = savedPeople != null && savedPeople.Any();
                 OnPropertyChanged(nameof(ShowSelectUserButton));
 
@@ -52,14 +58,17 @@ namespace MySARAssist.ViewModels.CheckInOut
         {
             OnPropertyChanged(nameof(CurrentMemberName));
             OnPropertyChanged(nameof(AllowSignInAndOut));
-          
+            OnPropertyChanged(nameof(ShowCreateNewUser));
+            SetListVisible();
+
+
         }
 
         public string CurrentMemberName
         {
             get
             {
-                if (App.CurrentPerson != null) { return App.CurrentPerson.NameWithGroup??"-No member selected-"; }
+                if (App.CurrentPerson != null) { return App.CurrentPerson.Name??"-No member selected-"; }
                 else { return "-No member selected-"; }
             }
         }
@@ -90,12 +99,13 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnEditTeamMembersCommand()
         {
-            await Shell.Current.GoToAsync(nameof(Views.CheckInOut.PersonnelListView));
+            if (App.CurrentPerson != null) { await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={App.CurrentPerson.ID}"); }
+            else { await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}"); }
         }
 
         private async void OnChangeSelectedMemberCommand()
         {
-            await Shell.Current.GoToAsync(nameof(Views.CheckInOut.PersonnelListView));
+            await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelListView)}");
         }
 
         public async void OnAddMember()
@@ -105,8 +115,8 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         public async void OnEditMember()
         {
-            if(App.CurrentPerson == null) { return; }
-            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.PersonnelEditView)}?strTeamMemberID={App.CurrentPerson.PersonID}");
+            if (App.CurrentPerson != null) { await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={App.CurrentPerson.ID}"); }
+            else { await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}"); }
 
         }
     }

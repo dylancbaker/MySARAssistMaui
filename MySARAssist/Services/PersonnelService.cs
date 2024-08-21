@@ -42,12 +42,12 @@ namespace MySARAssist.Services
 {
     public class PersonnelService : IDataStore<Personnel>
     {
-        private string dbPath = string.Empty;
+        
         SQLiteAsyncConnection conn;
 
         public PersonnelService()
         {
-            conn = new SQLiteAsyncConnection(dbPath);
+            conn = new SQLiteAsyncConnection(Constants.dbPath);
         }
 
         public async Task<bool> AddItemAsync(Personnel item)
@@ -59,7 +59,7 @@ namespace MySARAssist.Services
 
         public async Task<bool> DeleteItemAsync(Guid id)
         {
-           
+
             await conn.CreateTableAsync<Personnel>();
             Personnel itemToDelete = await conn.Table<Personnel>().FirstOrDefaultAsync(o => o.PersonID == id);
 
@@ -75,7 +75,11 @@ namespace MySARAssist.Services
         {
             await conn.CreateTableAsync<Personnel>();
             Personnel p = await conn.Table<Personnel>().FirstOrDefaultAsync(o => o.PersonID == id);
-            if(p == null) { throw new PersonnelNotFoundException(id.ToString()); }
+            if(p!=null && p.OrganizationID != Guid.Empty)
+            {
+                p.MemberOrganization = OrganizationTools.GetOrganization(p.OrganizationID);
+            }
+            if (p == null) { throw new PersonnelNotFoundException(id.ToString()); }
             return p;
         }
 
@@ -87,7 +91,8 @@ namespace MySARAssist.Services
                 list = list.OrderBy(o => o.Name).ToList();
 
                 return list;
-            } else
+            }
+            else
             {
                 throw new PersonnelNotFoundException("No records found");
             }
@@ -143,7 +148,8 @@ namespace MySARAssist.Services
                 }
 
                 return mostPopularOrg;
-            } catch (PersonnelNotFoundException ex)
+            }
+            catch (PersonnelNotFoundException ex)
             {
                 return null;
             }

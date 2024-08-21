@@ -16,27 +16,30 @@ Added:
 using MySARAssist.Models.Personnel;
 */
 using MySARAssist.Services;
+using MySarAssistModels.Interfaces;
 using MySarAssistModels.People;
 
 namespace MySARAssist
 {
     public partial class App : Application
     {
+        private readonly PersonnelService _personnelService;
+
         public static Personnel? CurrentPerson { get; set; }
 
 
-        public App()
+        public App(PersonnelService personnelService)
         {
             InitializeComponent();
+            this._personnelService = personnelService;
 
             MainPage = new AppShell();
             LoadCurrentPerson();
-
         }
 
         private async void LoadCurrentPerson()
         {
-            CurrentPerson = await new PersonnelService().GetCurrentPersonAsync();
+            CurrentPerson = await _personnelService.GetCurrentPersonAsync();
             if(CurrentPerson == null)
             {
                 ;

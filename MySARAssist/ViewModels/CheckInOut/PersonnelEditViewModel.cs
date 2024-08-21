@@ -25,6 +25,8 @@ namespace MySARAssist.ViewModels.CheckInOut
             CancelCommand = new Command(OnCancelCommand);
             NextCommand = new Command(OnNextCommand);
             DeleteCommand = new Command(OnDeleteCommand);
+            BackCommand = new Command(OnCancelCommand);
+            this._personnelService = new PersonnelService();
             //CurrentMember = new Personnel();
         }
 
@@ -42,7 +44,7 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         public async Task SetTeamMember(Guid ID)
         {
-            MemberToEdit = await new PersonnelService().GetItemAsync(ID);
+            MemberToEdit = await _personnelService.GetItemAsync(ID);
             if(MemberToEdit == null) { MemberToEdit = new Personnel(); }
             await DisplayMember();
         }
@@ -51,7 +53,7 @@ namespace MySARAssist.ViewModels.CheckInOut
         {
             if(MemberToEdit != null && ( MemberToEdit.MemberOrganization == null || MemberToEdit.OrganizationID == Guid.Empty))
             {
-                Organization? mostPopularOrg = await new PersonnelService().GetMostFrequentOrganizationAsync();
+                Organization? mostPopularOrg = await _personnelService.GetMostFrequentOrganizationAsync();
                 if (mostPopularOrg != null) { MemberToEdit.MemberOrganization = mostPopularOrg; }
             }
 
@@ -131,6 +133,8 @@ namespace MySARAssist.ViewModels.CheckInOut
 
 
         private int _OrgIndex = 0;
+        private readonly PersonnelService _personnelService;
+
         public int OrgIndex
         {
             get
@@ -171,6 +175,7 @@ namespace MySARAssist.ViewModels.CheckInOut
                 try
                 {
                     await SaveMemberToEdit();
+                    if(App.CurrentPerson != null && MemberToEdit.PersonID == App.CurrentPerson.PersonID) { App.CurrentPerson = MemberToEdit; }
                     var toast = Toast.Make("Saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
                     await toast.Show(new CancellationToken());
                     await Shell.Current.GoToAsync($"//{nameof(CheckInOutView)}/{nameof(PersonnelEditView)}/{nameof(EditQualificationsPage)}/?PersonnelID={MemberToEdit.ID.ToString()}");
@@ -199,13 +204,13 @@ namespace MySARAssist.ViewModels.CheckInOut
 
                 MemberToEdit. RemoveBadChrs();
                 if (MemberToEdit == null) { throw new Exception("ERROR, personnel was not saved"); }
-                if (await new PersonnelService().UpsertItemAsync(MemberToEdit))
+                if (await _personnelService.UpsertItemAsync(MemberToEdit))
                 {
-                    if (await new PersonnelService().GetCurrentPersonAsync() == null)
+                    if (await _personnelService.GetCurrentPersonAsync() == null)
                     {
 
-                        new PersonnelService().setCurrentPerson(MemberToEdit.PersonID);
-                        App.CurrentPerson = await new PersonnelService().GetCurrentPersonAsync();
+                        _personnelService.setCurrentPerson(MemberToEdit.PersonID);
+                        App.CurrentPerson = await _personnelService.GetCurrentPersonAsync();
                         OnPropertyChanged(nameof(App.CurrentPerson));
                         return;
 
@@ -227,7 +232,7 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnDeleteCommand()
         {
-            if (await new PersonnelService().DeleteItemAsync(MemberToEdit.PersonID))
+            if (await _personnelService.DeleteItemAsync(MemberToEdit.PersonID))
             {
                 if  (App.CurrentPerson != null && App.CurrentPerson.PersonID == MemberToEdit.PersonID)
                 {

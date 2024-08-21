@@ -5,7 +5,7 @@
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
               x:DataType="vm:PersonnelEditViewModel"
                xmlns:local="clr-namespace:MySARAssist.Models.ValidationTools"
-             xmlns:models="clr-namespace:MySARAssist.Models.People"
+             xmlns:models="clr-namespace:MySarAssistModels.People;assembly=MySarAssistModels"
              Title="Edit Person">
 
 
@@ -51,7 +51,8 @@
 
 
                 <Label Style="{StaticResource FormFieldTitle}" >SAR Group  / Organization</Label>
-                <Picker x:Name="pickParentOrganization" ItemsSource="{Binding ParentOrganizations}" SelectedIndex="{Binding ParentOrgIndex}" SelectedIndexChanged="pickParentOrganization_SelectedIndexChanged" ItemDisplayBinding="{Binding OrganizationName}"></Picker>
+                <Picker x:Name="pickParentOrganization" ItemsSource="{Binding ParentOrganizations}" SelectedIndex="{Binding ParentOrgIndex, Mode=TwoWay}" SelectedIndexChanged="pickParentOrganization_SelectedIndexChanged" ItemDisplayBinding="{Binding OrganizationName}"></Picker>
+                
                 <Picker x:Name="pickOrganization" SelectedIndex="{Binding OrgIndex}" ItemDisplayBinding="{Binding OrganizationName}"></Picker>
 
                 <Label Style="{StaticResource FormFieldTitle}" >Email*</Label>
