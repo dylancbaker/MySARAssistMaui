@@ -13,17 +13,16 @@
     </Shell.BackButtonBehavior>
     <VerticalStackLayout>
         <Label  Text="{Binding ScoreText}" HorizontalOptions="Center" Padding="5,10,5,10"></Label>
-        <Grid>
+        <Grid VerticalOptions="Start">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
-            <Image x:Name="GridImage"  Aspect="AspectFit" Grid.Row="0" Grid.Column="0" Source="radems_card.png"></Image>
+            <Image x:Name="GridImage" SizeChanged="GridImage_SizeChanged"  Aspect="AspectFit" Grid.Row="0" Grid.Column="0" Source="radems_card.png"></Image>
             <GraphicsView 
-                x:Name="Canvas"                 
+                x:Name="Canvas"           VerticalOptions="Fill"      
                 HorizontalOptions="Fill"
                 Drawable="{Binding MyDrawable}" 
                

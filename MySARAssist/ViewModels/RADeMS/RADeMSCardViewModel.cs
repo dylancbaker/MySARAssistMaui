@@ -99,6 +99,8 @@ namespace MySARAssist.ViewModels.RADeMS
             canvas.StrokeSize = 2;
             canvas.DrawCircle(center, 10);
 
+          
+
         }
     }
 

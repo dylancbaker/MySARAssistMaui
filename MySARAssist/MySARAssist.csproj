@@ -45,9 +45,17 @@
 		<GenerateTestArtifacts>True</GenerateTestArtifacts>
 		<AppInstallerUri>https://sarassist.ca</AppInstallerUri>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+		<Platforms>AnyCPU;ARM64</Platforms>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
+	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
+	  <ApplicationVersion>2</ApplicationVersion>
+	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
 	  <ApplicationVersion>2</ApplicationVersion>
@@ -61,7 +69,21 @@
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|ARM64'">
+	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
+	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
+	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
+	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
 	  <ApplicationVersion>3</ApplicationVersion>
@@ -75,7 +97,21 @@
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|ARM64'">
+	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
+	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
+	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
+	  <ApplicationVersion>2</ApplicationVersion>
+	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
 	  <ApplicationVersion>2</ApplicationVersion>
@@ -89,6 +125,13 @@
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|ARM64'">
+	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
+	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
@@ -96,7 +139,21 @@
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|ARM64'">
+	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
+	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
+	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
 	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
 	  <ApplicationVersion>3</ApplicationVersion>
@@ -114,7 +171,19 @@
 	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|ARM64'">
+	  <ApplicationVersion>30</ApplicationVersion>
+	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
+	  <ApplicationVersion>30</ApplicationVersion>
+	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|ARM64'">
 	  <ApplicationVersion>30</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>

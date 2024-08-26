@@ -22,6 +22,8 @@ public partial class RADeMSCardPage : ContentPage
             InitializeComponent();
             this.logger = logger;
             this._viewModel = (RADeMSCardViewModel)BindingContext;
+
+           
         }
         catch (Exception ex)
         {
@@ -74,5 +76,12 @@ public partial class RADeMSCardPage : ContentPage
                 logger.LogWarning("Response Capacity value is not a number");
             }
         }
+    }
+
+    private void GridImage_SizeChanged(object sender, EventArgs e)
+    {
+        double h = GridImage.Height;
+        double w = GridImage.Width;
+        _viewModel.SetImageSize(w, h);
     }
 }
