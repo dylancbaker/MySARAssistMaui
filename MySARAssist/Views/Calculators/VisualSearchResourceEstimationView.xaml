@@ -3,12 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.VisualSearchResourceEstimationView"
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
+              xmlns:local="clr-namespace:MySARAssist.Converters"
 x:DataType="vm:VisualSearchResourceEstimationViewModel"
 
              Title="Visual Search Resource Estimation">
     <ContentPage.BindingContext>
         <vm:VisualSearchResourceEstimationViewModel></vm:VisualSearchResourceEstimationViewModel>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <local:DoubleConverter x:Key="doubleConverter" />
+        <local:IntConverter x:Key="intConverter" />
+    </ContentPage.Resources>
     <Grid>
 
 
@@ -20,93 +25,83 @@ x:DataType="vm:VisualSearchResourceEstimationViewModel"
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <ScrollView Grid.Column="0" Grid.Row="0">
-
-
             <Grid  Padding="20,10,20,10" >
-                    <Grid.RowDefinitions>
-                        <!-- Speed -->
-                    <RowDefinition Height="40"></RowDefinition>
+                <Grid.RowDefinitions>
+                    <!-- Speed -->
+                    <RowDefinition  Height="40"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition Height="5"></RowDefinition>
-                        <!-- Area -->
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                    <RowDefinition Height="5"></RowDefinition>
-                        <!-- Spacing -->
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                    <RowDefinition Height="5"></RowDefinition>
-                        <!-- Duration -->
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                    <RowDefinition Height="5"></RowDefinition>
-                        <!-- Travel Time -->
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                    <RowDefinition Height="5"></RowDefinition>
-                        <!-- Command Staff -->
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="60"></RowDefinition>
-                    <RowDefinition Height="5"></RowDefinition>
-
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-
-
-
-
-
-
-
-
-
-                    <!--Speed -->
-                        <Label  Text="Searcher Speed (KM/h)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
-                    <Entry Keyboard="Numeric" Grid.Row="1" Grid.Column="0"  Text="{Binding Speed, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="km/h" ></Entry>
-                    
-                        <Button Grid.Row="1" Grid.Column="1" Text="+" Style="{StaticResource UpDownButton}" Command="{Binding SpeedUpCommand}" ></Button>
-                <Button Grid.Row="1" Grid.Column="2"   Text="-"  Style="{StaticResource UpDownButton}" Command="{Binding SpeedDownCommand}" ></Button>
-                    
-
                     <!-- Area -->
+                    <RowDefinition  Height="40"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <!-- Spacing -->
+                    <RowDefinition  Height="40"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <!-- Duration -->
+                    <RowDefinition  Height="40"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <!-- Travel Time -->
+                    <RowDefinition  Height="40"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+                    <!-- Command Staff -->
+                    <RowDefinition  Height="40"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="5"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <!--Speed -->
+                <Label  Text="Searcher Speed (KM/h)" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
+                <Entry Keyboard="Numeric" Grid.Row="1" Grid.Column="0"  Text="{Binding Speed, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="km/h" ></Entry>
+
+                <Button Grid.Row="1" Grid.Column="1" Text="+" Style="{StaticResource UpDownButton}" Command="{Binding SpeedUpCommand}" ></Button>
+                <Button Grid.Row="1" Grid.Column="2"   Text="-"  Style="{StaticResource UpDownButton}" Command="{Binding SpeedDownCommand}" ></Button>
+
+
+                <!-- Area -->
                 <Label  Text="Search Area Size (KM2)"   Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
-                    <Entry Keyboard="Numeric" Grid.Row="4" Grid.Column="0" Text="{Binding Area, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="km2" ></Entry>
+                <Entry Keyboard="Numeric" Grid.Row="4" Grid.Column="0" Text="{Binding Area, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="km2" ></Entry>
                 <Button  Grid.Row="4" Grid.Column="1"  Text="+" Style="{StaticResource UpDownButton}"  Command="{Binding AreaUpCommand}" ></Button>
                 <Button  Grid.Row="4" Grid.Column="2"  Text="-" Style="{StaticResource UpDownButton}" Command="{Binding AreaDownCommand}"></Button>
 
-                    <!-- Spacing-->
+                <!-- Spacing-->
                 <Label  Text="Spacing Between Members (meters)"  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
-                    <Entry Keyboard="Numeric" Grid.Row="7" Grid.Column="0" Text="{Binding Spacing, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="m" ></Entry>
+                <Entry Keyboard="Numeric" Grid.Row="7" Grid.Column="0" Text="{Binding Spacing, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="m" ></Entry>
                 <Button Grid.Row="7" Grid.Column="1"   Text="+" Style="{StaticResource UpDownButton}" Command="{Binding SpacingUpCommand}" ></Button>
                 <Button  Grid.Row="7" Grid.Column="2"  Text="-" Style="{StaticResource UpDownButton}" Command="{Binding SpacingDownCommand}" ></Button>
 
 
-                    <!-- Duration -->
+                <!-- Duration -->
                 <Label  Text="Time to complete (hrs)"   Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
-                    <Entry Keyboard="Numeric" Grid.Row="10" Grid.Column="0"  Text="{Binding Duration, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="hrs" ></Entry>
+                <Entry Keyboard="Numeric" Grid.Row="10" Grid.Column="0"  Text="{Binding Duration, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="hrs" ></Entry>
                 <Button  Grid.Row="10" Grid.Column="1"  Text="+" Style="{StaticResource UpDownButton}" Command="{Binding DurationUpCommand}" ></Button>
                 <Button Grid.Row="10" Grid.Column="2"   Text="-" Style="{StaticResource UpDownButton}" Command="{Binding DurationDownCommand}" ></Button>
 
-                    <!-- Travel Time-->
+                <!-- Travel Time-->
                 <Label  Text="Avg travel time from ICP to Assignments (hrs)"   Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}"></Label>
-                    <Entry Keyboard="Numeric" Grid.Row="13" Grid.Column="0" Text="{Binding ExtraTravelTime, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="hrs" ></Entry>
+                <Entry Keyboard="Numeric" Grid.Row="13" Grid.Column="0" Text="{Binding ExtraTravelTime, Mode=TwoWay, Converter={StaticResource doubleConverter}}" Placeholder="hrs" ></Entry>
                 <Button  Grid.Row="13" Grid.Column="1"  Text="+" Style="{StaticResource UpDownButton}" Command="{Binding ExtraTravelTimeUpCommand}" ></Button>
                 <Button  Grid.Row="13" Grid.Column="2"  Text="-" Style="{StaticResource UpDownButton}" Command="{Binding ExtraTravelTimeDownCommand}" ></Button>
 
-                    <!-- Command Staff -->
+                <!-- Command Staff -->
                 <Label  Text="Command and Support Staff"   Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource FormFieldTitle}" ></Label>
-                    <Entry Keyboard="Numeric" Grid.Row="16" Grid.Column="0"  Text="{Binding CommandStaff, Mode=TwoWay, Converter={StaticResource intConverter}}" Placeholder="#" ></Entry>
+                <Entry Keyboard="Numeric" Grid.Row="16" Grid.Column="0"  Text="{Binding CommandStaff, Mode=TwoWay, Converter={StaticResource intConverter}}" Placeholder="#" ></Entry>
                 <Button  Grid.Row="16" Grid.Column="1"  Text="+" Style="{StaticResource UpDownButton}" Command="{Binding CommandStaffUpCommand}" ></Button>
                 <Button  Grid.Row="16" Grid.Column="2"  Text="-" Style="{StaticResource UpDownButton}" Command="{Binding CommandStaffDownCommand}" ></Button>
 
-                </Grid>
-              
-    
+            </Grid>
+
+
         </ScrollView>
         <VerticalStackLayout x:Name="slResults" Grid.Row="1" Grid.Column="0" Style="{StaticResource CalculatorResult}"  >
             <Label x:Name="lblResultTypeTitle"  Style="{StaticResource CalculatorResultTitle}"  Text="Estimated People Needed"></Label>
@@ -117,5 +112,5 @@ x:DataType="vm:VisualSearchResourceEstimationViewModel"
 
         </VerticalStackLayout>
     </Grid>
-    
+
 </ContentPage>

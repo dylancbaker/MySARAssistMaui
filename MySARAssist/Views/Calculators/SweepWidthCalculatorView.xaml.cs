@@ -1,11 +1,18 @@
+using MetroLog.Maui;
+using Microsoft.Extensions.Logging;
+
 namespace MySARAssist.Views.Calculators;
 
 public partial class SweepWidthCalculatorView : ContentPage
 {
-	public SweepWidthCalculatorView()
+    private readonly ILogger<MainPage> logger;
+
+    public SweepWidthCalculatorView(ILogger<MainPage> logger)
 	{
 		InitializeComponent();
-	}
+        LogController.SuspendShake();
+        this.logger = logger;
+    }
 
     protected override void OnSizeAllocated(double width, double height)
     {
@@ -17,6 +24,8 @@ public partial class SweepWidthCalculatorView : ContentPage
 
     private async void HowToRDImageButton_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Views.Calculators.HowToRangeOfDetectionPage());
+        //await Navigation.PushAsync(new Views.Calculators.HowToRangeOfDetectionPage());
+        await Shell.Current.GoToAsync($"//{nameof(Views.CalculatorsView)}/{nameof(Views.Calculators.SweepWidthCalculatorView)}/{nameof(Views.Calculators.HowToRangeOfDetectionPage)}");
+
     }
 }

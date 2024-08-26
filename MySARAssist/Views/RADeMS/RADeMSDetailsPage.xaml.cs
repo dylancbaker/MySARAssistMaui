@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using MySARAssist.ViewModels.RADeMS;
 
 namespace MySARAssist.Views.RADeMS;
@@ -5,15 +6,17 @@ namespace MySARAssist.Views.RADeMS;
 
 public partial class RADeMSDetailsPage : ContentPage
 {
+    private readonly ILogger<MainPage> logger;
     RADeMSDetailsViewModel _viewModel = null;
 
-	public RADeMSDetailsPage()
+	public RADeMSDetailsPage(ILogger<MainPage> logger)
 	{
 		InitializeComponent();
 
         _viewModel = new RADeMSDetailsViewModel();
         this.BindingContext = _viewModel;
-	}
+        this.logger = logger;
+    }
 
 
     public string RademsTypeIDStr

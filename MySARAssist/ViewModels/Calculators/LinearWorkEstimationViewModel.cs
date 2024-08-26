@@ -48,6 +48,17 @@ namespace MySARAssist.ViewModels.Calculators
                 OnPropertyChanged(nameof(Length));
             });
 
+            ElevationUpCommand = new Command(() =>
+            {
+                Elevation += 100;
+                OnPropertyChanged(nameof(Elevation));
+            });
+            ElevationDownCommand = new Command(() =>
+            {
+                Elevation -= 100;
+                OnPropertyChanged(nameof(Elevation));
+            });
+
         }
 
         public Command CalculateCommand { get; }
@@ -56,6 +67,8 @@ namespace MySARAssist.ViewModels.Calculators
         public Command SpeedDownCommand { get; }
         public Command LengthUpCommand { get; }
         public Command LengthDownCommand { get; }
+        public Command ElevationUpCommand { get; }
+        public Command ElevationDownCommand { get; }
 
 
         private void CalculateEstimate()
@@ -63,7 +76,8 @@ namespace MySARAssist.ViewModels.Calculators
             if (Length > 0 && SearcherSpeed > 0)
             {
 
-                estimatedDuration = Length / SearcherSpeed;
+                estimatedDuration = (Length + (5.3 * (Elevation/1000))) / SearcherSpeed;
+                estimatedDurationWithRoundTrip = ((Length + (5.3 * (Elevation / 1000))) / SearcherSpeed) + ((Length + (5.3)) / SearcherSpeed);
             }
             else { estimatedDuration = 0; }
 
@@ -72,29 +86,38 @@ namespace MySARAssist.ViewModels.Calculators
         }
 
         double estimatedDuration = 0;
+        double estimatedDurationWithRoundTrip = 0;
         public string EstimatedDuration
         {
             get => string.Format("{0:#,##0.0}", estimatedDuration);
         }
         public string EstimatedDurationWithRoundTrip
         {
-            get => string.Format("{0:#,##0.0}", estimatedDuration * 2);
+            get => string.Format("{0:#,##0.0}", estimatedDurationWithRoundTrip);
         }
 
 
         double _searcherSpeed = 1.6;
         public double SearcherSpeed { get => _searcherSpeed; set { _searcherSpeed = value; CalculateEstimate(); OnPropertyChanged(nameof(SearcherSpeed)); OnPropertyChanged(nameof(SearcherSpeedStr)); } }
-        public string SearcherSpeedStr
+        public string? SearcherSpeedStr
         {
-            get { if (SearcherSpeed > 0) { return Math.Round( SearcherSpeed,1).ToString(); } else { return null; } }
+            get { if (SearcherSpeed > 0) { return Math.Round( SearcherSpeed,2).ToString(); } else { return null; } }
             set { if (!string.IsNullOrEmpty(value)) { double temp; double.TryParse(value, out temp); SearcherSpeed = temp; } }
         }
         double _length = 0;
         public double Length { get => _length; set { _length = value; CalculateEstimate(); OnPropertyChanged(nameof(Length)); OnPropertyChanged(nameof(LengthStr)); } }
-        public string LengthStr
+        public string? LengthStr
         {
             get { if (Length > 0) { return Math.Round( Length,1).ToString(); } else { return null; } }
             set { if (!string.IsNullOrEmpty(value)) { double temp; double.TryParse(value, out temp); Length = temp; } }
+        }
+
+        double _elevation = 0;
+        public double Elevation { get => _elevation; set { _elevation = value; CalculateEstimate(); OnPropertyChanged(nameof(Elevation)); OnPropertyChanged(nameof(ElevationStr)); } }
+        public string? ElevationStr
+        {
+            get { if (Elevation > 0) { return Math.Round(Elevation, 1).ToString(); } else { return null; } }
+            set { if (!string.IsNullOrEmpty(value)) { double temp; double.TryParse(value, out temp); Elevation = temp; } }
         }
     }
 }

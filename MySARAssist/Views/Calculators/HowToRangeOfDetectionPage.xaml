@@ -16,7 +16,7 @@
                 <Label  Text="6. Repeat for NE, NW, SE, SW for a total of 8 data points."></Label>
                 <Label  Text="7. Convert the paces to meters, take an average distance and report it to command."></Label>
 
-                <Image Source="RangeOfDetection.png" HorizontalOptions="FillAndExpand" Aspect="AspectFit" VerticalOptions="FillAndExpand"></Image>
+                <Image Source="range_of_detection.png" HorizontalOptions="FillAndExpand" Aspect="AspectFit" VerticalOptions="FillAndExpand"></Image>
             </VerticalStackLayout>
         </ScrollView>
     </VerticalStackLayout>

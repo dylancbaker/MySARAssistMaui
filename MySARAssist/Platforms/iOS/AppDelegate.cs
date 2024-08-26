@@ -1,4 +1,6 @@
 ﻿using Foundation;
+using MySARAssist.Platforms.iOS;
+using UIKit;
 
 namespace MySARAssist
 {
@@ -6,5 +8,9 @@ namespace MySARAssist
     public class AppDelegate : MauiUIApplicationDelegate
     {
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+
+      
     }
+
+
 }

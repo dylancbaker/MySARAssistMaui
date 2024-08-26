@@ -42,8 +42,8 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="btnBack" Grid.Row="0" Grid.Column="0" Text="Back" HorizontalOptions="FillAndExpand" Command="{Binding BackCommand}"></Button>
-            <Button x:Name="btnSave"  Grid.Row="0" Grid.Column="1"  Text="Save" HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}"></Button>
+            <Button x:Name="btnBack" Grid.Row="0" Grid.Column="0" Text="Back" HorizontalOptions="FillAndExpand"  Style="{StaticResource StandardButton}" Command="{Binding BackCommand}"></Button>
+            <Button x:Name="btnSave"  Grid.Row="0" Grid.Column="1"  Text="Save" HorizontalOptions="FillAndExpand"  Style="{StaticResource StandardButton}" Command="{Binding SaveCommand}"></Button>
         </Grid>
 
 

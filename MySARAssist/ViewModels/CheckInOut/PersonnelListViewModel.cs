@@ -37,7 +37,10 @@ namespace MySARAssist.ViewModels.CheckInOut
                 //DependencyService.Get<Toast>().Show("Selected Member Updated");
                 try
                 {
-                    await ExecuteLoadItemsCommand();
+                    //await ExecuteLoadItemsCommand();
+
+                    await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}");
+
                 }
                 catch (Exception)
                 {
@@ -60,7 +63,7 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         public async Task OnEditPersonnel(Guid PersonID)
         {
-            await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={PersonID}");
+            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={PersonID}");
 
         }
 
@@ -118,7 +121,7 @@ namespace MySARAssist.ViewModels.CheckInOut
         }
         public async void OnAddMember()
         {
-            await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}");
+            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}");
         }
     }
 }

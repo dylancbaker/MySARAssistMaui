@@ -2,11 +2,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.CheckInOut.CheckOutView"
-             Title="CheckOutView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+                                        xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
+               xmlns:local="clr-namespace:MySARAssist.Converters"
+xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+             Title="Check Out">
+    <ContentPage.BindingContext>
+        <vm:BarcodeCheckOutViewModel></vm:BarcodeCheckOutViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <local:IntConverter x:Key="intConverter" />
+    </ContentPage.Resources>
+
+
+    <Grid VerticalOptions="Fill" Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource SubHeadline}" Text="{Binding CurrentMemberName}"></Label>
+
+        <!-- time out-->
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  Margin="0,0,10,0" Text="Sign In Time"></Label>
+        <TimePicker Grid.Column="2" Grid.Row="1" x:Name="tpSignInTime"  Time="{Binding SignOutTime, Mode=TwoWay}"></TimePicker>
+
+        <!-- KMs -->
+        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Style="{DynamicResource labelStyle}" HorizontalTextAlignment="End" Margin="0,0,10,0"  VerticalOptions="Center" Text="KMs"></Label>
+        <Entry Grid.Column="2" Grid.Row="2"  Style="{DynamicResource entryStyle}" Placeholder="KMs" Keyboard="Numeric" x:Name="txtKMs" Text="{Binding KMs, Mode=TwoWay, Converter={StaticResource intConverter}}" ></Entry>
+
+
+
+        <zxing:BarcodeGeneratorView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+ForegroundColor="Black"
+Value="{Binding FullQRString}"
+Format="QrCode"  HorizontalOptions="Fill" VerticalOptions="Fill"
+Margin="10" />
+    </Grid>
 </ContentPage>

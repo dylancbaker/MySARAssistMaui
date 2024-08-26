@@ -1,11 +1,16 @@
+using Microsoft.Extensions.Logging;
+
 namespace MySARAssist.Views.CheckInOut;
 
 public partial class PersonnelListView : ContentPage
 {
-	public PersonnelListView()
+    private readonly ILogger<MainPage> logger;
+
+    public PersonnelListView(ILogger<MainPage> logger)
 	{
 		InitializeComponent();
-	}
+        this.logger = logger;
+    }
 
     private void lbMemberList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {

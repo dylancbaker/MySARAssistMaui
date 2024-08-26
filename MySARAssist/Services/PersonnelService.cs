@@ -52,6 +52,8 @@ namespace MySARAssist.Services
 
         public async Task<bool> AddItemAsync(Personnel item)
         {
+            await conn.CreateTableAsync<Personnel>();
+
             int check = await conn.InsertAsync(item);
             if (check > 0) { return true; }
             else { throw new Exception("Error adding item"); }// return false; }
@@ -77,7 +79,7 @@ namespace MySARAssist.Services
             Personnel p = await conn.Table<Personnel>().FirstOrDefaultAsync(o => o.PersonID == id);
             if(p!=null && p.OrganizationID != Guid.Empty)
             {
-                p.MemberOrganization = OrganizationTools.GetOrganization(p.OrganizationID);
+                p.MemberOrganization = await new OrganizationService().GetItemAsync(p.OrganizationID);//OrganizationTools.GetStaticOrganization(p.OrganizationID);
             }
             if (p == null) { throw new PersonnelNotFoundException(id.ToString()); }
             return p;
@@ -85,6 +87,8 @@ namespace MySARAssist.Services
 
         public async Task<IEnumerable<Personnel>> GetItems(bool forceRefresh = false)
         {
+            await conn.CreateTableAsync<Personnel>();
+
             List<Personnel> list = await conn.Table<Personnel>().ToListAsync();
             if (list != null && list.Any())
             {
@@ -100,6 +104,8 @@ namespace MySARAssist.Services
 
         public async Task<bool> UpdateItemAsync(Personnel item)
         {
+            await conn.CreateTableAsync<Personnel>();
+
             int check = await conn.UpdateAsync(item);
             if (check > 0) { return true; }
             else { throw new Exception("Error updating item"); }
@@ -121,9 +127,11 @@ namespace MySARAssist.Services
 
         public async Task<Organization?> GetMostFrequentOrganizationAsync()
         {
+            await conn.CreateTableAsync<Personnel>();
+
             Organization? mostPopularOrg = null;
 
-            List<Organization> allOrgs = OrganizationTools.GetOrganizations(Guid.Empty);
+            List<Organization> allOrgs = await new OrganizationService().GetItems() as List<Organization>; //OrganizationTools.GetStaticOrganizations(Guid.Empty);
             try
             {
                 var _AllTeamMembers = await GetItems();
@@ -157,6 +165,8 @@ namespace MySARAssist.Services
 
         public async Task<Personnel?> GetCurrentPersonAsync()
         {
+            await conn.CreateTableAsync<Personnel>();
+
             string selectedID = Preferences.Get("SelectedPersonID", string.Empty);
             if (!string.IsNullOrEmpty(selectedID))
             {

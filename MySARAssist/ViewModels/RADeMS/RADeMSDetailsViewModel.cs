@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-
+using Microsoft.Extensions.Logging;
 using MySARAssist.Models.Events;
 using MySarAssistModels.RADeMS;
 using System;
@@ -23,6 +23,7 @@ namespace MySARAssist.ViewModels.RADeMS
         public RADeMSDetailsViewModel()
         {
             ShareScoreCommand = new Command(async () => await OnShareScoreCommand());
+            ViewCardCommand = new Command(async () => OnViewCardCommand());
             if (rademsCateogry != null) { rademsScore.CategoryID = rademsCateogry.ID; }
 
             if (App.CurrentPerson != null) { SetByName = App.CurrentPerson.Name; }
@@ -154,15 +155,29 @@ namespace MySARAssist.ViewModels.RADeMS
 
 
         public Command ShareScoreCommand { get; }
+        public Command ViewCardCommand { get; }
 
         private async Task OnShareScoreCommand()
         {
-            await Share.Default.RequestAsync(new ShareTextRequest
+            try
             {
-                Text = GetFullTextForShare(),
-                Title = "Share Score"
-            });
+                await Share.Default.RequestAsync(new ShareTextRequest
+                {
+                    Text = GetFullTextForShare(),
+                    Title = "Share Score"
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        private async void OnViewCardCommand()
+        {
+            await Shell.Current.GoToAsync($"{nameof(Views.RADeMS.RADeMSCardPage)}?OpRisk={rademsScore.OperationalRisk}&ResCap={rademsScore.ResponseCapacity}");
+           
+           
         }
 
 

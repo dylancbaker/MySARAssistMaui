@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +48,7 @@ namespace MySarAssistModels.People
 
 
 
-        public Guid OrganizationID { get => _organizationID; set => _organizationID = value; }
+        [PrimaryKey] public Guid OrganizationID { get => _organizationID; set => _organizationID = value; }
         public Guid ParentOrganizationID { get => _ParentOrganizationID; set => _ParentOrganizationID = value; }
         public string ShortOrganizationID
         {

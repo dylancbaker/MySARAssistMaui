@@ -5,40 +5,43 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MySARAssist"
     xmlns:views="clr-namespace:MySARAssist.Views"
+    xmlns:checkinviews="clr-namespace:MySARAssist.Views.CheckInOut"
     Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Primary}}"
-    Shell.FlyoutBackdrop="DarkGray"
+    Shell.FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}"
+    Shell.FlyoutBackdrop="{StaticResource Tertiary}"
     Title="My SAR Assist">
 
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid BackgroundColor="{StaticResource Tertiary}"
-                  HeightRequest="200">
+            <Grid BackgroundColor="{StaticResource OffBlack}"
+                  HeightRequest="300">
                 <Image Aspect="AspectFill"
-                       Source="sar_command_assist_logo.png"
+                       Source="sar_assist_logo.png"
                        Opacity="0.6" />
                 
             </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
+   
 
-    <FlyoutItem Title="Home" Icon="house_icon.png">
-        <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Icon="house_icon.png" Route="MainPage" />
+    <FlyoutItem Title="Home" Icon="glyphicons_basic_21_home.png">
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}"  />
     </FlyoutItem>
 
-    <FlyoutItem Title="Calculators" Icon="calculator_icon.png">
-        <ShellContent ContentTemplate="{DataTemplate views:CalculatorsView}" Icon="calculaor_icon.png" Route="CalculatorsView"></ShellContent>
+    <FlyoutItem Title="Calculators" Icon="glyphicons_basic_234_calculator.png">
+        <ShellContent ContentTemplate="{DataTemplate views:CalculatorsView}" ></ShellContent>
         
     </FlyoutItem>
 
-    <FlyoutItem Title="Check In / Out" Icon="clock_icon.png">
-        <ShellContent ContentTemplate="{DataTemplate views:CheckInOut.CheckInOutView}" Route="CheckInOutView"></ShellContent>
+    <FlyoutItem Title="Check In / Out" Icon="glyphicons_basic_607_user_check.png">
+        <ShellContent ContentTemplate="{DataTemplate checkinviews:CheckInOutView}" ></ShellContent>
     </FlyoutItem>
 
     <FlyoutItem Title="RADeMS Risk Assessment" Icon="radems_grid_icon.png">
-        <ShellContent ContentTemplate="{DataTemplate views:RADeMSView}" Route="RADeMSView"></ShellContent>
+        <ShellContent ContentTemplate="{DataTemplate views:RADeMSView}" ></ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="About My SAR Assist"  Icon="icon_about.png">
-        <ShellContent ContentTemplate="{DataTemplate views:AboutView}" Route="AboutView"></ShellContent>
+    <FlyoutItem Title="About My SAR Assist"  Icon="glyphicons_basic_196_circle_empty_info.png">
+        <ShellContent ContentTemplate="{DataTemplate views:AboutView}" ></ShellContent>
     </FlyoutItem>
 </Shell>

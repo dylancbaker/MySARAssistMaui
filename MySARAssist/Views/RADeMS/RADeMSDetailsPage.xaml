@@ -12,7 +12,7 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="190"></RowDefinition>
+            <RowDefinition Height="180"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -41,9 +41,9 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
 
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
                                     <!-- title-->
-                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
                                     <!-- description-->
                                     <RowDefinition Height="*"></RowDefinition>
                                     <!-- buttons -->
@@ -60,8 +60,8 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                                 </Grid.ColumnDefinitions>
 
 
-                                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding question.QuestionText}" Style="{StaticResource FormFieldTitle}" FontAttributes="Bold"></Label>
-                                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  Text="{Binding question.Description}" Style="{StaticResource FormFieldTitle}"></Label>
+                                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding question.QuestionText}" Style="{StaticResource RADeMSQuestionTitle}" FontAttributes="Bold"></Label>
+                                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  Text="{Binding question.Description}" Style="{StaticResource RADeMSQuestionTitle}"></Label>
 
                                 <!-- summary display -->
                                 <Button IsVisible="{Binding ShowSummary}" Text="{Binding question.Option1LabelWithNum}" Command="{Binding SetOption1}" Style="{StaticResource RademsButton}" BackgroundColor="{Binding Option1ButtonColor}" Grid.Row="2" Grid.Column="0"></Button>
@@ -96,9 +96,9 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
 
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
                                     <!-- title-->
-                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="30"></RowDefinition>
                                     <!-- description-->
                                     <RowDefinition Height="*"></RowDefinition>
                                     <!-- buttons -->
@@ -113,8 +113,8 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                                 </Grid.ColumnDefinitions>
 
 
-                                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding question.QuestionText}" Style="{StaticResource FormFieldTitle}" FontAttributes="Bold"></Label>
-                                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  Text="{Binding question.Description}" Style="{StaticResource FormFieldTitle}"></Label>
+                                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding question.QuestionText}" Style="{StaticResource RADeMSQuestionTitle}" FontAttributes="Bold"></Label>
+                                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  Text="{Binding question.Description}" Style="{StaticResource RADeMSQuestionTitle}"></Label>
 
                                 <Button Text="{Binding question.Option1LabelWithNum}" Command="{Binding SetOption1}" Style="{StaticResource RademsButton}" BackgroundColor="{Binding Option1ButtonColor}" Grid.Row="2" Grid.Column="0"></Button>
                                 <Button Text="{Binding question.Option2LabelWithNum}" Command="{Binding SetOption2}" Style="{StaticResource RademsButton}"  BackgroundColor="{Binding Option2ButtonColor}" Grid.Row="2" Grid.Column="1"></Button>
@@ -133,7 +133,7 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
 
 
                 <Label Style="{StaticResource FormFieldTitle}" Text="Comments"></Label>
-                <Entry Text="{Binding Comment}" Placeholder="Notes about the score"></Entry>
+                <Editor MinimumHeightRequest="75"  Text="{Binding Comment}" Placeholder="Notes about the score"></Editor>
 
 
 
@@ -157,7 +157,7 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="1"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
@@ -166,8 +166,8 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                 <Label Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"   Style="{StaticResource CalculatorResultValue}"  Text="{Binding RademsResultText}"></Label>
                 <Label Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="2"   Style="{StaticResource CalculatorResultUOM}" HorizontalTextAlignment="End" Text="Short Code"></Label>
                 <Label Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="2"   Style="{StaticResource CalculatorResultValue}" HorizontalTextAlignment="Start"  Text="{Binding ShortCodeText}"></Label>
-                <Button Grid.Column="1" Grid.Row="3" Text="View Card"></Button>
-                <Button Grid.Column="2" Grid.Row="3" Command="{Binding ShareScoreCommand}" Text="Share Score"></Button>
+                <Button Grid.Column="1" Grid.Row="3" Text="View Card" Command="{Binding ViewCardCommand}" Style="{StaticResource StandardButton}" ></Button>
+                <Button Grid.Column="2" Grid.Row="3" Command="{Binding ShareScoreCommand}" Style="{StaticResource StandardButton}"  Text="Share Score"></Button>
 
                 <VerticalStackLayout Grid.Column="4" Grid.Row="0" Grid.RowSpan="4" BackgroundColor="{Binding ScoreColor}"></VerticalStackLayout>
             </Grid>

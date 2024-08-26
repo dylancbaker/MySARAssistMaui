@@ -11,8 +11,8 @@
             Padding="30,0"
             Spacing="25">
             <Image
-                Source="sar_command_assist_logo.png"
-                HeightRequest="185"
+                Source="sar_assist_logo.png"
+                HeightRequest="200"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
@@ -23,17 +23,17 @@
 
             
             <Button
-                Text="Check In or Out" ImageSource="clock_icon.png" MaximumHeightRequest="80"
-                x:Name="CheckInOutButton" Clicked="CheckInOutButton_Clicked"
+                Text="Check In or Out" ImageSource="glyphicons_basic_607_user_check.png" 
+                x:Name="CheckInOutButton" Clicked="CheckInOutButton_Clicked" Style="{StaticResource StandardButton}"
                 HorizontalOptions="Fill" />
 
             <Button
-                Text="Calculators" ImageSource="calculator_icon.png" MaximumHeightRequest="80"
+                Text="Calculators" ImageSource="glyphicons_basic_234_calculator.png"  Style="{StaticResource StandardButton}"
                 SemanticProperties.Hint="Counts the number of times you click"
                 HorizontalOptions="Fill" x:Name="CalculatorsButton" Clicked="CalculatorsButton_Clicked" />
 
             <Button
-                Text="RADeMS Risk Assessment"  ImageSource="radems_grid_icon.png" MaximumHeightRequest="80"
+                Text="RADeMS Risk Assessment"  ImageSource="radems_grid_icon.png"  Style="{StaticResource StandardButton}"
                 x:Name="RADeMSButton" Clicked="RADeMSButton_Clicked"
                 HorizontalOptions="Fill" />
 

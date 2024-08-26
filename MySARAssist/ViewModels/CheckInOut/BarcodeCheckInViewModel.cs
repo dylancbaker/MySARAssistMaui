@@ -25,7 +25,7 @@ namespace MySARAssist.ViewModels.CheckInOut
         {
             get
             {
-                if (App.CurrentPerson != null) { return App.CurrentPerson.NameWithGroup; }
+                if (App.CurrentPerson != null) { return App.CurrentPerson.Name; }
                 else { return "-No member selected-"; }
             }
         }

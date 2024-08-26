@@ -10,5 +10,6 @@ namespace MySARAssist
     public static class Constants
     {
        public static string dbPath = System.IO.Path.Combine(FileSystem.AppDataDirectory, "mysarassist.db3");
+        public static string RestUrl = "https://www.sarassist.ca/ICAUpdatesWebservice.asmx";
     }
 }

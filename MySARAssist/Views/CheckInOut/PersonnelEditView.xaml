@@ -14,7 +14,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -52,8 +52,8 @@
 
                 <Label Style="{StaticResource FormFieldTitle}" >SAR Group  / Organization</Label>
                 <Picker x:Name="pickParentOrganization" ItemsSource="{Binding ParentOrganizations}" SelectedIndex="{Binding ParentOrgIndex, Mode=TwoWay}" SelectedIndexChanged="pickParentOrganization_SelectedIndexChanged" ItemDisplayBinding="{Binding OrganizationName}"></Picker>
-                
-                <Picker x:Name="pickOrganization" SelectedIndex="{Binding OrgIndex}" ItemDisplayBinding="{Binding OrganizationName}"></Picker>
+
+                <Picker x:Name="pickOrganization" SelectedIndex="{Binding OrgIndex, Mode=TwoWay}"  ItemsSource="{Binding Organizations}" ItemDisplayBinding="{Binding OrganizationName}"></Picker>
 
                 <Label Style="{StaticResource FormFieldTitle}" >Email*</Label>
                 <Entry  Placeholder="Email address (required)" Keyboard="Email" x:Name="txtEmail" Text="{Binding Email}">
@@ -107,9 +107,14 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="2*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="btnCancel" Grid.Column="0" Text="Cancel" HorizontalOptions="FillAndExpand" Command="{Binding CancelCommand}"></Button>
-            <Button x:Name="btnDelete" Grid.Column="1"  Text="Delete" HorizontalOptions="Center" Clicked="btnDelete_Clicked"></Button>
-            <Button x:Name="btnNext" Grid.Column="2" Text="Next" HorizontalOptions="FillAndExpand" Command="{Binding NextCommand}" Clicked="btnNext_Clicked"></Button>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="5"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnCancel" Grid.Column="0" Text="Cancel" HorizontalOptions="FillAndExpand" Margin="5"  Style="{StaticResource StandardButton}" Command="{Binding CancelCommand}"></Button>
+            <Button x:Name="btnDelete" Grid.Column="1"  Text="Delete" HorizontalOptions="Center" Margin="5"  Style="{StaticResource StandardButton}"  Clicked="btnDelete_Clicked" BackgroundColor="{StaticResource RADRed}"></Button>
+            <Button x:Name="btnNext" Grid.Column="2" Text="Next" HorizontalOptions="FillAndExpand" Margin="5, 0, 5, 0"   Style="{StaticResource StandardButton}"  Command="{Binding NextCommand}" Clicked="btnNext_Clicked"></Button>
+            <Label Grid.Row="1" Grid.Column="1"></Label>
         </Grid>
 
     </Grid>

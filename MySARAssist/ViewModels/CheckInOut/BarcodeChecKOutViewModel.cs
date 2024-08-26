@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using MySarAssistModels.People;
 namespace MySARAssist.ViewModels.CheckInOut
 {
-    public class BarcodeChecKOutViewModel : ObservableObject
+    public class BarcodeCheckOutViewModel : ObservableObject
     {
-        public BarcodeChecKOutViewModel()
+        public BarcodeCheckOutViewModel()
         {
             SignOutTime = DateTime.Now.TimeOfDay;
             KMs = 0;
@@ -25,7 +25,7 @@ namespace MySARAssist.ViewModels.CheckInOut
             get
             {
                 if (App.CurrentPerson == null) { return "-No member selected-"; }
-                return App.CurrentPerson.NameWithGroup ?? "-No member selected-";
+                return App.CurrentPerson.Name ?? "-No member selected-";
             }
         }
 

@@ -1,17 +1,25 @@
+using MetroLog.Maui;
+using Microsoft.Extensions.Logging;
+
 namespace MySARAssist.Views.Calculators;
 
 public partial class VisualSearchResourceEstimationView : ContentPage
 {
-	public VisualSearchResourceEstimationView()
-	{
-		InitializeComponent();
-	}
+    private readonly ILogger<MainPage> logger;
 
-    protected override void OnSizeAllocated(double width, double height)
+    public VisualSearchResourceEstimationView(ILogger<MainPage> logger)
     {
-        base.OnSizeAllocated(width, height);
+        try
+        {
+            InitializeComponent();
+            this.logger = logger;
+            LogController.SuspendShake();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "Error in VisualSearchResourceEstimationView constructor");
 
-       
-
+        }
     }
+
 }

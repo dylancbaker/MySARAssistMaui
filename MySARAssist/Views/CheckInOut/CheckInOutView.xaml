@@ -30,13 +30,13 @@
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" Style="{StaticResource FormFieldTitle}" HorizontalOptions="Fill" Text="Currently Selected Member"></Label>
                 <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="lblCurrentMember" Text="{Binding CurrentMemberName}" Style="{StaticResource SubHeadline}"  HorizontalTextAlignment="Center" HorizontalOptions="Fill"></Label>
 
-                <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditMember" Text="Edit" Command="{Binding EditMemberCommand}" HorizontalOptions="Fill"></Button>
-                <Button  Grid.Row="2" Grid.Column="1" Text="Swap" x:Name="btnChangeSelectedMember" Command="{Binding ChangeSelectedMemberCommand}"   HorizontalOptions="Fill"></Button>
+                <Button Grid.Row="2" Grid.Column="0" x:Name="btnEditMember" Text="Edit" Command="{Binding EditMemberCommand}" Style="{StaticResource StandardButton}" HorizontalOptions="Fill"></Button>
+                <Button  Grid.Row="2" Grid.Column="1" Text="Swap" x:Name="btnChangeSelectedMember" Command="{Binding ChangeSelectedMemberCommand}"   Style="{StaticResource StandardButton}" HorizontalOptions="Fill"></Button>
 
                 <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SubHeadline}" Text="Check in by QR Code"></Label>
 
-                <Button  Grid.Row="5" Grid.Column="0" Command="{Binding SignInCommand}"  Text="Check In" IsEnabled="{Binding AllowSignInAndOut}" ></Button>
-                <Button Grid.Row="5" Grid.Column="1" Command="{Binding SignOutCommand}"  Text="Check Out"  IsEnabled="{Binding AllowSignInAndOut}"  ></Button>
+                <Button  Grid.Row="5" Grid.Column="0" Command="{Binding SignInCommand}"  Text="Check In" IsEnabled="{Binding AllowSignInAndOut}" Style="{StaticResource StandardButton}" ></Button>
+                <Button Grid.Row="5" Grid.Column="1" Command="{Binding SignOutCommand}"  Text="Check Out"  IsEnabled="{Binding AllowSignInAndOut}"  Style="{StaticResource StandardButton}" ></Button>
 
             </Grid>
             
@@ -44,7 +44,7 @@
             <VerticalStackLayout x:Name="slNoCurrentMemberExists" IsVisible="{Binding ShowCreateNewUser}" >
                 <Label  HorizontalTextAlignment="Center" HorizontalOptions="Fill" Text="In order to sign in or out of a SAR task, you'll need to add some information."></Label>
                 <Button x:Name="btnAddUser" Clicked="btnAddUser_Clicked"  Text="Add New Person" ></Button>
-                <Button x:Name="btnSelectUser" Clicked="btnSelectUser_Clicked" Text="Select a Person" IsVisible="{Binding ShowSelectUserButton}"></Button>
+                <Button x:Name="btnSelectUser" Clicked="btnSelectUser_Clicked" Text="Select a Person" IsVisible="{Binding ShowSelectUserButton}" Style="{StaticResource StandardButton}"></Button>
             </VerticalStackLayout>
 
         </VerticalStackLayout>

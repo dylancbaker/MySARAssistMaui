@@ -21,18 +21,20 @@ namespace MySARAssist.ViewModels.CheckInOut
     {
         public PersonnelEditViewModel()
         {
-            Organizations = OrganizationTools.GetOrganizations(Guid.Empty);
+            //Organizations = OrganizationTools.GetStaticOrganizations(Guid.Empty);
             CancelCommand = new Command(OnCancelCommand);
             NextCommand = new Command(OnNextCommand);
             DeleteCommand = new Command(OnDeleteCommand);
             BackCommand = new Command(OnCancelCommand);
+            this._organizationService = new OrganizationService();
             this._personnelService = new PersonnelService();
+            Task.Run(async () => ParentOrganizations = await organizationService.GetItems(Guid.Empty) as List<Organization>).Wait();
+            Task.Run(async () => Organizations = await organizationService.GetItems() as List<Organization>).Wait();
             //CurrentMember = new Personnel();
         }
-
+        private OrganizationService organizationService = new OrganizationService();
         public List<Organization> Organizations { get; private set; }
-        public List<Organization> ParentOrganizations { get => OrganizationTools.GetParentOrganizations(); }
-
+        public List<Organization> ParentOrganizations { get; set; } = new List<Organization>();
         public Personnel MemberToEdit { get; private set; }= new Personnel();
         public Command CancelCommand { get; }
         public Command DeleteCommand { get; }
@@ -60,7 +62,7 @@ namespace MySARAssist.ViewModels.CheckInOut
 
             if (MemberToEdit != null && MemberToEdit.MemberOrganization == null && MemberToEdit.OrganizationID != Guid.Empty)
             {
-                MemberToEdit.MemberOrganization = OrganizationTools.GetOrganization(MemberToEdit.OrganizationID);
+                MemberToEdit.MemberOrganization = await organizationService.GetItemAsync(MemberToEdit.OrganizationID); //OrganizationTools.GetStaticOrganization(MemberToEdit.OrganizationID);
             }
             if (MemberToEdit != null && MemberToEdit.MemberOrganization != null && ParentOrganizations.Any(o => o.OrganizationID == MemberToEdit.MemberOrganization.ParentOrganizationID))
             {
@@ -108,7 +110,9 @@ namespace MySARAssist.ViewModels.CheckInOut
             set
             {
                 _selectedParentOrgID = value.OrganizationID;
-                Organizations = OrganizationTools.GetOrganizations(_selectedParentOrgID);
+                //Organizations = OrganizationTools.GetStaticOrganizations(_selectedParentOrgID);
+                Task.Run(async () => Organizations = await organizationService.GetItems(_selectedParentOrgID) as List<Organization>).Wait();
+
                 if (Organizations.Any(o => o.OrganizationID == MemberToEdit.OrganizationID))
                 {
                     Organization selected = Organizations.First(o => o.OrganizationID == MemberToEdit.OrganizationID);
@@ -134,12 +138,13 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private int _OrgIndex = 0;
         private readonly PersonnelService _personnelService;
-
+        private readonly OrganizationService _organizationService;
         public int OrgIndex
         {
             get
             {
                 return _OrgIndex;
+                
             }
             set { _OrgIndex = value; 
             if(Organizations.Count > _OrgIndex && _OrgIndex >= 0)
@@ -152,7 +157,7 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnCancelCommand()
         {
-            await Shell.Current.GoToAsync($"..");
+            await Shell.Current.GoToAsync("..");
         }
        
 
@@ -178,7 +183,7 @@ namespace MySARAssist.ViewModels.CheckInOut
                     if(App.CurrentPerson != null && MemberToEdit.PersonID == App.CurrentPerson.PersonID) { App.CurrentPerson = MemberToEdit; }
                     var toast = Toast.Make("Saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
                     await toast.Show(new CancellationToken());
-                    await Shell.Current.GoToAsync($"//{nameof(CheckInOutView)}/{nameof(PersonnelEditView)}/{nameof(EditQualificationsPage)}/?PersonnelID={MemberToEdit.ID.ToString()}");
+                    await Shell.Current.GoToAsync($"{nameof(CheckInOutView)}/{nameof(PersonnelEditView)}/{nameof(EditQualificationsPage)}/?PersonnelID={MemberToEdit.ID.ToString()}");
 
                 }
 

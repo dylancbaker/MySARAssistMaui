@@ -38,10 +38,6 @@ xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Contr
                 <TimePicker Grid.Row="2" Grid.Column="2"  x:Name="tpMustBeOut"  IsEnabled="{Binding UseMustBeOutTime}" Time="{Binding MustBeOutTime, Mode=TwoWay}"></TimePicker>
 
 
-              
-                <!--<Button x:Name="btnUpdateQR" Text="Update QR Code" HorizontalOptions="FillAndExpand" Clicked="btnUpdateQR_Clicked"></Button>
-                -->
-
                 <zxing:BarcodeGeneratorView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
 ForegroundColor="Black"
 Value="{Binding FullQRString}"

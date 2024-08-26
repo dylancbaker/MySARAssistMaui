@@ -31,10 +31,10 @@
 
                         <Label Grid.Column="0" Grid.Row="0"  Text="{Binding NameWithGroupAndCurrent}" HorizontalOptions="FillAndExpand"></Label>
 
-                        <Button  Grid.Column="1" Grid.Row="0"  VerticalOptions="Center" Text="Select" CommandParameter="{Binding PersonID}" Command="{Binding 
+                        <Button  Grid.Column="1" Grid.Row="0"  VerticalOptions="Center" Text="Select" CommandParameter="{Binding PersonID}" Style="{StaticResource StandardButton}"  Command="{Binding 
 Path=BindingContext.SelectPersonnelCommand, 
 Source={x:Reference vslItems}}"></Button>
-                        <Button  Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" Text="Edit" CommandParameter="{Binding PersonID}" Command="{Binding 
+                        <Button  Grid.Column="2" Grid.Row="0"  VerticalOptions="Center" Text="Edit" CommandParameter="{Binding PersonID}" Style="{StaticResource StandardButton}" Command="{Binding 
 Path=BindingContext.EditPersonnelCommand, 
 Source={x:Reference vslItems}}"></Button>
 

@@ -2,6 +2,8 @@
 
 
 
+using Microsoft.Extensions.Logging;
+
 namespace MySARAssist.Views.CheckInOut;
 
 [QueryProperty(nameof(PersonnelID), nameof(PersonnelID))]
@@ -10,12 +12,19 @@ namespace MySARAssist.Views.CheckInOut;
 public partial class PersonnelEditView : ContentPage
 {
     ViewModels.CheckInOut.PersonnelEditViewModel _viewModel;
-    public PersonnelEditView()
-	{
-		InitializeComponent();
-        _viewModel = new ViewModels.CheckInOut.PersonnelEditViewModel();
-        this.BindingContext = _viewModel;
+    private readonly ILogger<MainPage> logger;
 
+    public PersonnelEditView(ILogger<MainPage> logger)
+	{ try
+        {
+            InitializeComponent();
+            _viewModel = new ViewModels.CheckInOut.PersonnelEditViewModel();
+            this.BindingContext = _viewModel;
+            this.logger = logger;
+        }catch (Exception ex)
+        {
+            logger.LogError(ex, "Error in PersonnelEditView constructor");
+        }
     }
 
     public string PersonnelID
@@ -26,7 +35,9 @@ public partial class PersonnelEditView : ContentPage
             if (!string.IsNullOrEmpty(temp))
             {
                 try { _ = _viewModel.SetTeamMember(new Guid(temp)); }
-                catch { _ = _viewModel.SetTeamMember(Guid.NewGuid()); }
+                catch (Exception ex) { _ = _viewModel.SetTeamMember(Guid.NewGuid());
+                logger.LogError(ex, "Error in PersonnelEditView.PersonnelID.set");
+                }
             }
         }
     }
@@ -37,13 +48,14 @@ public partial class PersonnelEditView : ContentPage
         if (answer)
         {
             _viewModel.DeleteCommand.Execute(null);
+            logger.LogInformation("Member deleted");
         }
     }
 
     private void pickParentOrganization_SelectedIndexChanged(object sender, EventArgs e)
     {
-        pickOrganization.ItemsSource = null;
-        pickOrganization.ItemsSource = _viewModel.Organizations;
+        //pickOrganization.ItemsSource = null;
+        //pickOrganization.ItemsSource = _viewModel.Organizations;
 
     }
 

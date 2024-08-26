@@ -2,15 +2,19 @@ using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using MySarAssistModels;
 using MySARAssist.Models;
+using MetroLog.Maui;
+using Microsoft.Extensions.Logging;
 namespace MySARAssist.Views.Calculators;
 
 public partial class CoordinateConverterView : ContentPage
 {
-	public CoordinateConverterView()
+	public CoordinateConverterView(ILogger<MainPage> logger)
 	{
 		InitializeComponent();
-        
-	}
+        LogController.SuspendShake();
+        this.logger = logger;
+        cts = new CancellationTokenSource();
+    }
 
 
     public async Task<PermissionStatus> CheckAndRequestLocationPermission()
@@ -118,6 +122,7 @@ public partial class CoordinateConverterView : ContentPage
     }
 
     CancellationTokenSource cts;
+    private readonly ILogger<MainPage> logger;
 
     async Task GetCurrentLocation()
     {

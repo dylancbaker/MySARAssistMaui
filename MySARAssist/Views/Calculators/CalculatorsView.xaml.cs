@@ -1,11 +1,26 @@
+using MetroLog.Maui;
+using Microsoft.Extensions.Logging;
+using MySARAssist.Views.Calculators;
+
 namespace MySARAssist.Views;
 
 public partial class CalculatorsView : ContentPage
 {
-	public CalculatorsView()
+    private readonly ILogger<MainPage> logger;
+
+    public CalculatorsView(ILogger<MainPage> logger)
 	{
 		InitializeComponent();
-	}
+        LogController.ResumeShakeIfNeeded();
+        this.logger = logger;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LogController.ResumeShakeIfNeeded();
+
+    }
 
     protected override void OnSizeAllocated(double width, double height)
     {
@@ -24,43 +39,44 @@ public partial class CalculatorsView : ContentPage
 
     private async void CoordinateConverterButton_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Views.Calculators.CoordinateConverterView());
+        await Shell.Current.GoToAsync($"{nameof(Views.CalculatorsView)}/{nameof(Views.Calculators.CoordinateConverterView)}");
 
     }
 
 
     private async void GridSearch_Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Views.Calculators.GridSearchView());
+        await Shell.Current.GoToAsync($"{nameof(Views.CalculatorsView)}/{nameof(Views.Calculators.GridSearchView)}");
     }
 
     private async void LinearSearch_Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Views.Calculators.LinearSearchView());
+        await Shell.Current.GoToAsync($"{nameof(Views.CalculatorsView)}/{nameof(Views.Calculators.LinearSearchView)}");
     }
 
     private async void VisualSearchResources_Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Views.Calculators.VisualSearchResourceEstimationView());
+        await Shell.Current.GoToAsync($"{nameof(Views.CalculatorsView)}/{nameof(Views.Calculators.VisualSearchResourceEstimationView)}");
 
     }
 
     private async void Pacing_Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Views.Calculators.PacingToDistancePage());
+        await Shell.Current.GoToAsync($"{nameof(Views.CalculatorsView)}/{nameof(Views.Calculators.PacingToDistancePage)}");
 
     }
 
     private async void VisualSearch_Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Views.Calculators.SweepWidthCalculatorView());
+        //await Navigation.PushAsync(new Views.Calculators.SweepWidthCalculatorView());
+        await Shell.Current.GoToAsync($"{nameof(Views.CalculatorsView)}/{nameof(Views.Calculators.SweepWidthCalculatorView)}");
 
     }
 
 
     private async void DistToPacing_Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Views.Calculators.DistanceToPacingPage());
+        await Shell.Current.GoToAsync($"{nameof(Views.CalculatorsView)}/{nameof(Views.Calculators.DistanceToPacingPage)}");
 
     }
 }

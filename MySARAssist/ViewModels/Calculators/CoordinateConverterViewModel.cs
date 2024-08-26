@@ -118,6 +118,8 @@ namespace MySARAssist.ViewModels.Calculators
         public string MGRS { get { if (CoordinatesOk) { return _coordinate.MGRS; } else { return string.Empty; } } }
         public string DecimalDegrees { get { if (CoordinatesOk) { return _coordinate.DecimalDegrees; } else { return string.Empty; } } }
         public string DMS { get { if (CoordinatesOk) { return _coordinate.DegreesMinutesSeconds; } else { return string.Empty; } } }
+        public string DMSLatitude { get { if (CoordinatesOk) { return _coordinate.DMSLatitude; } else { return string.Empty; } } }
+        public string DMSLongitude { get { if (CoordinatesOk) { return _coordinate.DMSLongitude; } else { return string.Empty; } } }
         public string ShortUTM { get { if (CoordinatesOk) { return _coordinate.ShortUTM; } else { return string.Empty; } } }
 
         private void RefreshCoordinates()
@@ -127,6 +129,8 @@ namespace MySARAssist.ViewModels.Calculators
             OnPropertyChanged(nameof(DecimalDegrees));
             OnPropertyChanged(nameof(DMS));
             OnPropertyChanged(nameof(ShortUTM));
+            OnPropertyChanged(nameof(DMSLatitude));
+            OnPropertyChanged(nameof(DMSLongitude));
         }
     }
 }

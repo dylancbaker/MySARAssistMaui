@@ -10,7 +10,7 @@ x:DataType="vm:RADeMSTypesViewModel"
     <ContentPage.BindingContext>
         <vm:RADeMSTypesViewModel></vm:RADeMSTypesViewModel>
     </ContentPage.BindingContext>
-    
+    <ScrollView>
     <VerticalStackLayout Padding="20">
         <Label 
             Text="Response Assessment and Decision Making Support (RADeMS)"
@@ -25,7 +25,7 @@ x:DataType="vm:RADeMSTypesViewModel"
         <VerticalStackLayout BindableLayout.ItemsSource="{Binding RADeMSCategories}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="models:RADeMSCategoryViewModel">
-                    <Button Command="{Binding NavigateToDetailsCommand}" Text="{Binding Name}"></Button>
+                        <Button Command="{Binding NavigateToDetailsCommand}"  Style="{StaticResource StandardButton}"  Text="{Binding Name}"></Button>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </VerticalStackLayout>
@@ -33,4 +33,5 @@ x:DataType="vm:RADeMSTypesViewModel"
       
 
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

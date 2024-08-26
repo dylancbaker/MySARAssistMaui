@@ -134,6 +134,8 @@ namespace MySARAssist.ViewModels.Calculators
         {
             if (PacesPer100m != 0)
             {
+                CurrentMemberPace = PacesPer100m;
+
                 switch (currentMode)
                 {
                     case "Paces":

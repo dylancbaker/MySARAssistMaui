@@ -4,6 +4,11 @@ using MySARAssist.ViewModels.CheckInOut;
 using CommunityToolkit.Maui;
 using MetroLog.MicrosoftExtensions;
 using ZXing.Net.Maui.Controls;
+using MySARAssist.Interfaces;
+using MySARAssist.Views.Calculators;
+using MySARAssist.Views;
+using MySARAssist.Views.CheckInOut;
+using MySARAssist.Views.RADeMS;
 
 namespace MySARAssist
 {
@@ -24,10 +29,46 @@ namespace MySARAssist
 
             builder.Logging.AddInMemoryLogger(options =>
             {
-                
+                options.MaxLines = 1024;
+                options.MinLevel = LogLevel.Debug;
+                options.MaxLevel = LogLevel.Critical;
+
+            });
+            builder.Logging.AddStreamingFileLogger(options =>
+            {
+                options.RetainDays = 2;
+                options.FolderPath = Path.Combine(
+                    FileSystem.CacheDirectory,
+                    "MetroLogs");
+
             });
             builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<AboutView>();
+
+            builder.Services.AddTransient<CalculatorsView>();
+            builder.Services.AddTransient<CoordinateConverterView>();
+            builder.Services.AddTransient<DistanceToPacingPage>();
+            builder.Services.AddTransient<GridSearchView>();
+            builder.Services.AddTransient<HowToRangeOfDetectionPage>();
+            builder.Services.AddTransient<LinearSearchView>();
+            builder.Services.AddTransient<PacingToDistancePage>();
+            builder.Services.AddTransient<SweepWidthCalculatorView>();
+            builder.Services.AddTransient<VisualSearchResourceEstimationView>();
+
+            builder.Services.AddTransient<CheckInOutView>();
+            builder.Services.AddTransient<CheckInView>();
+            builder.Services.AddTransient<CheckOutView>();
+            builder.Services.AddTransient<EditQualificationsPage>();
+            builder.Services.AddTransient<PersonnelEditView>();
+            builder.Services.AddTransient<PersonnelListView>();
+
+            builder.Services.AddTransient<RADeMSView>();
+            builder.Services.AddTransient<RADeMSDetailsPage>();
+            builder.Services.AddTransient<RADeMSCardPage>();
+
+
             builder.UseBarcodeReader();
+
 
 
 #if DEBUG

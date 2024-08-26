@@ -6,34 +6,21 @@
     <ScrollView>
         <StackLayout x:Name="slPageContent" Orientation="Vertical"  Padding="20">
             <VerticalStackLayout>
-                <Label Text="Work Estimations" FontSize="Title" ></Label>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Button Text="Grid Search" ContentLayout="Top,0"  Grid.Column="0" Grid.Row="0" ImageSource="grid_icon.png" x:Name="GridSearch_Button" Clicked="GridSearch_Button_Clicked"  HorizontalOptions="Fill" ></Button>
-                    <Button Text="Linear Search" ContentLayout="Top,0" Grid.Column="1" Grid.Row="0"  ImageSource="line_icon.png" x:Name="LinearSearch_Button" Clicked="LinearSearch_Button_Clicked"  HorizontalOptions="Fill" ></Button>
+                <Label Text="Work/Time Estimates" FontSize="Title" ></Label>
+                <Button Text="Grid Search"  ImageSource="glyphicons_basic_159_thumbnails_list.png" x:Name="GridSearch_Button" Clicked="GridSearch_Button_Clicked"  HorizontalOptions="Fill"  Style="{StaticResource StandardButton}"></Button>
+                <Button Text="Linear Search" LineBreakMode="WordWrap" ImageSource="glyphicons_basic_98_vector_path_line.png" x:Name="LinearSearch_Button" Clicked="LinearSearch_Button_Clicked"  Style="{StaticResource StandardButton}" HorizontalOptions="Fill" ></Button>
 
-                </Grid>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-                </StackLayout>
-                <Button Text="Visual Search Resource Est." x:Name="VisualSearchResources_Button" Clicked="VisualSearchResources_Button_Clicked" ImageSource="grid_icon.png"  HorizontalOptions="Fill"  ></Button>
+                <Button Text="Visual Search Resource Est." x:Name="VisualSearchResources_Button" Clicked="VisualSearchResources_Button_Clicked" ImageSource="glyphicons_basic_159_thumbnails_list.png"  Style="{StaticResource StandardButton}" HorizontalOptions="Fill"  ></Button>
             </VerticalStackLayout>
 
             <VerticalStackLayout>
                 <Label Text="Other Calculators" FontSize="Title" ></Label>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Button Text="Paces to Meters" ContentLayout="Top,0" Grid.Column="0" Grid.Row="0" x:Name="Pacing_Button" Clicked="Pacing_Button_Clicked" ImageSource="footstep_icon.png" ></Button>
-                    <Button Text="Meters to Paces" ContentLayout="Top,0" Grid.Column="1" Grid.Row="0" x:Name="DistToPacing_Button" Clicked="DistToPacing_Button_Clicked" ImageSource="footstep_icon.png" ></Button>
 
-                </Grid>
-                <Button Text="Sweep Width" x:Name="VisualSearch_Button"  Clicked="VisualSearch_Button_Clicked" ImageSource="spacing_icon.png" ></Button>
-                <Button Text="Coordinate Converter" x:Name="CoordinateConverterButton" ImageSource="map_mark_icon.png" Clicked="CoordinateConverterButton_Clicked" ></Button>
+                <Button Text="Paces to Meters"  x:Name="Pacing_Button" Clicked="Pacing_Button_Clicked" ImageSource="glyphicons_basic_462_footprints.png"  Style="{StaticResource StandardButton}"></Button>
+                <Button Text="Meters to Paces"   x:Name="DistToPacing_Button" Clicked="DistToPacing_Button_Clicked" ImageSource="glyphicons_basic_462_footprints.png"  Style="{StaticResource StandardButton}"></Button>
+
+                <Button Text="Sweep Width" x:Name="VisualSearch_Button"  Clicked="VisualSearch_Button_Clicked" ImageSource="glyphicons_basic_69_ruler.png"  Style="{StaticResource StandardButton}"></Button>
+                <Button Text="Coordinate Converter" x:Name="CoordinateConverterButton" ImageSource="glyphicons_basic_592_map.png" Clicked="CoordinateConverterButton_Clicked" Style="{StaticResource StandardButton}" ></Button>
             </VerticalStackLayout>
         </StackLayout>
     </ScrollView>

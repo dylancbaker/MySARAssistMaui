@@ -24,13 +24,13 @@
 
 
                     <!-- RD -->
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                     <!-- Visibility -->
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                     <!-- Target POD -->
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
 
@@ -49,7 +49,7 @@
 
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  Style="{StaticResource FormFieldTitle}"  Text="Range of Detection (meters)"  ></Label>
 
-                <ImageButton Grid.Row="0" Grid.Column="3" x:Name="HowToRDImageButton" Clicked="HowToRDImageButton_Clicked"  Aspect="AspectFit"  Source="info_icon.png"></ImageButton>
+                <ImageButton Grid.Row="0" Grid.Column="3" IsVisible="False" x:Name="HowToRDImageButton" Clicked="HowToRDImageButton_Clicked"  Aspect="AspectFit"  Source="info_icon.png"></ImageButton>
 
 
                 <Entry Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Keyboard="Numeric" Text="{Binding RangeOfDetection}"  Placeholder="Range of Detection / AMDR"  ></Entry>

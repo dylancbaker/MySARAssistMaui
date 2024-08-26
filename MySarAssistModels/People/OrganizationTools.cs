@@ -2,15 +2,8 @@
 {
     public static class OrganizationTools
     {
-        public static Organization? GetOrganization(Guid orgID)
-        {
-            List<Organization> orgs = GetOrganizations(Guid.Empty, false);
-            if (orgs.Any(o => o.OrganizationID == orgID)) { return orgs.First(o => o.OrganizationID == orgID); }
-            if (GetParentOrganizations().Any(o => o.OrganizationID == orgID)) { return GetParentOrganizations().First(O => O.OrganizationID == orgID); }
-            else { return null; }
-        }
-
-        public static List<Organization> GetParentOrganizations()
+      
+        public static List<Organization> GetStaticParentOrganizations()
         {
             List<Organization> organizations = new List<Organization>();
             Guid ABSAR = new Guid("14CC75FE-75D3-44EE-B622-0C0727160675");
@@ -42,7 +35,7 @@
             return organizations;
         }
 
-        public static List<Organization> GetOrganizations(Guid ParentID, bool addBlankRecord = false, bool includeOtherOrgs = true)
+        public static List<Organization> GetStaticOrganizations(Guid ParentID, bool addBlankRecord = false, bool includeOtherOrgs = true)
         {
             //to be used when the org list is needed and internet is not avilable;
             List<Organization> organizations = new List<Organization>();

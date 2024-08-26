@@ -135,57 +135,7 @@ namespace MySarAssistModels.People
 
         }
 
-        public static string StringForQRCompressed(this Personnel p)
-        {
-
-            StringBuilder qr = new StringBuilder();
-            // qr.Append(PersonID.ToString()); qr.Append(";"); //remove?
-
-            qr.Append(p.Name); qr.Append(";");
-            if (p.OrganizationID != Guid.Empty)
-            {
-                Organization org = OrganizationTools.GetOrganization(p.OrganizationID);
-
-                if (org != null)
-                {
-                    qr.Append(org.ShortOrganizationID); qr.Append(";");
-                }
-                else { qr.Append(""); qr.Append(";"); }
-            }
-            else { qr.Append(""); qr.Append(";"); }
-            if (!string.IsNullOrEmpty(p.Address)) { qr.Append(p.Address.Replace(Environment.NewLine, " ")); } else { qr.Append(""); }
-            qr.Append(";");
-            if (!string.IsNullOrEmpty(p.Phone)) { qr.Append(p.Phone.Replace("-", "").Replace(" ", "")); } else { qr.Append(""); }
-            qr.Append(";");
-            qr.Append(p.Email); qr.Append(";");
-            // qr.Append(Callsign); qr.Append(";"); //remove
-            // qr.Append(Reference); qr.Append(";"); //remove
-            //qualifications
-            //pretend these are characters in a binary string and convert to int?
-            StringBuilder bin = new StringBuilder();
-            if (p.GSAR) { bin.Append("1"); } else { bin.Append("0"); }
-            if (p.GSTL) { bin.Append("1"); } else { bin.Append("0"); }
-            if (p.SARM) { bin.Append("1"); } else { bin.Append("0"); }
-            if (p.FirstAid) { bin.Append("1"); } else { bin.Append("0"); }
-            if (p.RopeRescue) { bin.Append("1"); } else { bin.Append("0"); }
-            if (p.Tracker) { bin.Append("1"); } else { bin.Append("0"); }
-            if (p.Swiftwater) { bin.Append("1"); } else { bin.Append("0"); }
-            if (p.MountainRescue) { bin.Append("1"); } else { bin.Append("0"); }
-            int qualNumber = 0;
-            qualNumber = Convert.ToInt32(bin.ToString(), 2);
-            qr.Append(qualNumber);
-            qr.Append(";");
-
-            //nok
-            qr.Append(p.NOKName); qr.Append(";");
-            // qr.Append(NOKRelation); qr.Append(";"); //remove
-            if (!string.IsNullOrEmpty(p.NOKPhone)) { qr.Append(p.NOKPhone.Replace("-", "").Replace(" ", "")); }
-            qr.Append(";");
-
-
-            return qr.ToString();
-
-        }
+       
 
 
         public static bool IsIdentical(this Personnel orig, Personnel compareTo)
@@ -349,6 +299,7 @@ namespace MySarAssistModels.People
             csv.Append("Vegetarian"); csv.Append(delimiter);
             csv.Append("NoGluten"); csv.Append(delimiter);
             // csv.Append("Phone"); csv.Append(delimiter);
+            csv.Append("Pronouns"); csv.Append(delimiter);
 
 
             foreach (Qualification q in qualifications)
@@ -391,9 +342,11 @@ namespace MySarAssistModels.People
                     csv.Append("\""); csv.Append(delimiter);
                 }
 
+                csv.Append("\""); csv.Append(item.Pronouns.EscapeQuotes()); csv.Append("\""); csv.Append(delimiter);
 
                 csv.Append(Environment.NewLine);
             }
+
             return csv.ToString();
         }
 
@@ -414,7 +367,7 @@ namespace MySarAssistModels.People
                     try
                     {
                         string shortOrgID = bits[1];
-                        List<Organization> allOrgs = OrganizationTools.GetOrganizations(Guid.Empty);// new Organization().getStaticOrganizationList();
+                        List<Organization> allOrgs = OrganizationTools.GetStaticOrganizations(Guid.Empty);// new Organization().getStaticOrganizationList();
                         if (allOrgs.Any(o => o.ShortOrganizationID == shortOrgID))
                         {
                             Organization org = allOrgs.First(o => o.ShortOrganizationID == shortOrgID);

@@ -48,8 +48,7 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnBackCommand(object obj)
         {
-            string route = $"//{nameof(CheckInOutView)}/{nameof(PersonnelEditView)}?PersonnelID ={{CurrentMember.ID.ToString()}}";
-            await Shell.Current.GoToAsync(route);
+            await Shell.Current.GoToAsync("..");
         }
 
         private async void SetTeamMember(Guid ID)
@@ -92,7 +91,7 @@ namespace MySARAssist.ViewModels.CheckInOut
                     await SaveCurrentPerson();
                     var toast = Toast.Make("Saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
                     await toast.Show(new CancellationToken());
-                    await Shell.Current.GoToAsync($"//{nameof(CheckInOutView)}");
+                    await Shell.Current.GoToAsync($"{nameof(CheckInOutView)}");
 
                 }
 

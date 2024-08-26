@@ -99,13 +99,13 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         private async void OnEditTeamMembersCommand()
         {
-            if (App.CurrentPerson != null) { await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={App.CurrentPerson.ID}"); }
-            else { await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}"); }
+            if (App.CurrentPerson != null) { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={App.CurrentPerson.ID}"); }
+            else { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}"); }
         }
 
         private async void OnChangeSelectedMemberCommand()
         {
-            await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelListView)}");
+            await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelListView)}");
         }
 
         public async void OnAddMember()
@@ -115,8 +115,8 @@ namespace MySARAssist.ViewModels.CheckInOut
 
         public async void OnEditMember()
         {
-            if (App.CurrentPerson != null) { await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={App.CurrentPerson.ID}"); }
-            else { await Shell.Current.GoToAsync($"//{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}"); }
+            if (App.CurrentPerson != null) { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}?PersonnelID={App.CurrentPerson.ID}"); }
+            else { await Shell.Current.GoToAsync($"{nameof(Views.CheckInOut.CheckInOutView)}/{nameof(Views.CheckInOut.PersonnelEditView)}"); }
 
         }
     }

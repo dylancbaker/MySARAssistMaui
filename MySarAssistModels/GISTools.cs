@@ -250,6 +250,30 @@ namespace MySarAssistModels
                 return coordinate.ToString();
             }
         }
+        public string DMSLatitude
+        {
+            get
+            {
+                CoordinateSharp.Coordinate coordinate = new CoordinateSharp.Coordinate();
+                coordinate.Latitude = new CoordinatePart(Latitude, CoordinateType.Lat);
+                coordinate.Longitude = new CoordinatePart(Longitude, CoordinateType.Long);
+                return coordinate.Latitude.ToString();
+
+            }
+        }
+        public string DMSLongitude
+        {
+            get
+            {
+                CoordinateSharp.Coordinate coordinate = new CoordinateSharp.Coordinate();
+                coordinate.Latitude = new CoordinatePart(Latitude, CoordinateType.Lat);
+                coordinate.Longitude = new CoordinatePart(Longitude, CoordinateType.Long);
+                return coordinate.Longitude.ToString();
+
+            }
+        }
+
+
 
         public string[] DegreesDecimalMinutesSep
         {

@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+
 namespace MySARAssist.Views.CheckInOut;
 
 [QueryProperty(nameof(PersonnelID), nameof(PersonnelID))]
@@ -5,14 +7,20 @@ namespace MySARAssist.Views.CheckInOut;
 
 public partial class EditQualificationsPage : ContentPage
 {
+    private readonly ILogger<MainPage> logger;
     ViewModels.CheckInOut.EditQualificationsViewModel _viewModel;
 
-    public EditQualificationsPage()
-	{
-		InitializeComponent();
+    public EditQualificationsPage(ILogger<MainPage> logger)
+    { try { 
+
+        InitializeComponent();
         _viewModel = new ViewModels.CheckInOut.EditQualificationsViewModel();
         this.BindingContext = _viewModel;
-
+        this.logger = logger;
+    }catch (Exception ex)
+        {
+            logger.LogError(ex, "Error in EditQualificationsPage constructor");
+        }
     }
 
     public string PersonnelID
@@ -23,7 +31,9 @@ public partial class EditQualificationsPage : ContentPage
             if (!string.IsNullOrEmpty(temp))
             {
                 try { _viewModel.TeamMemberID = new Guid(temp); }
-                catch { _viewModel.TeamMemberID = Guid.NewGuid(); }
+                catch (Exception ex) { _viewModel.TeamMemberID = Guid.NewGuid();
+                    logger.LogError(ex, "Error in EditQualificationsPage.PersonnelID.set");
+                }
             }
         }
     }
