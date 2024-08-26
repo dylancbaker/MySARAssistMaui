@@ -28,13 +28,13 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
-	<key>CFBundleIdentifier</key>
-	<string>ca.greathat.MySARAssist</string>
 	<key>CFBundleShortVersionString</key>
 	<string>3.0</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The location is only required when using the coordinate converter to retrieve your current position.</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CFBundleIdentifier</key>
+	<string>ca.greathat.MySARAssist</string>
 </dict>
 </plist>
