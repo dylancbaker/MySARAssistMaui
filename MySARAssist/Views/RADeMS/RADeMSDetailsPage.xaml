@@ -103,6 +103,8 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                                     <RowDefinition Height="*"></RowDefinition>
                                     <!-- buttons -->
                                     <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
                                     <!-- help buttons -->
 
                                 </Grid.RowDefinitions>
@@ -116,10 +118,23 @@ xmlns:questionModels="clr-namespace:MySARAssist.ViewModels.RADeMS"
                                 <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Text="{Binding question.QuestionText}" Style="{StaticResource RADeMSQuestionTitle}" FontAttributes="Bold"></Label>
                                 <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3"  Text="{Binding question.Description}" Style="{StaticResource RADeMSQuestionTitle}"></Label>
 
-                                <Button Text="{Binding question.Option1LabelWithNum}" Command="{Binding SetOption1}" Style="{StaticResource RademsButton}" BackgroundColor="{Binding Option1ButtonColor}" Grid.Row="2" Grid.Column="0"></Button>
-                                <Button Text="{Binding question.Option2LabelWithNum}" Command="{Binding SetOption2}" Style="{StaticResource RademsButton}"  BackgroundColor="{Binding Option2ButtonColor}" Grid.Row="2" Grid.Column="1"></Button>
-                                <Button Text="{Binding question.Option3LabelWithNum}" Command="{Binding SetOption3}" Style="{StaticResource RademsButton}"  BackgroundColor="{Binding Option3ButtonColor}" Grid.Row="2" Grid.Column="2"></Button>
-                                <Button Text="View Details" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"></Button>
+                                <!-- summary display -->
+                                <Button IsVisible="{Binding ShowSummary}" Text="{Binding question.Option1LabelWithNum}" Command="{Binding SetOption1}" Style="{StaticResource RademsButton}" BackgroundColor="{Binding Option1ButtonColor}" Grid.Row="2" Grid.Column="0"></Button>
+                                <Button  IsVisible="{Binding ShowSummary}" Text="{Binding question.Option2LabelWithNum}" Command="{Binding SetOption2}" Style="{StaticResource RademsButton}"  BackgroundColor="{Binding Option2ButtonColor}" Grid.Row="2" Grid.Column="1"></Button>
+                                <Button IsVisible="{Binding ShowSummary}"  Text="{Binding question.Option3LabelWithNum}" Command="{Binding SetOption3}" Style="{StaticResource RademsButton}"  BackgroundColor="{Binding Option3ButtonColor}" Grid.Row="2" Grid.Column="2"></Button>
+                                <Button  IsVisible="{Binding ShowSummary}" Command="{Binding ToggleDetailsCommand}" Text="View Details" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"></Button>
+
+                                <!-- detailed display -->
+
+                                <Button IsVisible="{Binding ShowDetails}"  Text="{Binding question.Option1LabelWithNum}" Command="{Binding SetOption1}" Style="{StaticResource RademsButton}" BackgroundColor="{Binding Option1ButtonColor}" Grid.Row="2" Grid.Column="0"></Button>
+                                <Label IsVisible="{Binding ShowDetails}"  Margin="5,20,5,20" Text="{Binding question.EgOption1Bullets}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"></Label>
+                                <Button  IsVisible="{Binding ShowDetails}"  Text="{Binding question.Option2LabelWithNum}" Command="{Binding SetOption2}" Style="{StaticResource RademsButton}"  BackgroundColor="{Binding Option2ButtonColor}" Grid.Row="3" Grid.Column="0"></Button>
+                                <Label IsVisible="{Binding ShowDetails}"  Margin="5,20,5,20" Text="{Binding question.EgOption2Bullets}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3"></Label>
+                                <Button IsVisible="{Binding ShowDetails}"   Text="{Binding question.Option3LabelWithNum}" Command="{Binding SetOption3}" Style="{StaticResource RademsButton}"  BackgroundColor="{Binding Option3ButtonColor}" Grid.Row="4" Grid.Column="0"></Button>
+                                <Label IsVisible="{Binding ShowDetails}" Margin="5,20,5,20" Text="{Binding question.EgOption3Bullets}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="4"></Label>
+                                <Button  IsVisible="{Binding ShowDetails}"  Command="{Binding ToggleDetailsCommand}"  Text="Hide Details" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"></Button>
+
+
                             </Grid>
 
 
