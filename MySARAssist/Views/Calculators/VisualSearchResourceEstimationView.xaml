@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.VisualSearchResourceEstimationView"
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
-              xmlns:local="clr-namespace:MySARAssist.Converters"
+              xmlns:local="clr-namespace:MySARAssist.Converters"   HideSoftInputOnTapped="True"
 x:DataType="vm:VisualSearchResourceEstimationViewModel"
 
              Title="Visual Search Resource Estimation">

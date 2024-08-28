@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.CheckInOut.PersonnelEditView"
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
-              x:DataType="vm:PersonnelEditViewModel"
+              x:DataType="vm:PersonnelEditViewModel"  HideSoftInputOnTapped="True"
                xmlns:local="clr-namespace:MySARAssist.Models.ValidationTools"
              xmlns:models="clr-namespace:MySarAssistModels.People;assembly=MySarAssistModels"
              Title="Edit Person">
