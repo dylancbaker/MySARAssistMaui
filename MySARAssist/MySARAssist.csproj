@@ -195,7 +195,9 @@
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
-		<MtouchInterpreter>-all</MtouchInterpreter>
+		<MtouchLink>SdkOnly</MtouchLink>
+		<UseInterpreter>true</UseInterpreter>
+		<MtouchExtraArgs>--linkskip=PackageName</MtouchExtraArgs>
 	</PropertyGroup>
 	<PropertyGroup>
 		<UseInterpreter Condition="$(TargetFramework.EndsWith('-ios'))">true</UseInterpreter>
