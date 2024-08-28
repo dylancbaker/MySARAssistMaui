@@ -165,8 +165,8 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
-	  <CodesignKey>Apple Development: Created via API (8S88U6933X)</CodesignKey>
-	  <CodesignProvision>VS: ca.greathat.MySARAssist Development</CodesignProvision>
+	  <CodesignKey>Apple Distribution: Dylan Baker (AHLVEA35GD)</CodesignKey>
+	  <CodesignProvision>My SAR Assist Distro 2024</CodesignProvision>
 	  <ProvisioningType>manual</ProvisioningType>
 	</PropertyGroup>
 
