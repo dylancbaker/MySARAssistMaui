@@ -165,8 +165,8 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
-	  <CodesignKey>Apple Distribution: Dylan Baker (AHLVEA35GD)</CodesignKey>
-	  <CodesignProvision>My SAR Assist Distro 2024</CodesignProvision>
+	  <CodesignKey>Apple Development: Created via API (8S88U6933X)</CodesignKey>
+	  <CodesignProvision>VS: ca.greathat.MySARAssist Development</CodesignProvision>
 	  <ProvisioningType>manual</ProvisioningType>
 	</PropertyGroup>
 
@@ -195,8 +195,11 @@
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
-    <MtouchInterpreter>-all</MtouchInterpreter>
-</PropertyGroup>
+		<MtouchInterpreter>-all</MtouchInterpreter>
+	</PropertyGroup>
+	<PropertyGroup>
+		<UseInterpreter Condition="$(TargetFramework.EndsWith('-ios'))">true</UseInterpreter>
+	</PropertyGroup>
 			
 
 	<ItemGroup>
@@ -264,6 +267,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.80" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.80" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="NewRelic.MAUI.Plugin" Version="1.1.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="NSwag.ApiDescription.Client" Version="14.1.0">
 		  <PrivateAssets>all</PrivateAssets>

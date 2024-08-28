@@ -20,6 +20,7 @@ using MySARAssist.Converters;
 using MySARAssist.Services;
 using MySarAssistModels.Interfaces;
 using MySarAssistModels.People;
+using NewRelic.MAUI.Plugin;
 
 namespace MySARAssist
 {
@@ -36,6 +37,27 @@ namespace MySARAssist
             this._personnelService = new PersonnelService();
 
             MainPage = new AppShell();
+
+            CrossNewRelic.Current.HandleUncaughtException();
+            CrossNewRelic.Current.TrackShellNavigatedEvents();
+
+            // Set optional agent configuration
+            // Options are: crashReportingEnabled, loggingEnabled, logLevel, collectorAddress, crashCollectorAddress
+            // AgentStartConfiguration agentConfig = new AgentStartConfiguration(true, true, LogLevel.INFO, "mobile-collector.newrelic.com", "mobile-crash.newrelic.com");
+
+            if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+            {
+                CrossNewRelic.Current.Start("AA32d4cf0465ae3269a836f3f40801a1bd04f4e60e-NRMA");
+                // Start with optional agent configuration 
+                // CrossNewRelic.Current.Start("<YOUR_ANDROID_TOKEN>", agentConfig);
+            }
+            else if (DeviceInfo.Current.Platform == DevicePlatform.iOS)
+            {
+                CrossNewRelic.Current.Start("AA6a713ecb46cfabf55e052bfd4f6297c55258ea9e-NRMA");
+                // Start with optional agent configuration 
+                // CrossNewRelic.Current.Start("<YOUR_IOS_TOKEN>", agentConfig);
+            }
+
 
             LogController.InitializeNavigation(
                 page => MainPage!.Navigation.PushModalAsync(page),
