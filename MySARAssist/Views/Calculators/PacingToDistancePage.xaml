@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.PacingToDistancePage"
-                          
+                            HideSoftInputOnTapped="True"
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
 
              Title="Paces to Distance">
@@ -30,10 +30,10 @@
 
 
                     <!-- Pace -->
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                     <!-- Paces -->
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>

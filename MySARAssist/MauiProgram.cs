@@ -11,6 +11,7 @@ using MySARAssist.Views.CheckInOut;
 using MySARAssist.Views.RADeMS;
 using Microsoft.Maui.LifecycleEvents;
 using NewRelic.MAUI.Plugin;
+using MySARAssist.Models;
 
 namespace MySARAssist
 {
@@ -68,7 +69,7 @@ namespace MySARAssist
             builder.Services.AddTransient<RADeMSDetailsPage>();
             builder.Services.AddTransient<RADeMSCardPage>();
 
-
+            EntryHandler.AddDone();
             builder.UseBarcodeReader();
 
 

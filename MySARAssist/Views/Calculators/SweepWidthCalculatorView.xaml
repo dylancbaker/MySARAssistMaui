@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.SweepWidthCalculatorView"
-               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
+               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"  HideSoftInputOnTapped="True"
              Title="Sweep Width Calculator">
     <ContentPage.BindingContext>
         <vm:SweepWidthCalculatorViewModel></vm:SweepWidthCalculatorViewModel>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.CheckInOut.PersonnelEditView"
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
-              x:DataType="vm:PersonnelEditViewModel"
+              x:DataType="vm:PersonnelEditViewModel"  HideSoftInputOnTapped="True"
                xmlns:local="clr-namespace:MySARAssist.Models.ValidationTools"
              xmlns:models="clr-namespace:MySarAssistModels.People;assembly=MySarAssistModels"
              Title="Edit Person">
@@ -37,13 +37,13 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource FormFieldTitle}">Name</Label>
-                    <Entry Grid.Row="1" Grid.Column="0"  Placeholder="Full Name" x:Name="txtFullName" Text="{Binding Name}">
+                    <Entry Grid.Row="1" Grid.Column="0"  Placeholder="e.g. Jane Smith" x:Name="txtFullName" Text="{Binding Name}">
                         <Entry.Behaviors>
                         </Entry.Behaviors>
                     </Entry>
 
                     <Label Grid.Row="0" Grid.Column="2"  Style="{StaticResource FormFieldTitle}" >Pronouns</Label>
-                    <Entry Grid.Row="1" Grid.Column="2" Placeholder="Pronouns"  x:Name="txtPronouns" Text="{Binding Pronouns}"></Entry>
+                    <Entry Grid.Row="1" Grid.Column="2" Placeholder="He/Her/They/etc"  x:Name="txtPronouns" Text="{Binding Pronouns}"></Entry>
 
                 </Grid>
 
@@ -53,20 +53,20 @@
                 <Label Style="{StaticResource FormFieldTitle}" >SAR Group  / Organization</Label>
                 <Picker x:Name="pickParentOrganization" ItemsSource="{Binding ParentOrganizations}" SelectedIndex="{Binding ParentOrgIndex, Mode=TwoWay}" SelectedIndexChanged="pickParentOrganization_SelectedIndexChanged" ItemDisplayBinding="{Binding OrganizationName}"></Picker>
 
-                <Picker x:Name="pickOrganization" SelectedIndex="{Binding OrgIndex, Mode=TwoWay}"  ItemsSource="{Binding Organizations}" ItemDisplayBinding="{Binding OrganizationName}"></Picker>
+                <Picker x:Name="pickOrganization" SelectedIndex="{Binding OrgIndex, Mode=TwoWay}" ItemsSource="{Binding Organizations}" ItemDisplayBinding="{Binding OrganizationName}"></Picker>
 
                 <Label Style="{StaticResource FormFieldTitle}" >Email*</Label>
-                <Entry  Placeholder="Email address (required)" Keyboard="Email" x:Name="txtEmail" Text="{Binding Email}">
+                <Entry  Placeholder="e.g. contact@bcsara.com (required)" Keyboard="Email" x:Name="txtEmail" Text="{Binding Email}">
                     <Entry.Behaviors>
                     </Entry.Behaviors>
                 </Entry>
 
 
                 <Label Style="{StaticResource FormFieldTitle}" >Home Address</Label>
-                <Entry  Placeholder="Address"  x:Name="txtAddress" Text="{Binding Address, Mode=TwoWay}"></Entry>
+                <Entry  Placeholder="e.g. 123 Nowhere St, Vancouver, BC"  x:Name="txtAddress" Text="{Binding Address, Mode=TwoWay}"></Entry>
 
                 <Label Style="{StaticResource FormFieldTitle}" >Phone #</Label>
-                <Entry  Placeholder="Phone" Keyboard="Telephone" x:Name="txtPhone" Text="{Binding Phone, Mode=TwoWay}"></Entry>
+                <Entry  Placeholder="" Keyboard="Telephone" x:Name="txtPhone" Text="{Binding Phone, Mode=TwoWay}"></Entry>
 
 
 
@@ -83,10 +83,10 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Column="0" Grid.Row="0" Style="{StaticResource FormFieldTitle}" >Agency/EMCR ID#</Label>
-                    <Entry  Grid.Column="0" Grid.Row="1"  Placeholder="Agency/EMCR ID#" Keyboard="Numeric" x:Name="txtRef" Text="{Binding Reference, Mode=TwoWay}"></Entry>
+                    <Entry  Grid.Column="0" Grid.Row="1"  Placeholder="e.g. 1234" x:Name="txtRef" Text="{Binding Reference, Mode=TwoWay}"></Entry>
 
                     <Label Grid.Column="2" Grid.Row="0"  Style="{StaticResource FormFieldTitle}" >Call sign</Label>
-                    <Entry  Grid.Column="2" Grid.Row="1"  Placeholder="Call sign" x:Name="txtCallsign" Text="{Binding Callsign, Mode=TwoWay}"></Entry>
+                    <Entry  Grid.Column="2" Grid.Row="1"  Placeholder="" x:Name="txtCallsign" Text="{Binding Callsign, Mode=TwoWay}"></Entry>
 
                 </Grid>
 
@@ -94,8 +94,8 @@
 
                 <Label Style="{StaticResource FormFieldTitle}" >Emergency Contact</Label>
                 <Entry  Placeholder="Emergency Contact Name" x:Name="txtNOKName" Text="{Binding NOKName, Mode=TwoWay}"></Entry>
-                <Entry  Placeholder="Relationship" x:Name="txtNOKRelationship" Text="{Binding NOKRelation, Mode=TwoWay}"></Entry>
-                <Entry  Placeholder="Phone Number" Keyboard="Telephone" x:Name="txtNOKPhone" Text="{Binding NOKPhone, Mode=TwoWay}"></Entry>
+                <Entry  Placeholder="e.g. Partner, Sibling, Parent" x:Name="txtNOKRelationship" Text="{Binding NOKRelation, Mode=TwoWay}"></Entry>
+                <Entry  Placeholder="" Keyboard="Telephone" x:Name="txtNOKPhone" Text="{Binding NOKPhone, Mode=TwoWay}"></Entry>
 
 
             </VerticalStackLayout>

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.Calculators.LinearSearchView"
               xmlns:vm="clr-namespace:MySARAssist.ViewModels.Calculators"
+             HideSoftInputOnTapped="True"
  x:DataType="vm:LinearWorkEstimationViewModel"
              Title="Linear Search Time Estimate">
     <ContentPage.BindingContext>
