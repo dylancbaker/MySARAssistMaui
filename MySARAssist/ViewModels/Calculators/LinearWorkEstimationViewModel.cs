@@ -77,7 +77,7 @@ namespace MySARAssist.ViewModels.Calculators
             {
 
                 estimatedDuration = (Length + (5.3 * (Elevation/1000))) / SearcherSpeed;
-                estimatedDurationWithRoundTrip = ((Length + (5.3 * (Elevation / 1000))) / SearcherSpeed) + ((Length + (5.3)) / SearcherSpeed);
+                estimatedDurationWithRoundTrip = ((Length + (5.3 * (Elevation / 1000))) / SearcherSpeed) + (Length  / SearcherSpeed);
             }
             else { estimatedDuration = 0; }
 
