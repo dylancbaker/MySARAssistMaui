@@ -336,8 +336,8 @@ namespace MySarAssistModels
                     StringBuilder sh = new StringBuilder();
                     int firstSpace = utm.IndexOf(" ");
                     int secondSpace = utm.IndexOf(" ", firstSpace + 1);
-                    sh.Append(utm.Substring(firstSpace + 3, 3)); sh.Append(" "); sh.Append(utm.Substring(secondSpace + 3, 3));
-
+                    //sh.Append(utm.Substring(firstSpace + 3, 3)); sh.Append(" "); sh.Append(utm.Substring(secondSpace + 3, 3));
+                    sh.Append(utm.Substring(secondSpace - 6, 3)); sh.Append(" "); sh.Append(utm.Substring(utm.Length-6, 3));
                     return sh.ToString();
                 }
                 catch

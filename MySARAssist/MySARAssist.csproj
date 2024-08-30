@@ -209,7 +209,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#040404" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#040404" BaseSize="1257, 1208" />
+		<MauiSplashScreen Include="Resources\Images\sar_assist_logo_sq.png" Color="#040404" BaseSize="512, 512" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -248,6 +248,7 @@
 	  <None Remove="Resources\Images\radems_grid_icon.png" />
 	  <None Remove="Resources\Images\range_of_detection.png" />
 	  <None Remove="Resources\Images\sar_assist_logo.png" />
+	  <None Remove="Resources\Images\sar_assist_logo_sq.png" />
 	  <None Remove="Resources\Images\sar_command_assist_logo.png" />
 	  <None Remove="Resources\Images\spacing_icon.png" />
 	  <None Remove="Resources\Splash\splash.png" />
@@ -266,8 +267,8 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.80" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.80" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.82" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="NewRelic.MAUI.Plugin" Version="1.1.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

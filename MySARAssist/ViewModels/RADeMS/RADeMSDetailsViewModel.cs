@@ -184,14 +184,21 @@ namespace MySARAssist.ViewModels.RADeMS
         public string GetFullTextForShare()
         {
             StringBuilder full = new StringBuilder();
-            full.Append("RADeMS Score - "); full.Append(CategoryTitle); full.Append(Environment.NewLine);
-            full.Append("Conducted: "); full.Append(rademsScore.LastUpdatedLocal.ToString("yyyy-MMM-dd HH:mm")); full.Append(Environment.NewLine);
+
+            full.Append("Operational Risk: "); full.Append(rademsScore.OperationalRisk); full.Append(", ");
+            full.Append("Response Capacity: "); full.Append(rademsScore.ResponseCapacity);
+            full.Append(Environment.NewLine);
+
             if (!string.IsNullOrEmpty(SetByName))
             {
                 full.Append("By: "); full.Append(SetByName); full.Append(Environment.NewLine);
             }
             full.Append(Environment.NewLine);
-
+            full.Append("RADeMS Score - "); full.Append(CategoryTitle); full.Append(Environment.NewLine);
+            full.Append("Conducted: "); full.Append(rademsScore.LastUpdatedLocal.ToString("yyyy-MMM-dd HH:mm")); full.Append(Environment.NewLine);
+            
+            full.Append(Environment.NewLine);
+            full.AppendLine("Detailed Score");
             full.AppendLine("Operational Risk");
             
             foreach(RADeMSQuestionViewModel q in OperationalRiskQuestions)

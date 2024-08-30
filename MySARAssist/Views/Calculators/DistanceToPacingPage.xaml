@@ -28,10 +28,10 @@
 
 
                     <!-- Pace -->
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                     <!-- Paces -->
-                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
                     <RowDefinition Height="60"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>

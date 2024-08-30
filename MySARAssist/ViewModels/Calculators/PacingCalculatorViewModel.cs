@@ -12,6 +12,7 @@ namespace MySARAssist.ViewModels.Calculators
     {
        public PacingCalculatorViewModel()
         {
+            _PacesPer100m = CurrentMemberPace;
             PaceUpCommand = new Command(() =>
             {
                 PacesPer100m++;
