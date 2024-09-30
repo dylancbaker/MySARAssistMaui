@@ -94,7 +94,9 @@
 
                 <Label Style="{StaticResource FormFieldTitle}" >Emergency Contact</Label>
                 <Entry  Placeholder="Emergency Contact Name" x:Name="txtNOKName" Text="{Binding NOKName, Mode=TwoWay}"></Entry>
+                <Label Style="{StaticResource FormFieldTitle}" >Relationship</Label>
                 <Entry  Placeholder="e.g. Partner, Sibling, Parent" x:Name="txtNOKRelationship" Text="{Binding NOKRelation, Mode=TwoWay}"></Entry>
+                <Label Style="{StaticResource FormFieldTitle}" >Contact Number</Label>
                 <Entry  Placeholder="" Keyboard="Telephone" x:Name="txtNOKPhone" Text="{Binding NOKPhone, Mode=TwoWay}"></Entry>
 
 
