@@ -11,36 +11,38 @@
         <BackButtonBehavior 
         Command="{Binding Back_Command}"/>
     </Shell.BackButtonBehavior>
-    <VerticalStackLayout>
-        <Label  Text="{Binding ScoreText}" HorizontalOptions="Center" Padding="5,10,5,10"></Label>
-        <Grid VerticalOptions="Start">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Image x:Name="GridImage" SizeChanged="GridImage_SizeChanged"  Aspect="AspectFit" Grid.Row="0" Grid.Column="0" Source="radems_card.png"></Image>
-            <GraphicsView 
-                x:Name="Canvas"           VerticalOptions="Fill"      
-                HorizontalOptions="Fill"
-                Drawable="{Binding MyDrawable}" 
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label  Text="{Binding ScoreText}" HorizontalOptions="Center" Padding="5,10,5,10"></Label>
+            <Grid VerticalOptions="Start">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image x:Name="GridImage" SizeChanged="GridImage_SizeChanged"  Aspect="AspectFit" Grid.Row="0" Grid.Column="0" Source="radems_card.png"></Image>
+                <GraphicsView 
+                    x:Name="Canvas"           VerticalOptions="Fill"      
+                    HorizontalOptions="Fill"
+                    Drawable="{Binding MyDrawable}" 
                
                         
-                Grid.Row="0" Grid.Column="0"/>
+                    Grid.Row="0" Grid.Column="0"/>
 
             
-        </Grid>
-       <!-- <VerticalStackLayout>
-            <Image x:Name="GridImage" Aspect="AspectFit"  Source="radems_card.png" ></Image>
-            <GraphicsView 
-         x:Name="Canvas"                 
-         HorizontalOptions="Fill"
-         Drawable="{Binding MyDrawable}" 
+            </Grid>
+           <!-- <VerticalStackLayout>
+                <Image x:Name="GridImage" Aspect="AspectFit"  Source="radems_card.png" ></Image>
+                <GraphicsView 
+             x:Name="Canvas"                 
+             HorizontalOptions="Fill"
+             Drawable="{Binding MyDrawable}" 
                  
-        />
-            <Label Grid.Row="1" Grid.Column="0" Text="{Binding ScoreText}" HorizontalOptions="Center"></Label>
-        </VerticalStackLayout>-->
+            />
+                <Label Grid.Row="1" Grid.Column="0" Text="{Binding ScoreText}" HorizontalOptions="Center"></Label>
+            </VerticalStackLayout>-->
        
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
