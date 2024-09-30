@@ -370,4 +370,8 @@
 	  </None>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="ViewModels\Clues\" />
+	</ItemGroup>
+
 </Project>
