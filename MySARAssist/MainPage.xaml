@@ -8,7 +8,7 @@
     </ContentPage.Behaviors>
     <ScrollView>
         <VerticalStackLayout
-            Padding="30,0"
+            Padding="30,10"
             Spacing="25">
             <Image
                 Source="sar_assist_logo.png"
