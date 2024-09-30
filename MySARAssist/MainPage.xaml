@@ -2,14 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
-             x:Class="MySARAssist.MainPage">
+             x:Class="MySARAssist.MainPage" Title="My SAR Assist">
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Primary}}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
     <ScrollView>
         <VerticalStackLayout
             Padding="30,10"
-            Spacing="25">
+            Spacing="15">
             <Image
                 Source="sar_assist_logo.png"
                 HeightRequest="200"
