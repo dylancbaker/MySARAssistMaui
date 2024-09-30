@@ -29,7 +29,7 @@ namespace MySARAssist.ViewModels.RADeMS
         {
             get
             {
-                return $"Operational Risk: {OperationalRiskScore} | Response Capacity: {ResponseCapacityScore}";
+                return $"Op. Risk: {OperationalRiskScore} | Resp. Capacity: {ResponseCapacityScore}";
             }
         }
         public void SetOpRiskScore(int score)
