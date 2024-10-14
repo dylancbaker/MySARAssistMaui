@@ -12,14 +12,11 @@ namespace MySarAssistModels.Assignments
     [Serializable]
     public class Assignment : SyncableItem, ICloneable
     {
-         private string _TaskNumber;
-         private string _TaskName;
          private string _TeamName;
          private DateTime _DatePrepared;
          private int _AssignmentNumber;
          private string _AssignmentName;
          private int _Priority;
-         private string _CreatedBy;
          private string _Description;
          private string _Terrain;
          private int _MemberRequired;
@@ -70,8 +67,6 @@ namespace MySarAssistModels.Assignments
         }
 
         public Guid AssignmentID { get => ID; set { LastUpdated = DateTime.UtcNow; ID = value; } }
-        public string TaskNumber { get => _TaskNumber; set { LastUpdated = DateTime.UtcNow; _TaskNumber = value; } }
-        public string TaskName { get => _TaskName; set { LastUpdated = DateTime.UtcNow; _TaskName = value; } }
         public string TeamName { get => _TeamName; set { LastUpdated = DateTime.UtcNow; _TeamName = value; } }
         public string TeamNameWithNumber
         {
@@ -96,7 +91,6 @@ namespace MySarAssistModels.Assignments
         public string TeamNameWithAssignmentName { get { return TeamName + " " + AssignmentName; } }
 
         public int Priority { get => _Priority; set { LastUpdated = DateTime.UtcNow; _Priority = value; } }
-        public string CreatedBy { get => _CreatedBy; set { LastUpdated = DateTime.UtcNow; _CreatedBy = value; } }
         public string Description { get => _Description; set { LastUpdated = DateTime.UtcNow; _Description = value; } }
         public string Terrain { get => _Terrain; set { LastUpdated = DateTime.UtcNow; _Terrain = value; } }
         public int MembersRequired { get => _MemberRequired; set { LastUpdated = DateTime.UtcNow; _MemberRequired = value; } }
@@ -440,8 +434,6 @@ namespace MySarAssistModels.Assignments
         {
             bool Identical = true;
 
-            if (TaskNumber != compareTo.TaskNumber) { Identical = false; }
-            if (TaskName != compareTo.TaskName) { Identical = false; }
             if (AssignmentNumber != compareTo.AssignmentNumber) { Identical = false; }
             if (TeamName != compareTo.TeamName) { Identical = false; }
             if (OpPeriod != compareTo.OpPeriod) { Identical = false; }

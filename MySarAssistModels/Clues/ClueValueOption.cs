@@ -2,10 +2,10 @@
 {
     public class ClueValueOption
     {
-        private int _ClueValueId;
-        private string _ClueValueName;
+        private int _Id;
+        private string _ValueName = string.Empty;
 
-        public int ClueValueId { get => _ClueValueId; set => _ClueValueId = value; }
-        public string ClueValueName { get => _ClueValueName; set => _ClueValueName = value; }
+        public int Id { get => _Id; set => _Id = value; }
+        public string ValueName { get => _ValueName; set => _ValueName = value; }
     }
 }

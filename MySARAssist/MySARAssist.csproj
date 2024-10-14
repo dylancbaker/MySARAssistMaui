@@ -293,73 +293,76 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\Calculators\PacingToDistancePage.xaml.cs">
+	  <Compile Update="Views\CalculatorViews\PacingToDistancePage.xaml.cs">
 	    <DependentUpon>PacingToDistancePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Calculators\SweepWidthCalculatorView.xaml.cs">
+	  <Compile Update="Views\CalculatorViews\SweepWidthCalculatorView.xaml.cs">
 	    <DependentUpon>SweepWidthCalculatorView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Calculators\VisualSearchResourceEstimationView.xaml.cs">
+	  <Compile Update="Views\CalculatorViews\VisualSearchResourceEstimationView.xaml.cs">
 	    <DependentUpon>VisualSearchResourceEstimationView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\Calculators\DistanceToPacingPage.xaml">
+	  <MauiXaml Update="Views\CalculatorViews\DistanceToPacingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Calculators\HowToRangeOfDetectionPage.xaml">
+	  <MauiXaml Update="Views\CalculatorViews\HowToRangeOfDetectionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Calculators\SweepWidthCalculatorView.xaml">
+	  <MauiXaml Update="Views\CalculatorViews\SweepWidthCalculatorView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOut\CheckInOutView.xaml">
+	  <MauiXaml Update="Views\CheckInOutViews\CheckInOutView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOut\EditQualificationsPage.xaml">
+	  <MauiXaml Update="Views\CheckInOutViews\EditQualificationsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\General\AboutView.xaml">
+	  <MauiXaml Update="Views\GeneralViews\AboutView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Calculators\CalculatorsView.xaml">
+	  <MauiXaml Update="Views\CalculatorViews\CalculatorsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Calculators\CoordinateConverterView.xaml">
+	  <MauiXaml Update="Views\CalculatorViews\CoordinateConverterView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Calculators\GridSearchView.xaml">
+	  <MauiXaml Update="Views\CalculatorViews\GridSearchView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Calculators\LinearSearchView.xaml">
+	  <MauiXaml Update="Views\CalculatorViews\LinearSearchView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Calculators\PacingToDistancePage.xaml">
+	  <MauiXaml Update="Views\CalculatorViews\PacingToDistancePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Calculators\VisualSearchResourceEstimationView.xaml">
+	  <MauiXaml Update="Views\CalculatorViews\VisualSearchResourceEstimationView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOut\CheckInView.xaml">
+	  <MauiXaml Update="Views\CheckInOutViews\CheckInView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOut\CheckOutView.xaml">
+	  <MauiXaml Update="Views\CheckInOutViews\CheckOutView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOut\PersonnelEditView.xaml">
+	  <MauiXaml Update="Views\CheckInOutViews\PersonnelEditView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CheckInOut\PersonnelListView.xaml">
+	  <MauiXaml Update="Views\CheckInOutViews\PersonnelListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\RADeMS\RADeMSCardPage.xaml">
+	  <MauiXaml Update="Views\IncidentInfoViews\IncidentItemsListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\RADeMS\RADeMSDetailsPage.xaml">
+	  <MauiXaml Update="Views\RADeMSViews\RADeMSCardPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\RADeMS\RADeMSView.xaml">
+	  <MauiXaml Update="Views\RADeMSViews\RADeMSDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RADeMSViews\RADeMSView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
@@ -372,6 +375,8 @@
 
 	<ItemGroup>
 	  <Folder Include="ViewModels\Clues\" />
+	  <Folder Include="ViewModels\ClueViewModels\" />
+	  <Folder Include="Views\ClueViews\" />
 	</ItemGroup>
 
 </Project>

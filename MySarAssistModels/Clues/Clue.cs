@@ -42,7 +42,6 @@ namespace MySarAssistModels.Clues
         private int? _ClueValueId;
         private int? _AssignmentNumber;
 
-        private string? _TaskDescription;
         private string? _AssignmentOrTeamName;
 
 
@@ -64,7 +63,7 @@ namespace MySarAssistModels.Clues
         {
             get
             {
-                return ClueTools.GetValueOptionById(ClueValueId ?? 0)?.ClueValueName;
+                return ClueTools.GetValueOptionById(ClueValueId ?? 0)?.ValueName;
             }
         }
 
@@ -85,11 +84,10 @@ namespace MySarAssistModels.Clues
         //in order to find it again later in a list of tasks
 
 
-        public string? TaskDescription { get => _TaskDescription; set => _TaskDescription = value; }
         public int? AssignmentNumber { get => _AssignmentNumber; set => _AssignmentNumber = value; }
         public string? AssignmentOrTeamName { get => _AssignmentOrTeamName; set => _AssignmentOrTeamName = value; }
 
-        public new Clue? Clone()
+        public  Clue? Clone()
         {
 
             return this.MemberwiseClone() as Clue;

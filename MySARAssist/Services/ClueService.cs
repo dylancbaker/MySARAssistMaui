@@ -36,16 +36,16 @@ namespace MySARAssist.Services
                 return true;
             }
         }
-        public async Task<IEnumerable<Clue>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Clue>?> GetItemsAsync(bool forceRefresh = false)
         {
             await conn.CreateTableAsync<Clue>();
-            var items = await conn.Table<Clue>().ToListAsync();
+            List<Clue>? items = await conn.Table<Clue>().ToListAsync();
             return items;
         }
-        public async Task<Clue> GetItemAsync(Guid id)
+        public async Task<Clue?> GetItemAsync(Guid id)
         {
             await conn.CreateTableAsync<Clue>();
-            var item = await conn.Table<Clue>().FirstOrDefaultAsync(o => o.ClueID == id);
+            Clue? item = await conn.Table<Clue>().FirstOrDefaultAsync(o => o.ClueID == id);
             return item;
         }
         public async Task<bool> UpdateItemAsync(Clue item)

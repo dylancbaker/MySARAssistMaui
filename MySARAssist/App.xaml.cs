@@ -16,6 +16,7 @@ Added:
 using MySARAssist.Models.Personnel;
 */
 using MetroLog.Maui;
+using Microsoft.Extensions.Logging;
 using MySARAssist.Converters;
 using MySARAssist.Services;
 using MySarAssistModels.Interfaces;
@@ -27,11 +28,12 @@ namespace MySARAssist
     public partial class App : Application
     {
         private readonly PersonnelService _personnelService;
+        private readonly ILogger<MainPage> _logger;
 
         public static Personnel? CurrentPerson { get; set; }
 
 
-        public App()
+        public App(ILogger<MainPage> logger)
         {
             InitializeComponent();
             this._personnelService = new PersonnelService();
@@ -63,11 +65,17 @@ namespace MySARAssist
                 page => MainPage!.Navigation.PushModalAsync(page),
                 () => MainPage!.Navigation.PopModalAsync());
 
+            this._logger = logger;
 
             LoadCurrentPerson();
             Task.Run(() => CreateInitialOrganizationsAsNeeded()).Wait();
-            Task.Run(() => UpdateOrganizationsFromAPI()).Wait();
-
+            try
+            {
+                Task.Run(() => UpdateOrganizationsFromAPI()).Wait();
+            } catch (AggregateException ae)
+            {
+                _logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, ae.ToString());
+            }
 
         }
 
