@@ -167,11 +167,10 @@ namespace MySARAssist.ViewModels.CheckInOut
             List<string> issues = MemberToEdit.GetValidationIssues();
             if (issues.Any())
             {
-                string text = "There were issues saving the information:";
-                foreach (string issue in issues)
-                {
-                    text += "\n" + issue;
-                }
+                string text = "There were issues saving the information: ";
+                string issuetext = string.Join(',', issues.ToArray());
+
+                text += issuetext;
                 SendShortToast(text);
 
             }

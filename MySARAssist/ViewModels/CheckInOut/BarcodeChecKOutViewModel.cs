@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySarAssistModels.People;
+using Microsoft.Extensions.Logging;
 namespace MySARAssist.ViewModels.CheckInOut
 {
     public class BarcodeCheckOutViewModel : ObservableObject
@@ -14,7 +15,6 @@ namespace MySARAssist.ViewModels.CheckInOut
         {
             SignOutTime = DateTime.Now.TimeOfDay;
             KMs = 0;
-
         }
 
         private TimeSpan _SignOutTime;

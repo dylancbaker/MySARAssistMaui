@@ -8,7 +8,8 @@ namespace MySarAssistModels.People
         {
             var issues = new List<string>();
             if (string.IsNullOrEmpty(person.Name)) { issues.Add("Name is required"); }
-            if (!person.Name.Contains(" ")) { issues.Add("A full name is required (first and last)"); }
+            else if (!person.Name.Contains(" ")) { issues.Add("A full name is required (first and last)"); }
+
             if (string.IsNullOrEmpty(person.Email) || !person.Email.isValidEmail()) { issues.Add("A valid email is required"); }
             return issues;
         }

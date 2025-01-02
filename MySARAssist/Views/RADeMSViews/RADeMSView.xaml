@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MySARAssist.Views.RADeMSView"
+             x:Class="MySARAssist.Views.RADeMSView" HideSoftInputOnTapped="True"
              xmlns:models="clr-namespace:MySARAssist.ViewModels.RADeMS"
                           xmlns:vm="clr-namespace:MySARAssist.ViewModels.RADeMS"
 x:DataType="vm:RADeMSTypesViewModel"

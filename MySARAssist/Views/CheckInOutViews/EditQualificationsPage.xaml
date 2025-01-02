@@ -4,7 +4,7 @@
              x:Class="MySARAssist.Views.CheckInOut.EditQualificationsPage"
                            xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
 
-                           x:DataType="vm:EditQualificationsViewModel"
+                           x:DataType="vm:EditQualificationsViewModel" HideSoftInputOnTapped="True"
                xmlns:local="clr-namespace:MySARAssist.Models.ValidationTools"
              xmlns:models="clr-namespace:MySarAssistModels.People;assembly=MySarAssistModels"
              Title="Edit Qualifications">
