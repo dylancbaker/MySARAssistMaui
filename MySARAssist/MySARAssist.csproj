@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-ios;net8.0-maccatalyst;net8.0-android34.0</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 
@@ -64,45 +63,45 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	  <EnableSGenConc>True</EnableSGenConc>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	  <EnableSGenConc>True</EnableSGenConc>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
@@ -122,45 +121,45 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	  <EnableSGenConc>True</EnableSGenConc>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	  <EnableSGenConc>True</EnableSGenConc>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|ARM64'">
 	  <ApplicationTitle>My SAR Assist</ApplicationTitle>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
-	  <ApplicationVersion>3</ApplicationVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
 	</PropertyGroup>
 
@@ -171,27 +170,27 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
-	  <ApplicationVersion>30</ApplicationVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|ARM64'">
-	  <ApplicationVersion>30</ApplicationVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
-	  <ApplicationVersion>30</ApplicationVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|ARM64'">
-	  <ApplicationVersion>30</ApplicationVersion>
+	  <ApplicationVersion>31</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
-	  <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 	
 	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
@@ -201,6 +200,11 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<UseInterpreter Condition="$(TargetFramework.EndsWith('-ios'))">true</UseInterpreter>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+	</PropertyGroup>
+	<PropertyGroup>
+	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.26100.0</TargetFrameworks>
 	</PropertyGroup>
 			
 
@@ -260,19 +264,18 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.0" />
-		<PackageReference Include="CoordinateSharp" Version="2.24.2.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="CoordinateSharp" Version="3.1.1.1" />
 		<PackageReference Include="MetroLog.Maui" Version="2.1.0" />
-		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="8.0.8">
+		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="9.0.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.82" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
-		<PackageReference Include="NewRelic.MAUI.Plugin" Version="1.1.1" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.21" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.21" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<PackageReference Include="NSwag.ApiDescription.Client" Version="14.1.0">
+		<PackageReference Include="NSwag.ApiDescription.Client" Version="14.2.0">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
