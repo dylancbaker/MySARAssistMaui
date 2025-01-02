@@ -110,6 +110,8 @@
 	  <ApplicationDisplayVersion>2.0</ApplicationDisplayVersion>
 	  <ApplicationVersion>2</ApplicationVersion>
 	  <ApplicationId>ca.greathat.mysarassist</ApplicationId>
+		<RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
+
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|ARM64'">
@@ -226,6 +228,10 @@
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <AndroidLinkTool>r8</AndroidLinkTool>
+	  <AndroidPackageFormat>aab</AndroidPackageFormat>
+	  <AndroidUseAapt2>True</AndroidUseAapt2>
+	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|AnyCPU'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
@@ -235,6 +241,10 @@
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|ARM64'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
+	  <AndroidLinkTool>r8</AndroidLinkTool>
+	  <AndroidPackageFormat>aab</AndroidPackageFormat>
+	  <AndroidUseAapt2>True</AndroidUseAapt2>
+	  <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-ios|ARM64'">
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
@@ -243,8 +253,9 @@
 	  <ApplicationDisplayVersion>3.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(TargetFramework)'=='net9.0-ios'">
-	  <CodesignKey>Apple Development: Created via API (86RDN94U5G)</CodesignKey>
-	  <CodesignProvision>VS: ca.greathat.MySARAssist Development</CodesignProvision>
+	  <CodesignKey>Apple Distribution: Dylan Baker (AHLVEA35GD)</CodesignKey>
+	  <CodesignProvision>My SAR Assist Distro 2024</CodesignProvision>
+	  <ProvisioningType>manual</ProvisioningType>
 	</PropertyGroup>
 			
 
@@ -303,7 +314,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="10.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="CoordinateSharp" Version="3.1.1.1" />
 		<PackageReference Include="MetroLog.Maui" Version="2.1.0" />
@@ -320,12 +331,13 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
-		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.9" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.10" />
+		<PackageReference Include="System.Private.Uri" Version="4.3.2" />
 		<PackageReference Include="System.ServiceModel.Duplex" Version="6.0.*" />
-		<PackageReference Include="System.ServiceModel.Federation" Version="8.0.0" />
-		<PackageReference Include="System.ServiceModel.Http" Version="8.0.0" />
-		<PackageReference Include="System.ServiceModel.NetNamedPipe" Version="8.0.0" />
-		<PackageReference Include="System.ServiceModel.NetTcp" Version="8.0.0" />
+		<PackageReference Include="System.ServiceModel.Federation" Version="8.1.1" />
+		<PackageReference Include="System.ServiceModel.Http" Version="8.1.1" />
+		<PackageReference Include="System.ServiceModel.NetNamedPipe" Version="8.1.1" />
+		<PackageReference Include="System.ServiceModel.NetTcp" Version="8.1.1" />
 		<PackageReference Include="System.ServiceModel.Security" Version="6.0.*" />
 		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
