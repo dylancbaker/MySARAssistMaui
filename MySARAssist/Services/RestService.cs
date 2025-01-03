@@ -63,5 +63,37 @@ namespace MySARAssist.Services
             return Items;
         }
 
+
+        public async Task<List<NewsItem>?> RefreshNewsDataAsync()
+        {
+
+            ServiceReference1.GetAllNewsItemsRequest request = new ServiceReference1.GetAllNewsItemsRequest();
+            CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
+            GetAllNewsItemsResponse response = await client.GetAllNewsItemsAsync(request);
+            if (response.GetAllNewsItemsResult != null)
+            {
+                int n = response.GetAllNewsItemsResult.Length;
+            }
+
+
+            /*
+             Uri uri = new Uri(string.Format(Constants.RestUrl, string.Empty));
+             try
+             {
+                 HttpResponseMessage response = await _client.GetAsync(uri); 
+                 if (response.IsSuccessStatusCode)
+                 {
+                     string content = await response.Content.ReadAsStringAsync();
+                     Items = JsonSerializer.Deserialize<List<Organization>>(content, _serializerOptions);
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
+             }
+            */
+            return new List<NewsItem>();
+        }
+
     }
 }
