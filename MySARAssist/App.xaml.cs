@@ -101,6 +101,10 @@ namespace MySARAssist
             {
                 // Connection to internet is available
                 RestService service = new RestService();
+
+                _ = await service.RefreshNewsDataAsync();
+
+
                 OrganizationService orgService = new OrganizationService();
                 List<ServiceReference1.Organization>? syncOrgs = await service.RefreshDataAsync();
 
