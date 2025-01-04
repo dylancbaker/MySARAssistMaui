@@ -91,6 +91,11 @@ namespace ServiceReference1
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
         System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailsResponse> GetTaskUpdateDetailsAsync(ServiceReference1.GetTaskUpdateDetailsRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetTaskUpdateDetailsLastByItemIDAsync", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
+        System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailsLastByItemIDAsyncResponse> GetTaskUpdateDetailsLastByItemIDAsyncAsync(ServiceReference1.GetTaskUpdateDetailsLastByItemIDAsyncRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetTaskUpdateDetailByCommand", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
@@ -242,1041 +247,6 @@ namespace ServiceReference1
             set
             {
                 this.logoFileNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
-    public partial class TaskUpdate
-    {
-        
-        private System.Guid updateIDField;
-        
-        private System.Guid taskIDField;
-        
-        private System.DateTime lastUpdatedUTCField;
-        
-        private int softwareVersionMajorField;
-        
-        private int softwareVersionMinorField;
-        
-        private int softwareVersionBuildField;
-        
-        private string commandNameField;
-        
-        private SyncableItem dataField;
-        
-        private string dataAsJSONField;
-        
-        private bool processedLocallyField;
-        
-        private bool uploadedSuccessfullyField;
-        
-        private System.Guid machineIDField;
-        
-        private string objectTypeField;
-        
-        private string dataEncField;
-        
-        private string sourceField;
-        
-        private string createdByRoleNameField;
-        
-        private System.Guid itemIDField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public System.Guid UpdateID
-        {
-            get
-            {
-                return this.updateIDField;
-            }
-            set
-            {
-                this.updateIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public System.Guid TaskID
-        {
-            get
-            {
-                return this.taskIDField;
-            }
-            set
-            {
-                this.taskIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public System.DateTime LastUpdatedUTC
-        {
-            get
-            {
-                return this.lastUpdatedUTCField;
-            }
-            set
-            {
-                this.lastUpdatedUTCField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public int SoftwareVersionMajor
-        {
-            get
-            {
-                return this.softwareVersionMajorField;
-            }
-            set
-            {
-                this.softwareVersionMajorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public int SoftwareVersionMinor
-        {
-            get
-            {
-                return this.softwareVersionMinorField;
-            }
-            set
-            {
-                this.softwareVersionMinorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
-        public int SoftwareVersionBuild
-        {
-            get
-            {
-                return this.softwareVersionBuildField;
-            }
-            set
-            {
-                this.softwareVersionBuildField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
-        public string CommandName
-        {
-            get
-            {
-                return this.commandNameField;
-            }
-            set
-            {
-                this.commandNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
-        public SyncableItem Data
-        {
-            get
-            {
-                return this.dataField;
-            }
-            set
-            {
-                this.dataField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
-        public string DataAsJSON
-        {
-            get
-            {
-                return this.dataAsJSONField;
-            }
-            set
-            {
-                this.dataAsJSONField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
-        public bool ProcessedLocally
-        {
-            get
-            {
-                return this.processedLocallyField;
-            }
-            set
-            {
-                this.processedLocallyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
-        public bool UploadedSuccessfully
-        {
-            get
-            {
-                return this.uploadedSuccessfullyField;
-            }
-            set
-            {
-                this.uploadedSuccessfullyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
-        public System.Guid MachineID
-        {
-            get
-            {
-                return this.machineIDField;
-            }
-            set
-            {
-                this.machineIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
-        public string ObjectType
-        {
-            get
-            {
-                return this.objectTypeField;
-            }
-            set
-            {
-                this.objectTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
-        public string DataEnc
-        {
-            get
-            {
-                return this.dataEncField;
-            }
-            set
-            {
-                this.dataEncField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
-        public string Source
-        {
-            get
-            {
-                return this.sourceField;
-            }
-            set
-            {
-                this.sourceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
-        public string CreatedByRoleName
-        {
-            get
-            {
-                return this.createdByRoleNameField;
-            }
-            set
-            {
-                this.createdByRoleNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
-        public System.Guid ItemID
-        {
-            get
-            {
-                return this.itemIDField;
-            }
-            set
-            {
-                this.itemIDField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PresetSafetyPlan))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(IncidentObjective))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CommsPlanItem))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
-    public abstract partial class SyncableItem
-    {
-        
-        private System.Guid idField;
-        
-        private bool activeField;
-        
-        private int opPeriodField;
-        
-        private System.DateTime lastUpdatedUTCField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public System.Guid ID
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public bool Active
-        {
-            get
-            {
-                return this.activeField;
-            }
-            set
-            {
-                this.activeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public int OpPeriod
-        {
-            get
-            {
-                return this.opPeriodField;
-            }
-            set
-            {
-                this.opPeriodField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public System.DateTime LastUpdatedUTC
-        {
-            get
-            {
-                return this.lastUpdatedUTCField;
-            }
-            set
-            {
-                this.lastUpdatedUTCField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
-    public partial class PresetSafetyPlan : SyncableItem
-    {
-        
-        private System.Guid safetyPlanTemplateIDField;
-        
-        private string hazardNameField;
-        
-        private string descriptionField;
-        
-        private string precautionsField;
-        
-        private string specialInstructionsField;
-        
-        private string[] additionalPPEField;
-        
-        private string[] checkedFieldNamesField;
-        
-        private bool isUniversalField;
-        
-        private System.Guid organizationIDField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public System.Guid SafetyPlanTemplateID
-        {
-            get
-            {
-                return this.safetyPlanTemplateIDField;
-            }
-            set
-            {
-                this.safetyPlanTemplateIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string HazardName
-        {
-            get
-            {
-                return this.hazardNameField;
-            }
-            set
-            {
-                this.hazardNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string Description
-        {
-            get
-            {
-                return this.descriptionField;
-            }
-            set
-            {
-                this.descriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public string Precautions
-        {
-            get
-            {
-                return this.precautionsField;
-            }
-            set
-            {
-                this.precautionsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public string SpecialInstructions
-        {
-            get
-            {
-                return this.specialInstructionsField;
-            }
-            set
-            {
-                this.specialInstructionsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=5)]
-        public string[] additionalPPE
-        {
-            get
-            {
-                return this.additionalPPEField;
-            }
-            set
-            {
-                this.additionalPPEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=6)]
-        public string[] checkedFieldNames
-        {
-            get
-            {
-                return this.checkedFieldNamesField;
-            }
-            set
-            {
-                this.checkedFieldNamesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
-        public bool isUniversal
-        {
-            get
-            {
-                return this.isUniversalField;
-            }
-            set
-            {
-                this.isUniversalField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
-        public System.Guid OrganizationID
-        {
-            get
-            {
-                return this.organizationIDField;
-            }
-            set
-            {
-                this.organizationIDField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
-    public partial class IncidentObjective : SyncableItem
-    {
-        
-        private System.Guid presetObjectiveIDField;
-        
-        private string objectiveField;
-        
-        private int priorityField;
-        
-        private bool isUniversalField;
-        
-        private System.DateTime presetLastUpdatedUTCField;
-        
-        private System.Guid taskIDField;
-        
-        private System.Guid incidentObjectiveIDField;
-        
-        private System.DateTime objectiveLastUpdatedUTCField;
-        
-        private System.Guid organizationIDField;
-        
-        private bool completedField;
-        
-        private string copyNextOpTextField;
-        
-        private System.Guid parentObjectiveIDField;
-        
-        private string[] templateStrategiesField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public System.Guid PresetObjectiveID
-        {
-            get
-            {
-                return this.presetObjectiveIDField;
-            }
-            set
-            {
-                this.presetObjectiveIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string Objective
-        {
-            get
-            {
-                return this.objectiveField;
-            }
-            set
-            {
-                this.objectiveField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public int Priority
-        {
-            get
-            {
-                return this.priorityField;
-            }
-            set
-            {
-                this.priorityField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public bool isUniversal
-        {
-            get
-            {
-                return this.isUniversalField;
-            }
-            set
-            {
-                this.isUniversalField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public System.DateTime PresetLastUpdatedUTC
-        {
-            get
-            {
-                return this.presetLastUpdatedUTCField;
-            }
-            set
-            {
-                this.presetLastUpdatedUTCField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
-        public System.Guid TaskID
-        {
-            get
-            {
-                return this.taskIDField;
-            }
-            set
-            {
-                this.taskIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
-        public System.Guid IncidentObjectiveID
-        {
-            get
-            {
-                return this.incidentObjectiveIDField;
-            }
-            set
-            {
-                this.incidentObjectiveIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
-        public System.DateTime ObjectiveLastUpdatedUTC
-        {
-            get
-            {
-                return this.objectiveLastUpdatedUTCField;
-            }
-            set
-            {
-                this.objectiveLastUpdatedUTCField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
-        public System.Guid OrganizationID
-        {
-            get
-            {
-                return this.organizationIDField;
-            }
-            set
-            {
-                this.organizationIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
-        public bool Completed
-        {
-            get
-            {
-                return this.completedField;
-            }
-            set
-            {
-                this.completedField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
-        public string CopyNextOpText
-        {
-            get
-            {
-                return this.copyNextOpTextField;
-            }
-            set
-            {
-                this.copyNextOpTextField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
-        public System.Guid ParentObjectiveID
-        {
-            get
-            {
-                return this.parentObjectiveIDField;
-            }
-            set
-            {
-                this.parentObjectiveIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=12)]
-        public string[] TemplateStrategies
-        {
-            get
-            {
-                return this.templateStrategiesField;
-            }
-            set
-            {
-                this.templateStrategiesField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
-    public partial class CommsPlanItem : SyncableItem
-    {
-        
-        private System.Guid itemIDField;
-        
-        private string commsSystemField;
-        
-        private string callSignField;
-        
-        private string commsFunctionField;
-        
-        private string channelIDField;
-        
-        private string channelNumberField;
-        
-        private string frequencyField;
-        
-        private string rxFrequencyField;
-        
-        private string txFrequencyField;
-        
-        private string commentsField;
-        
-        private bool isRepeaterField;
-        
-        private bool isUniversalField;
-        
-        private System.Guid organizationIDField;
-        
-        private int opsPeriodField;
-        
-        private string rxToneField;
-        
-        private string txToneField;
-        
-        private string assignmentField;
-        
-        private bool usedForAircraftField;
-        
-        private System.Guid templateItemIDField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public System.Guid ItemID
-        {
-            get
-            {
-                return this.itemIDField;
-            }
-            set
-            {
-                this.itemIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string CommsSystem
-        {
-            get
-            {
-                return this.commsSystemField;
-            }
-            set
-            {
-                this.commsSystemField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string CallSign
-        {
-            get
-            {
-                return this.callSignField;
-            }
-            set
-            {
-                this.callSignField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public string CommsFunction
-        {
-            get
-            {
-                return this.commsFunctionField;
-            }
-            set
-            {
-                this.commsFunctionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public string ChannelID
-        {
-            get
-            {
-                return this.channelIDField;
-            }
-            set
-            {
-                this.channelIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
-        public string ChannelNumber
-        {
-            get
-            {
-                return this.channelNumberField;
-            }
-            set
-            {
-                this.channelNumberField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
-        public string Frequency
-        {
-            get
-            {
-                return this.frequencyField;
-            }
-            set
-            {
-                this.frequencyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
-        public string RxFrequency
-        {
-            get
-            {
-                return this.rxFrequencyField;
-            }
-            set
-            {
-                this.rxFrequencyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
-        public string TxFrequency
-        {
-            get
-            {
-                return this.txFrequencyField;
-            }
-            set
-            {
-                this.txFrequencyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
-        public string Comments
-        {
-            get
-            {
-                return this.commentsField;
-            }
-            set
-            {
-                this.commentsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
-        public bool IsRepeater
-        {
-            get
-            {
-                return this.isRepeaterField;
-            }
-            set
-            {
-                this.isRepeaterField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
-        public bool isUniversal
-        {
-            get
-            {
-                return this.isUniversalField;
-            }
-            set
-            {
-                this.isUniversalField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
-        public System.Guid OrganizationID
-        {
-            get
-            {
-                return this.organizationIDField;
-            }
-            set
-            {
-                this.organizationIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
-        public int OpsPeriod
-        {
-            get
-            {
-                return this.opsPeriodField;
-            }
-            set
-            {
-                this.opsPeriodField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
-        public string RxTone
-        {
-            get
-            {
-                return this.rxToneField;
-            }
-            set
-            {
-                this.rxToneField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
-        public string TxTone
-        {
-            get
-            {
-                return this.txToneField;
-            }
-            set
-            {
-                this.txToneField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
-        public string Assignment
-        {
-            get
-            {
-                return this.assignmentField;
-            }
-            set
-            {
-                this.assignmentField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
-        public bool UsedForAircraft
-        {
-            get
-            {
-                return this.usedForAircraftField;
-            }
-            set
-            {
-                this.usedForAircraftField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
-        public System.Guid TemplateItemID
-        {
-            get
-            {
-                return this.templateItemIDField;
-            }
-            set
-            {
-                this.templateItemIDField = value;
             }
         }
     }
@@ -2234,12 +1204,1072 @@ namespace ServiceReference1
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PresetSafetyPlan))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(IncidentObjective))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CommsPlanItem))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
+    public abstract partial class SyncableItem
+    {
+        
+        private System.Guid idField;
+        
+        private bool activeField;
+        
+        private int opPeriodField;
+        
+        private System.DateTime lastUpdatedUTCField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public System.Guid ID
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public bool Active
+        {
+            get
+            {
+                return this.activeField;
+            }
+            set
+            {
+                this.activeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public int OpPeriod
+        {
+            get
+            {
+                return this.opPeriodField;
+            }
+            set
+            {
+                this.opPeriodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public System.DateTime LastUpdatedUTC
+        {
+            get
+            {
+                return this.lastUpdatedUTCField;
+            }
+            set
+            {
+                this.lastUpdatedUTCField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
+    public partial class PresetSafetyPlan : SyncableItem
+    {
+        
+        private System.Guid safetyPlanTemplateIDField;
+        
+        private string hazardNameField;
+        
+        private string descriptionField;
+        
+        private string precautionsField;
+        
+        private string specialInstructionsField;
+        
+        private string[] additionalPPEField;
+        
+        private string[] checkedFieldNamesField;
+        
+        private bool isUniversalField;
+        
+        private System.Guid organizationIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public System.Guid SafetyPlanTemplateID
+        {
+            get
+            {
+                return this.safetyPlanTemplateIDField;
+            }
+            set
+            {
+                this.safetyPlanTemplateIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string HazardName
+        {
+            get
+            {
+                return this.hazardNameField;
+            }
+            set
+            {
+                this.hazardNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string Description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string Precautions
+        {
+            get
+            {
+                return this.precautionsField;
+            }
+            set
+            {
+                this.precautionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string SpecialInstructions
+        {
+            get
+            {
+                return this.specialInstructionsField;
+            }
+            set
+            {
+                this.specialInstructionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=5)]
+        public string[] additionalPPE
+        {
+            get
+            {
+                return this.additionalPPEField;
+            }
+            set
+            {
+                this.additionalPPEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=6)]
+        public string[] checkedFieldNames
+        {
+            get
+            {
+                return this.checkedFieldNamesField;
+            }
+            set
+            {
+                this.checkedFieldNamesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public bool isUniversal
+        {
+            get
+            {
+                return this.isUniversalField;
+            }
+            set
+            {
+                this.isUniversalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public System.Guid OrganizationID
+        {
+            get
+            {
+                return this.organizationIDField;
+            }
+            set
+            {
+                this.organizationIDField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
+    public partial class IncidentObjective : SyncableItem
+    {
+        
+        private System.Guid presetObjectiveIDField;
+        
+        private string objectiveField;
+        
+        private int priorityField;
+        
+        private bool isUniversalField;
+        
+        private System.DateTime presetLastUpdatedUTCField;
+        
+        private System.Guid taskIDField;
+        
+        private System.Guid incidentObjectiveIDField;
+        
+        private System.DateTime objectiveLastUpdatedUTCField;
+        
+        private System.Guid organizationIDField;
+        
+        private bool completedField;
+        
+        private string copyNextOpTextField;
+        
+        private System.Guid parentObjectiveIDField;
+        
+        private string[] templateStrategiesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public System.Guid PresetObjectiveID
+        {
+            get
+            {
+                return this.presetObjectiveIDField;
+            }
+            set
+            {
+                this.presetObjectiveIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Objective
+        {
+            get
+            {
+                return this.objectiveField;
+            }
+            set
+            {
+                this.objectiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public int Priority
+        {
+            get
+            {
+                return this.priorityField;
+            }
+            set
+            {
+                this.priorityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public bool isUniversal
+        {
+            get
+            {
+                return this.isUniversalField;
+            }
+            set
+            {
+                this.isUniversalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public System.DateTime PresetLastUpdatedUTC
+        {
+            get
+            {
+                return this.presetLastUpdatedUTCField;
+            }
+            set
+            {
+                this.presetLastUpdatedUTCField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public System.Guid TaskID
+        {
+            get
+            {
+                return this.taskIDField;
+            }
+            set
+            {
+                this.taskIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public System.Guid IncidentObjectiveID
+        {
+            get
+            {
+                return this.incidentObjectiveIDField;
+            }
+            set
+            {
+                this.incidentObjectiveIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public System.DateTime ObjectiveLastUpdatedUTC
+        {
+            get
+            {
+                return this.objectiveLastUpdatedUTCField;
+            }
+            set
+            {
+                this.objectiveLastUpdatedUTCField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public System.Guid OrganizationID
+        {
+            get
+            {
+                return this.organizationIDField;
+            }
+            set
+            {
+                this.organizationIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public bool Completed
+        {
+            get
+            {
+                return this.completedField;
+            }
+            set
+            {
+                this.completedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public string CopyNextOpText
+        {
+            get
+            {
+                return this.copyNextOpTextField;
+            }
+            set
+            {
+                this.copyNextOpTextField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public System.Guid ParentObjectiveID
+        {
+            get
+            {
+                return this.parentObjectiveIDField;
+            }
+            set
+            {
+                this.parentObjectiveIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=12)]
+        public string[] TemplateStrategies
+        {
+            get
+            {
+                return this.templateStrategiesField;
+            }
+            set
+            {
+                this.templateStrategiesField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
+    public partial class CommsPlanItem : SyncableItem
+    {
+        
+        private System.Guid itemIDField;
+        
+        private string commsSystemField;
+        
+        private string callSignField;
+        
+        private string commsFunctionField;
+        
+        private string channelIDField;
+        
+        private string channelNumberField;
+        
+        private string frequencyField;
+        
+        private string rxFrequencyField;
+        
+        private string txFrequencyField;
+        
+        private string commentsField;
+        
+        private bool isRepeaterField;
+        
+        private bool isUniversalField;
+        
+        private System.Guid organizationIDField;
+        
+        private int opsPeriodField;
+        
+        private string rxToneField;
+        
+        private string txToneField;
+        
+        private string assignmentField;
+        
+        private bool usedForAircraftField;
+        
+        private System.Guid templateItemIDField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public System.Guid ItemID
+        {
+            get
+            {
+                return this.itemIDField;
+            }
+            set
+            {
+                this.itemIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string CommsSystem
+        {
+            get
+            {
+                return this.commsSystemField;
+            }
+            set
+            {
+                this.commsSystemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string CallSign
+        {
+            get
+            {
+                return this.callSignField;
+            }
+            set
+            {
+                this.callSignField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string CommsFunction
+        {
+            get
+            {
+                return this.commsFunctionField;
+            }
+            set
+            {
+                this.commsFunctionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public string ChannelID
+        {
+            get
+            {
+                return this.channelIDField;
+            }
+            set
+            {
+                this.channelIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string ChannelNumber
+        {
+            get
+            {
+                return this.channelNumberField;
+            }
+            set
+            {
+                this.channelNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string Frequency
+        {
+            get
+            {
+                return this.frequencyField;
+            }
+            set
+            {
+                this.frequencyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string RxFrequency
+        {
+            get
+            {
+                return this.rxFrequencyField;
+            }
+            set
+            {
+                this.rxFrequencyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string TxFrequency
+        {
+            get
+            {
+                return this.txFrequencyField;
+            }
+            set
+            {
+                this.txFrequencyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public string Comments
+        {
+            get
+            {
+                return this.commentsField;
+            }
+            set
+            {
+                this.commentsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public bool IsRepeater
+        {
+            get
+            {
+                return this.isRepeaterField;
+            }
+            set
+            {
+                this.isRepeaterField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public bool isUniversal
+        {
+            get
+            {
+                return this.isUniversalField;
+            }
+            set
+            {
+                this.isUniversalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public System.Guid OrganizationID
+        {
+            get
+            {
+                return this.organizationIDField;
+            }
+            set
+            {
+                this.organizationIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public int OpsPeriod
+        {
+            get
+            {
+                return this.opsPeriodField;
+            }
+            set
+            {
+                this.opsPeriodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public string RxTone
+        {
+            get
+            {
+                return this.rxToneField;
+            }
+            set
+            {
+                this.rxToneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public string TxTone
+        {
+            get
+            {
+                return this.txToneField;
+            }
+            set
+            {
+                this.txToneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public string Assignment
+        {
+            get
+            {
+                return this.assignmentField;
+            }
+            set
+            {
+                this.assignmentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=17)]
+        public bool UsedForAircraft
+        {
+            get
+            {
+                return this.usedForAircraftField;
+            }
+            set
+            {
+                this.usedForAircraftField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=18)]
+        public System.Guid TemplateItemID
+        {
+            get
+            {
+                return this.templateItemIDField;
+            }
+            set
+            {
+                this.templateItemIDField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
+    public partial class TaskUpdate
+    {
+        
+        private System.Guid updateIDField;
+        
+        private System.Guid taskIDField;
+        
+        private System.DateTime lastUpdatedUTCField;
+        
+        private int softwareVersionMajorField;
+        
+        private int softwareVersionMinorField;
+        
+        private int softwareVersionBuildField;
+        
+        private string commandNameField;
+        
+        private string objectTypeField;
+        
+        private string sourceField;
+        
+        private string createdByRoleNameField;
+        
+        private System.Guid itemIDField;
+        
+        private SyncableItem dataField;
+        
+        private string dataAsJSONField;
+        
+        private bool processedLocallyField;
+        
+        private bool uploadedSuccessfullyField;
+        
+        private System.Guid machineIDField;
+        
+        private string dataEncField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public System.Guid UpdateID
+        {
+            get
+            {
+                return this.updateIDField;
+            }
+            set
+            {
+                this.updateIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public System.Guid TaskID
+        {
+            get
+            {
+                return this.taskIDField;
+            }
+            set
+            {
+                this.taskIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public System.DateTime LastUpdatedUTC
+        {
+            get
+            {
+                return this.lastUpdatedUTCField;
+            }
+            set
+            {
+                this.lastUpdatedUTCField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public int SoftwareVersionMajor
+        {
+            get
+            {
+                return this.softwareVersionMajorField;
+            }
+            set
+            {
+                this.softwareVersionMajorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public int SoftwareVersionMinor
+        {
+            get
+            {
+                return this.softwareVersionMinorField;
+            }
+            set
+            {
+                this.softwareVersionMinorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public int SoftwareVersionBuild
+        {
+            get
+            {
+                return this.softwareVersionBuildField;
+            }
+            set
+            {
+                this.softwareVersionBuildField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public string CommandName
+        {
+            get
+            {
+                return this.commandNameField;
+            }
+            set
+            {
+                this.commandNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public string ObjectType
+        {
+            get
+            {
+                return this.objectTypeField;
+            }
+            set
+            {
+                this.objectTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
+        public string Source
+        {
+            get
+            {
+                return this.sourceField;
+            }
+            set
+            {
+                this.sourceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=9)]
+        public string CreatedByRoleName
+        {
+            get
+            {
+                return this.createdByRoleNameField;
+            }
+            set
+            {
+                this.createdByRoleNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=10)]
+        public System.Guid ItemID
+        {
+            get
+            {
+                return this.itemIDField;
+            }
+            set
+            {
+                this.itemIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=11)]
+        public SyncableItem Data
+        {
+            get
+            {
+                return this.dataField;
+            }
+            set
+            {
+                this.dataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=12)]
+        public string DataAsJSON
+        {
+            get
+            {
+                return this.dataAsJSONField;
+            }
+            set
+            {
+                this.dataAsJSONField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=13)]
+        public bool ProcessedLocally
+        {
+            get
+            {
+                return this.processedLocallyField;
+            }
+            set
+            {
+                this.processedLocallyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=14)]
+        public bool UploadedSuccessfully
+        {
+            get
+            {
+                return this.uploadedSuccessfullyField;
+            }
+            set
+            {
+                this.uploadedSuccessfullyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=15)]
+        public System.Guid MachineID
+        {
+            get
+            {
+                return this.machineIDField;
+            }
+            set
+            {
+                this.machineIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=16)]
+        public string DataEnc
+        {
+            get
+            {
+                return this.dataEncField;
+            }
+            set
+            {
+                this.dataEncField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskOfListOfTaskUpdate))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskOfListOfOrganization))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
     public partial class Task
     {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
+    public partial class TaskOfListOfTaskUpdate : Task
+    {
+        
+        private TaskUpdate[] resultField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        public TaskUpdate[] Result
+        {
+            get
+            {
+                return this.resultField;
+            }
+            set
+            {
+                this.resultField = value;
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2734,6 +2764,52 @@ namespace ServiceReference1
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateDetailsLastByItemIDAsync", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
+    public partial class GetTaskUpdateDetailsLastByItemIDAsyncRequest
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
+        public System.Guid TaskID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=1)]
+        public System.Guid machineID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=2)]
+        public System.DateTime CutoffDate;
+        
+        public GetTaskUpdateDetailsLastByItemIDAsyncRequest()
+        {
+        }
+        
+        public GetTaskUpdateDetailsLastByItemIDAsyncRequest(System.Guid TaskID, System.Guid machineID, System.DateTime CutoffDate)
+        {
+            this.TaskID = TaskID;
+            this.machineID = machineID;
+            this.CutoffDate = CutoffDate;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateDetailsLastByItemIDAsyncResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
+    public partial class GetTaskUpdateDetailsLastByItemIDAsyncResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
+        public ServiceReference1.TaskOfListOfTaskUpdate GetTaskUpdateDetailsLastByItemIDAsyncResult;
+        
+        public GetTaskUpdateDetailsLastByItemIDAsyncResponse()
+        {
+        }
+        
+        public GetTaskUpdateDetailsLastByItemIDAsyncResponse(ServiceReference1.TaskOfListOfTaskUpdate GetTaskUpdateDetailsLastByItemIDAsyncResult)
+        {
+            this.GetTaskUpdateDetailsLastByItemIDAsyncResult = GetTaskUpdateDetailsLastByItemIDAsyncResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="GetTaskUpdateDetailByCommand", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
     public partial class GetTaskUpdateDetailByCommandRequest
     {
@@ -2928,6 +3004,11 @@ namespace ServiceReference1
         public System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailsResponse> GetTaskUpdateDetailsAsync(ServiceReference1.GetTaskUpdateDetailsRequest request)
         {
             return base.Channel.GetTaskUpdateDetailsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailsLastByItemIDAsyncResponse> GetTaskUpdateDetailsLastByItemIDAsyncAsync(ServiceReference1.GetTaskUpdateDetailsLastByItemIDAsyncRequest request)
+        {
+            return base.Channel.GetTaskUpdateDetailsLastByItemIDAsyncAsync(request);
         }
         
         public System.Threading.Tasks.Task<ServiceReference1.GetTaskUpdateDetailByCommandResponse> GetTaskUpdateDetailByCommandAsync(ServiceReference1.GetTaskUpdateDetailByCommandRequest request)

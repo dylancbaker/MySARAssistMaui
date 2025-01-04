@@ -11,7 +11,7 @@
     "namespaceMappings": [
       "*, ServiceReference1"
     ],
-    "targetFramework": "net8.0",
+    "targetFramework": "net9.0",
     "typeReuseMode": "None"
   }
 }
