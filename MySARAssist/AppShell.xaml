@@ -5,6 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MySARAssist"
     xmlns:views="clr-namespace:MySARAssist.Views"
+        xmlns:incidentViews="clr-namespace:MySARAssist.Views.IncidentInfoViews"
+
     xmlns:checkinviews="clr-namespace:MySARAssist.Views.CheckInOut"
     Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Tertiary}, Dark={StaticResource Primary}}"
     Shell.FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}"
@@ -40,6 +42,11 @@
     <FlyoutItem Title="RADeMS Risk Assessment" Icon="radems_grid_icon.png">
         <ShellContent ContentTemplate="{DataTemplate views:RADeMSView}" ></ShellContent>
     </FlyoutItem>
+<!--—
+    <FlyoutItem Title="Incident Information" Icon="radems_grid_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate incidentViews:IncidentItemsListPage}" ></ShellContent>
+    </FlyoutItem>
+|-->
 
     <FlyoutItem Title="About My SAR Assist"  Icon="glyphicons_basic_196_circle_empty_info.png">
         <ShellContent ContentTemplate="{DataTemplate views:AboutView}" ></ShellContent>

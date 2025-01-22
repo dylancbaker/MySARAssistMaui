@@ -9,12 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySARAssist.Views.CheckInOut;
+using Microsoft.Extensions.Logging;
 
 namespace MySARAssist.ViewModels.CheckInOut
 {
     public class EditQualificationsViewModel : ObservableObject
     {
         private readonly PersonnelService _personnelService;
+        private readonly ILogger<MainPage> _logger;
 
         public Personnel CurrentMember { get; private set; } = new Personnel();
 
@@ -39,11 +41,12 @@ namespace MySARAssist.ViewModels.CheckInOut
 
 
 
-        public EditQualificationsViewModel()
+        public EditQualificationsViewModel(ILogger<MainPage> logger)
         {
             BackCommand = new Command(OnBackCommand);
             SaveCommand = new Command(OnSaveCommand);
             this._personnelService = new PersonnelService();
+            this._logger = logger;
         }
 
         private async void OnBackCommand(object obj)
@@ -74,11 +77,10 @@ namespace MySARAssist.ViewModels.CheckInOut
             List<string> issues = CurrentMember.GetValidationIssues();
             if (issues.Any())
             {
-                string text = "There were issues saving the information:";
-                foreach (string issue in issues)
-                {
-                    text += "\n" + issue;
-                }
+                string text = "There were issues saving the information: ";
+                string IssueText = string.Join(',', issues.ToArray());
+
+                text += IssueText;
                 SendShortToast(text);
             }
 
@@ -91,12 +93,24 @@ namespace MySARAssist.ViewModels.CheckInOut
                     await SaveCurrentPerson();
                     var toast = Toast.Make("Saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
                     await toast.Show(new CancellationToken());
+                    var stack = Shell.Current.Navigation.NavigationStack.ToArray();
+
+                    for (int i = stack.Length - 1; i > 0; i--)
+
+                    {
+
+                        Shell.Current.Navigation.RemovePage(stack[i]);
+
+                    }
                     await Shell.Current.GoToAsync($"{nameof(CheckInOutView)}");
+                    //await Shell.Current.GoToAsync($"//{nameof(CheckInOutView)}");
 
                 }
 
-                catch
+                catch (Exception ex)
                 {
+                    _logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, ex.ToString());
+
                     var toast = Toast.Make("ERROR, personnel was not saved", CommunityToolkit.Maui.Core.ToastDuration.Short, 14);
                     await toast.Show(new CancellationToken());
                 }

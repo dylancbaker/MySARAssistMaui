@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.AboutView"
              xmlns:vm="clr-namespace:MySARAssist.ViewModels.General"
-              x:DataType="vm:AboutViewModel"
+              x:DataType="vm:AboutViewModel" HideSoftInputOnTapped="True"
              Title="About My SAR Assist">
     <ContentPage.BindingContext>
         <vm:AboutViewModel></vm:AboutViewModel>

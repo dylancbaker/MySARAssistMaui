@@ -29,13 +29,11 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0</string>
+	<string>3.1</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The location is only required when using the coordinate converter to retrieve your current position.</string>
 	<key>CFBundleIdentifier</key>
 	<string>ca.greathat.MySARAssist</string>
-	<key>CFBundleVersion</key>
-	<string>6</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

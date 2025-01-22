@@ -14,7 +14,7 @@ public partial class EditQualificationsPage : ContentPage
     { try { 
 
         InitializeComponent();
-        _viewModel = new ViewModels.CheckInOut.EditQualificationsViewModel();
+        _viewModel = new ViewModels.CheckInOut.EditQualificationsViewModel(logger);
         this.BindingContext = _viewModel;
         this.logger = logger;
     }catch (Exception ex)

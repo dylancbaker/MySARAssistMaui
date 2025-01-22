@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySARAssist.Views.CheckInOut.CheckOutView"
                                         xmlns:vm="clr-namespace:MySARAssist.ViewModels.CheckInOut"
-               xmlns:local="clr-namespace:MySARAssist.Converters"
+               xmlns:local="clr-namespace:MySARAssist.Converters" HideSoftInputOnTapped="True"
 xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
              Title="Check Out">
     <ContentPage.BindingContext>

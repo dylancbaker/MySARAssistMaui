@@ -16,58 +16,51 @@ Added:
 using MySARAssist.Models.Personnel;
 */
 using MetroLog.Maui;
+using Microsoft.Extensions.Logging;
 using MySARAssist.Converters;
 using MySARAssist.Services;
 using MySarAssistModels.Interfaces;
 using MySarAssistModels.People;
-using NewRelic.MAUI.Plugin;
 
 namespace MySARAssist
 {
     public partial class App : Application
     {
         private readonly PersonnelService _personnelService;
+        private readonly ILogger<MainPage> _logger;
 
         public static Personnel? CurrentPerson { get; set; }
 
 
-        public App()
+        public App(ILogger<MainPage> logger)
         {
             InitializeComponent();
             this._personnelService = new PersonnelService();
 
             MainPage = new AppShell();
 
-            CrossNewRelic.Current.HandleUncaughtException();
-            CrossNewRelic.Current.TrackShellNavigatedEvents();
 
             // Set optional agent configuration
             // Options are: crashReportingEnabled, loggingEnabled, logLevel, collectorAddress, crashCollectorAddress
             // AgentStartConfiguration agentConfig = new AgentStartConfiguration(true, true, LogLevel.INFO, "mobile-collector.newrelic.com", "mobile-crash.newrelic.com");
 
-            if (DeviceInfo.Current.Platform == DevicePlatform.Android)
-            {
-                CrossNewRelic.Current.Start("AA32d4cf0465ae3269a836f3f40801a1bd04f4e60e-NRMA");
-                // Start with optional agent configuration 
-                // CrossNewRelic.Current.Start("<YOUR_ANDROID_TOKEN>", agentConfig);
-            }
-            else if (DeviceInfo.Current.Platform == DevicePlatform.iOS)
-            {
-                CrossNewRelic.Current.Start("AA6a713ecb46cfabf55e052bfd4f6297c55258ea9e-NRMA");
-                // Start with optional agent configuration 
-                // CrossNewRelic.Current.Start("<YOUR_IOS_TOKEN>", agentConfig);
-            }
 
 
             LogController.InitializeNavigation(
                 page => MainPage!.Navigation.PushModalAsync(page),
                 () => MainPage!.Navigation.PopModalAsync());
 
+            this._logger = logger;
 
             LoadCurrentPerson();
             Task.Run(() => CreateInitialOrganizationsAsNeeded()).Wait();
-            Task.Run(() => UpdateOrganizationsFromAPI()).Wait();
-
+            try
+            {
+                Task.Run(() => UpdateOrganizationsFromAPI()).Wait();
+            } catch (AggregateException ae)
+            {
+                _logger.Log(Microsoft.Extensions.Logging.LogLevel.Error, ae.ToString());
+            }
 
         }
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MySARAssist.Views.IncidentInfoViews.IncidentItemsListPage"
+             HideSoftInputOnTapped="True"
+             xmlns:vm="clr-namespace:MySARAssist.ViewModels.IncidentInfoViewModels"
+
+             Title="Incident Items">
+    <ContentPage.BindingContext>
+        <vm:IncidentInfoListViewModel></vm:IncidentInfoListViewModel>
+    </ContentPage.BindingContext>
+    <Grid Padding="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Entry Grid.Column="0" Placeholder="Search the items below" Text="{Binding SearchText, Mode=TwoWay}" />
+            <Image Grid.Column="1" Source="footstep_icon.png" VerticalOptions="Center" HorizontalOptions="Center" />
+        </Grid>
+        <Picker Grid.Row="1" Grid.Column="0" ItemsSource="{Binding AllIncidentItemTypes}" ItemDisplayBinding="{Binding Name}" SelectedIndex="{Binding FilterItemTypeId, FallbackValue=0, Mode=TwoWay}"></Picker>
+
+
+        <VerticalStackLayout Grid.Row="2" Grid.Column="0">
+
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding items}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="vm:IncidentInfoItemViewModel">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Text="{Binding ItemTypeInitials}" BackgroundColor="{Binding IconColour}"></Label>
+                            
+                            
+                            <Label Grid.Column="1" Grid.Row="0"  Text="{Binding ItemName}"  FontAttributes="Bold"></Label>
+                            <Label Grid.Column="1" Grid.Row="0"  Text="{Binding IncidentIdentifier}"  FontAttributes="Bold"></Label>
+                            <Label Grid.Column="1" Grid.Row="1"   Text="{Binding DateCreated}" ></Label>
+
+                            
+
+                        </Grid>
+
+
+
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+
+
+        </VerticalStackLayout>
+        <HorizontalStackLayout Grid.Row="3" Grid.Column="0">
+            <Button Text="Add New" Style="{StaticResource StandardButton}"></Button>
+        </HorizontalStackLayout>
+
+    </Grid>
+</ContentPage>
