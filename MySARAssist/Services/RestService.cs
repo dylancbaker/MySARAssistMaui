@@ -23,6 +23,7 @@ namespace MySARAssist.Services
             _serializerOptions = new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+
                 WriteIndented = true
             };
         }
@@ -32,12 +33,12 @@ namespace MySARAssist.Services
         {
             Items = new List<Organization>();
 
-            ServiceReference1.GetAllOrganizationsRequest request = new ServiceReference1.GetAllOrganizationsRequest();
+            ServiceReference1.GetAllOrganizationsSyncRequest request = new ServiceReference1.GetAllOrganizationsSyncRequest();
             CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
-            GetAllOrganizationsResponse response = await client.GetAllOrganizationsAsync(request);
-            if (response.GetAllOrganizationsResult != null)
+            GetAllOrganizationsSyncResponse response = await client.GetAllOrganizationsSyncAsync(request);
+            if (response.GetAllOrganizationsSyncResult != null)
             {
-                foreach (Organization org in response.GetAllOrganizationsResult.Result)
+                foreach (Organization org in response.GetAllOrganizationsSyncResult)
                 {
                     Items.Add(org);
                 }

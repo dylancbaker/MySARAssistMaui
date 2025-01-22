@@ -21,6 +21,11 @@ namespace ServiceReference1
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
         System.Threading.Tasks.Task<ServiceReference1.GetAllOrganizationsResponse> GetAllOrganizationsAsync(ServiceReference1.GetAllOrganizationsRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllOrganizationsSync", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
+        System.Threading.Tasks.Task<ServiceReference1.GetAllOrganizationsSyncResponse> GetAllOrganizationsSyncAsync(ServiceReference1.GetAllOrganizationsSyncRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetAllNewsItems", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
@@ -2274,6 +2279,36 @@ namespace ServiceReference1
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllOrganizationsSync", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
+    public partial class GetAllOrganizationsSyncRequest
+    {
+        
+        public GetAllOrganizationsSyncRequest()
+        {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllOrganizationsSyncResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
+    public partial class GetAllOrganizationsSyncResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
+        public ServiceReference1.Organization[] GetAllOrganizationsSyncResult;
+        
+        public GetAllOrganizationsSyncResponse()
+        {
+        }
+        
+        public GetAllOrganizationsSyncResponse(ServiceReference1.Organization[] GetAllOrganizationsSyncResult)
+        {
+            this.GetAllOrganizationsSyncResult = GetAllOrganizationsSyncResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllNewsItems", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
     public partial class GetAllNewsItemsRequest
     {
@@ -2858,6 +2893,11 @@ namespace ServiceReference1
         public System.Threading.Tasks.Task<ServiceReference1.GetAllOrganizationsResponse> GetAllOrganizationsAsync(ServiceReference1.GetAllOrganizationsRequest request)
         {
             return base.Channel.GetAllOrganizationsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReference1.GetAllOrganizationsSyncResponse> GetAllOrganizationsSyncAsync(ServiceReference1.GetAllOrganizationsSyncRequest request)
+        {
+            return base.Channel.GetAllOrganizationsSyncAsync(request);
         }
         
         public System.Threading.Tasks.Task<ServiceReference1.GetAllNewsItemsResponse> GetAllNewsItemsAsync(ServiceReference1.GetAllNewsItemsRequest request)
