@@ -1,4 +1,5 @@
 ﻿
+using AndroidX.ConstraintLayout.Core.Widgets;
 using ServiceReference1;
 using System;
 using System.Collections.Generic;
@@ -33,34 +34,44 @@ namespace MySARAssist.Services
         {
             Items = new List<Organization>();
 
-            ServiceReference1.GetAllOrganizationsSyncRequest request = new ServiceReference1.GetAllOrganizationsSyncRequest();
+            ServiceReference1.GetParentOrganizationsAsyncRequest request = new ServiceReference1.GetParentOrganizationsAsyncRequest();
             CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
-            GetAllOrganizationsSyncResponse response = await client.GetAllOrganizationsSyncAsync(request);
-            if (response.GetAllOrganizationsSyncResult != null)
+            GetParentOrganizationsAsyncResponse response = await client.GetParentOrganizationsAsyncAsync(request).ConfigureAwait(false);
+            if (response.GetParentOrganizationsAsyncResult != null)
             {
-                foreach (Organization org in response.GetAllOrganizationsSyncResult)
+                foreach (Organization org in response.GetParentOrganizationsAsyncResult.Result)
                 {
                     Items.Add(org);
                 }
             }
 
+            List<Organization> childOrgs = new List<Organization>();
+            foreach(Organization org in Items)
+            {
+                childOrgs.AddRange(await GetChildOrganizationsAsync(org.OrganizationID));
+            }
 
-            /*
-             Uri uri = new Uri(string.Format(Constants.RestUrl, string.Empty));
-             try
-             {
-                 HttpResponseMessage response = await _client.GetAsync(uri); 
-                 if (response.IsSuccessStatusCode)
-                 {
-                     string content = await response.Content.ReadAsStringAsync();
-                     Items = JsonSerializer.Deserialize<List<Organization>>(content, _serializerOptions);
-                 }
-             }
-             catch (Exception ex)
-             {
-                 Debug.WriteLine(@"\tERROR {0}", ex.Message);
-             }
-            */
+            List<Organization> allOrgs = new List<Organization>();
+            allOrgs.AddRange(Items);
+            allOrgs.AddRange(childOrgs);
+            return allOrgs;
+        }
+
+        private async Task<List<Organization>> GetChildOrganizationsAsync(Guid Parent)
+        {
+            Items = new List<Organization>();
+
+            ServiceReference1.GetChildOrganizationsAsyncRequest request = new ServiceReference1.GetChildOrganizationsAsyncRequest(Parent);
+            CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
+            GetChildOrganizationsAsyncResponse response = await client.GetChildOrganizationsAsyncAsync(request).ConfigureAwait(false);
+            if (response.GetChildOrganizationsAsyncResult != null)
+            {
+                foreach (Organization org in response.GetChildOrganizationsAsyncResult.Result)
+                {
+                    Items.Add(org);
+                }
+            }
+
             return Items;
         }
 
