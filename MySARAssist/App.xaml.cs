@@ -37,7 +37,7 @@ namespace MySARAssist
             InitializeComponent();
             this._personnelService = new PersonnelService();
 
-            MainPage = new AppShell();
+            Windows[0].Page = new AppShell();
 
 
             // Set optional agent configuration
@@ -47,8 +47,8 @@ namespace MySARAssist
 
 
             LogController.InitializeNavigation(
-                page => MainPage!.Navigation.PushModalAsync(page),
-                () => MainPage!.Navigation.PopModalAsync());
+                page => Windows[0].Page!.Navigation.PushModalAsync(page),
+                () => Windows[0].Page!.Navigation.PopModalAsync());
 
             this._logger = logger;
 
