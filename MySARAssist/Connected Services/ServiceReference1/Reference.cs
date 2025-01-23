@@ -26,6 +26,11 @@ namespace ServiceReference1
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
         System.Threading.Tasks.Task<ServiceReference1.GetParentOrganizationsAsyncResponse> GetParentOrganizationsAsyncAsync(ServiceReference1.GetParentOrganizationsAsyncRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetParentOrganizationsAsJSON", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
+        System.Threading.Tasks.Task<ServiceReference1.GetParentOrganizationsAsJSONResponse> GetParentOrganizationsAsJSONAsync(ServiceReference1.GetParentOrganizationsAsJSONRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="https://www.sarassist.ca/GetChildOrganizationsAsync", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Task))]
@@ -2250,6 +2255,7 @@ namespace ServiceReference1
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskOfListOfTaskUpdate))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskOfString))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(TaskOfListOfOrganization))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2280,6 +2286,14 @@ namespace ServiceReference1
                 this.resultField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="https://www.sarassist.ca")]
+    public partial class TaskOfString : Task
+    {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -2339,6 +2353,36 @@ namespace ServiceReference1
         public GetParentOrganizationsAsyncResponse(ServiceReference1.TaskOfListOfOrganization GetParentOrganizationsAsyncResult)
         {
             this.GetParentOrganizationsAsyncResult = GetParentOrganizationsAsyncResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetParentOrganizationsAsJSON", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
+    public partial class GetParentOrganizationsAsJSONRequest
+    {
+        
+        public GetParentOrganizationsAsJSONRequest()
+        {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetParentOrganizationsAsJSONResponse", WrapperNamespace="https://www.sarassist.ca", IsWrapped=true)]
+    public partial class GetParentOrganizationsAsJSONResponse
+    {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="https://www.sarassist.ca", Order=0)]
+        public ServiceReference1.TaskOfString GetParentOrganizationsAsJSONResult;
+        
+        public GetParentOrganizationsAsJSONResponse()
+        {
+        }
+        
+        public GetParentOrganizationsAsJSONResponse(ServiceReference1.TaskOfString GetParentOrganizationsAsJSONResult)
+        {
+            this.GetParentOrganizationsAsJSONResult = GetParentOrganizationsAsJSONResult;
         }
     }
     
@@ -3017,6 +3061,11 @@ namespace ServiceReference1
         public System.Threading.Tasks.Task<ServiceReference1.GetParentOrganizationsAsyncResponse> GetParentOrganizationsAsyncAsync(ServiceReference1.GetParentOrganizationsAsyncRequest request)
         {
             return base.Channel.GetParentOrganizationsAsyncAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ServiceReference1.GetParentOrganizationsAsJSONResponse> GetParentOrganizationsAsJSONAsync(ServiceReference1.GetParentOrganizationsAsJSONRequest request)
+        {
+            return base.Channel.GetParentOrganizationsAsJSONAsync(request);
         }
         
         public System.Threading.Tasks.Task<ServiceReference1.GetChildOrganizationsAsyncResponse> GetChildOrganizationsAsyncAsync(ServiceReference1.GetChildOrganizationsAsyncRequest request)

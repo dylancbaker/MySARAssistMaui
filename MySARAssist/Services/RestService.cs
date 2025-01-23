@@ -1,6 +1,4 @@
-﻿
-using AndroidX.ConstraintLayout.Core.Widgets;
-using ServiceReference1;
+﻿using ServiceReference1;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,32 +27,75 @@ namespace MySARAssist.Services
             };
         }
 
-
-        public async Task<List<Organization>?> RefreshDataAsync()
+        public async Task<List<Organization>?> TestRefreshDataAsync()
         {
-            Items = new List<Organization>();
+            List<Organization> parentOrgs = new List<Organization>();
+            List<Organization> childOrgs = new List<Organization>();
 
-            ServiceReference1.GetParentOrganizationsAsyncRequest request = new ServiceReference1.GetParentOrganizationsAsyncRequest();
-            CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
-            GetParentOrganizationsAsyncResponse response = await client.GetParentOrganizationsAsyncAsync(request).ConfigureAwait(false);
-            if (response.GetParentOrganizationsAsyncResult != null)
+            try
             {
-                foreach (Organization org in response.GetParentOrganizationsAsyncResult.Result)
+                ServiceReference1.GetParentOrganizationsAsJSONRequest request = new ServiceReference1.GetParentOrganizationsAsJSONRequest();
+                CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
+                GetParentOrganizationsAsJSONResponse response = await client.GetParentOrganizationsAsJSONAsync(request);
+                if (response != null)
                 {
-                    Items.Add(org);
+                    string str = response.GetParentOrganizationsAsJSONResult.ToString();
+                   
                 }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
             }
 
-            List<Organization> childOrgs = new List<Organization>();
-            foreach(Organization org in Items)
+
+            foreach (Organization org in Items)
             {
                 childOrgs.AddRange(await GetChildOrganizationsAsync(org.OrganizationID));
             }
 
-            List<Organization> allOrgs = new List<Organization>();
-            allOrgs.AddRange(Items);
-            allOrgs.AddRange(childOrgs);
-            return allOrgs;
+            Items = new List<Organization>();
+            Items.AddRange(parentOrgs);
+            Items.AddRange(childOrgs);
+            return Items;
+        }
+
+
+        public async Task<List<Organization>?> RefreshDataAsync()
+        {
+            List<Organization> parentOrgs = new List<Organization>();
+            List<Organization> childOrgs = new List<Organization>();
+
+            try
+            {
+                ServiceReference1.GetParentOrganizationsAsyncRequest request = new ServiceReference1.GetParentOrganizationsAsyncRequest();
+                CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
+                GetParentOrganizationsAsyncResponse response = await client.GetParentOrganizationsAsyncAsync(request).ConfigureAwait(false);
+                if (response.GetParentOrganizationsAsyncResult != null)
+                {
+                    foreach (Organization org in response.GetParentOrganizationsAsyncResult.Result)
+                    {
+                        parentOrgs.Add(org);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+
+            foreach (Organization org in Items)
+            {
+                childOrgs.AddRange(await GetChildOrganizationsAsync(org.OrganizationID));
+            }
+
+            Items = new List<Organization>();
+            Items.AddRange(parentOrgs);
+            Items.AddRange(childOrgs);
+            return Items;
         }
 
         private async Task<List<Organization>> GetChildOrganizationsAsync(Guid Parent)
