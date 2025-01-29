@@ -37,7 +37,7 @@ namespace MySARAssist
             InitializeComponent();
             this._personnelService = new PersonnelService();
 
-            Windows[0].Page = new AppShell();
+             MainPage = new AppShell();
 
 
             // Set optional agent configuration
@@ -77,10 +77,16 @@ namespace MySARAssist
             {
                 orgs = new List<Organization>();
             }
-            if (!orgs.Any())
+
+
+            if (!orgs.Any() || !orgs.Any(o=>o.ParentOrganizationID == Guid.Empty))
             {
                 //get the static orgs and save them
                 List<Organization> staticOrgs = OrganizationTools.GetStaticOrganizations(Guid.Empty);
+                List<Organization> parentOrgs = OrganizationTools.GetStaticParentOrganizations();
+                staticOrgs.AddRange(parentOrgs);
+                Guid bcsara = new Guid("CC3A9DC9-01A3-4D39-B806-2128B51120BC");
+                int bcsaraCount = staticOrgs.Count(o => o.OrganizationID == bcsara);
                 foreach(Organization org in staticOrgs)
                 {
                     await service.UpsertItemAsync(org);
