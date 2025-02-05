@@ -87,7 +87,7 @@ namespace MySARAssist.Services
             }
 
 
-            foreach (Organization org in Items)
+            foreach (Organization org in parentOrgs)
             {
                 childOrgs.AddRange(await GetChildOrganizationsAsync(org.OrganizationID));
             }
@@ -101,18 +101,23 @@ namespace MySARAssist.Services
         private async Task<List<Organization>> GetChildOrganizationsAsync(Guid Parent)
         {
             Items = new List<Organization>();
-
-            ServiceReference1.GetChildOrganizationsAsyncRequest request = new ServiceReference1.GetChildOrganizationsAsyncRequest(Parent);
-            CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
-            GetChildOrganizationsAsyncResponse response = await client.GetChildOrganizationsAsyncAsync(request).ConfigureAwait(false);
-            if (response.GetChildOrganizationsAsyncResult != null)
+            try
             {
-                foreach (Organization org in response.GetChildOrganizationsAsyncResult.Result)
+                ServiceReference1.GetChildOrganizationsAsyncRequest request = new ServiceReference1.GetChildOrganizationsAsyncRequest(Parent);
+                CAUpdatesWebserviceSoapClient client = new CAUpdatesWebserviceSoapClient(CAUpdatesWebserviceSoapClient.EndpointConfiguration.ICAUpdatesWebserviceSoap);
+                GetChildOrganizationsAsyncResponse response = await client.GetChildOrganizationsAsyncAsync(request).ConfigureAwait(false);
+                if (response.GetChildOrganizationsAsyncResult != null)
                 {
-                    Items.Add(org);
+                    foreach (Organization org in response.GetChildOrganizationsAsyncResult.Result)
+                    {
+                        Items.Add(org);
+                    }
                 }
-            }
+            } catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
 
+            }
             return Items;
         }
 
