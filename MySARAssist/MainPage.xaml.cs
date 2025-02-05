@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using MySARAssist.Services;
 using MySARAssist.Views;
 using MySARAssist.Views.CheckInOut;
+using MySARAssist.Views.Utilities;
 using MySarAssistModels.People;
 
 namespace MySARAssist
@@ -56,6 +57,13 @@ namespace MySARAssist
             _logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, "Moving to the radems page");
 
 
+
+        }
+
+        private async void UtilitiesButton_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(UtilitiesListPage));
+            _logger.Log(Microsoft.Extensions.Logging.LogLevel.Information, "Moving to the utilities page");
 
         }
     }

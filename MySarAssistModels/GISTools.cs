@@ -186,7 +186,8 @@ namespace MySarAssistModels
         public string CardinalLabel { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-
+        public double? Accuracy { get; set; } = 0;
+        public double? Altitude { get; set; }
         public Coordinate(double lat, double lng)
         {
             Latitude = lat;

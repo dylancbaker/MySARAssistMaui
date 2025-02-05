@@ -37,6 +37,11 @@
                 x:Name="RADeMSButton" Clicked="RADeMSButton_Clicked"
                 HorizontalOptions="Fill" />
 
+            <Button
+      Text="Utilities"  ImageSource="glyphicons_basic_234_calculator.png"  Style="{StaticResource StandardButton}"
+      x:Name="UtilitiesButton"  Clicked="UtilitiesButton_Clicked"
+      HorizontalOptions="Fill" />
+
         </VerticalStackLayout>
     </ScrollView>
 
