@@ -22,7 +22,15 @@ HideSoftInputOnTapped="True"
             <VerticalStackLayout>
 
                 <Label>Altitude by Location (from GPS)</Label>
-                <Label Text="{Binding CurrentAltitudeByGPS}"></Label>
+                <Label Text="{Binding CurrentLocationText}"></Label>
+
+                <HorizontalStackLayout>
+                    <Label Text="Accurate to "></Label>
+                    <Label Text="{Binding GPSAccuracy}"></Label>
+                    <Label Text="m"></Label>
+
+                </HorizontalStackLayout>
+                <Label Text="{Binding CurrentAltitudeByGPSText}"></Label>
                 <Button Command="{Binding GetLocationCommand}" Text="Get Current" Style="{StaticResource StandardButton}"></Button>
 
             </VerticalStackLayout>

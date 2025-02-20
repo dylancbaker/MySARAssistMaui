@@ -44,9 +44,11 @@
         <ShellContent ContentTemplate="{DataTemplate views:RADeMSView}" ></ShellContent>
     </FlyoutItem>
 
-    <FlyoutItem Title="Utilities" Icon="glyphicons_basic_607_user_check.png">
+    <!--
+    <FlyoutItem Title="Utilities" Icon="glyphicons_basic_607_user_check.png" >
         <ShellContent ContentTemplate="{DataTemplate utilityViews:UtilitiesListPage}" ></ShellContent>
     </FlyoutItem>
+    -->
     <!--—
     <FlyoutItem Title="Incident Information" Icon="radems_grid_icon.png">
         <ShellContent ContentTemplate="{DataTemplate incidentViews:IncidentItemsListPage}" ></ShellContent>

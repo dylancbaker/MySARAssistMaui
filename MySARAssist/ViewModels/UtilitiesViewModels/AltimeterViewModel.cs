@@ -21,18 +21,22 @@ namespace MySARAssist.ViewModels.UtilitiesViewModels
         {
             get => $"Lat: {CurrentCoordinate.Latitude}, Long: {CurrentCoordinate.Longitude}";
         }
-        public double            CurrentAltitudeByGPS
+        public double? GPSAccuracy { get => CurrentCoordinate.Accuracy;        }
+        public double?            CurrentAltitudeByGPS
+        {
+            get => CurrentCoordinate.Altitude;
+        }
+        public string CurrentAltitudeByGPSText
         {
             get
             {
                 if (CurrentCoordinate.Altitude != null)
                 {
-                    return (double)CurrentCoordinate.Altitude;
+                    return $"Altitude: {CurrentCoordinate.Altitude}m";
                 }
                 else
                 {
-                    return 0;
-
+                    return "Altitude: N/A";
                 }
             }
         }
@@ -151,7 +155,7 @@ namespace MySARAssist.ViewModels.UtilitiesViewModels
                 cts = new CancellationTokenSource();
                 var location = await Geolocation.GetLocationAsync(request, cts.Token);
 
-                if (location != null && location.Accuracy < 60)
+                if (location != null && location.Accuracy < 100)
                 {
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
 
@@ -163,8 +167,8 @@ namespace MySARAssist.ViewModels.UtilitiesViewModels
                     CurrentCoordinate = c;
                     OnPropertyChanged(nameof(CurrentCoordinate));
                     OnPropertyChanged(nameof(CurrentLocationText));
-                    OnPropertyChanged(nameof(CurrentAltitudeByGPS));
-
+                    OnPropertyChanged(nameof(CurrentAltitudeByGPSText));
+                    OnPropertyChanged(nameof(GPSAccuracy));
                     //DisplayQuestion();
                     //ShowToastAsync("Accuracy: " + location.Accuracy + "m");
 
